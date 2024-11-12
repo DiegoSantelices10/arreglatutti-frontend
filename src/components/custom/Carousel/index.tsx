@@ -29,21 +29,21 @@ const Carousel: FC<ICarouselProps> = (props) => {
             opts={{
                 align: "start",
             }}
-            className="w-full max-w-sm"
+            className="w-full"
         >
             <CarouselContent>
-                {images.map((image: any) => {
+                {images?.map((image: any) => {
                     return (
                         <CarouselItem
-                            className="basis-auto lg:basis-1/3"
+                            className="basis-auto"
                             key={image.id}
                         >
-                            <Card className="overflow-hidden h-32 w-44">
+                            <Card className="overflow-hidden h-24 w-40">
                                 <CardContent className="p-0 overflow-hidden rounded-md h-full w-full">
                                     <Image
                                         src={`${image.url}`}
-                                        width={150}
-                                        height={150}
+                                        width={100}
+                                        height={100}
                                         alt={image.url}
                                         className="object-cover h-full w-full rounded-md"
                                     />

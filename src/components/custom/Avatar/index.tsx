@@ -12,7 +12,6 @@ const Avatar: FC<IAvatarProps> = (props) => {
     return (
         <AvatarUI
             className='bg-white'
-
         >
             <AvatarImage src={image} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
         </AvatarUI>

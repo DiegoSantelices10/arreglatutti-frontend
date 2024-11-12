@@ -7,6 +7,7 @@ import Button from '@/components/custom/Button'
 import Select from '@/components/custom/ControllerSelect/Select'
 import { obtenerProfesionales } from '@/services/profesional'
 import { FaWhatsapp } from "react-icons/fa";
+import Drawer from '@/components/custom/Drawer'
 
 interface IProfessionDetail {
     params: Promise<{ profession: string }>
@@ -32,8 +33,8 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
         professionals = data;
     } catch (error) {
         console.error('Error fetching professionals:', error);
-        // Podrías agregar aquí alguna lógica para mostrar un mensaje de error al usuario
     }
+
     return (
         <section
             id="home"
@@ -73,27 +74,45 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
                                         </div>
                                         <div className='px-4'>
                                             <h1 className='text-primary font-semibold'>{professional.name}</h1>
-                                            <h1 className='text-gray-800 text-xs'>zona: {professional.city}</h1>
-                                            <h1 className='text-gray-800 text-xs'>especialidad: {professionText}</h1>
+                                            <div className='flex gap-1'>
+                                                <h1 className='text-gray-800 text-xs'>Zona - </h1>
+                                                <h1 className='text-gray-800 text-xs font-medium'>{professional.city}</h1>
+                                            </div>
+                                            <div className='flex gap-1'>
+                                                <h1 className='text-gray-800 text-xs'>Especialidad - </h1>
+                                                <h1 className='text-gray-800 text-xs font-medium'>{professionText}</h1>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <p className='text-sm md:text-xs text-[#8D94AE] font-semibold mt-2'>{professional.description}</p>
+                                <p className='text-sm md:text-xs text-[#8D94AE] font-medium mt-2'>{professional.description}</p>
                                 <div className='mt-2 h-[1px] bg-gray-200' />
                                 {/* <div className='w-full'>
                                     <Carousel images={professional.imgWorks} />
                                 </div> */}
-                                <div className='flex justify-end mt-2'>
+                                <div className='flex justify-between mt-2'>
                                     <a
                                         target="_blank"
                                         rel="noreferrer"
                                         href={`https://api.whatsapp.com/send?phone=549${professional.telephone}&text=Hola,%20necesito%20realizar%20una%20consulta`}
                                     >
-                                        <Button className='mt-2'>
+                                        <Button
+                                            className='mt-2'
+                                            variant={'outline'}
+                                        >
                                             Contactame
                                             <FaWhatsapp />
                                         </Button>
                                     </a>
+                                    <Drawer
+                                        name={professional.name}
+                                        imagesWorks={professional.imgWorks}
+                                        email={professional.email}
+                                        profession={professionText}
+                                        avatar={professional.imgProfile.url}
+                                        telephone={professional.telephone}
+                                    />
                                 </div>
                             </div>
                         </div>
