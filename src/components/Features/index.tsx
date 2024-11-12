@@ -7,12 +7,12 @@ const Features = () => {
     <>
       <section
         id="features"
-        className="bg-white py-16 md:py-20 lg:py-28"
+        className="bg-white min-h-screen py-16 md:py-20 lg:py-28"
       >
         <div className="container">
           <SectionTitle
             title="Servicio garantizado"
-            textClassName="text-primary"
+            textClassName="text-secondary"
             center
           />
 

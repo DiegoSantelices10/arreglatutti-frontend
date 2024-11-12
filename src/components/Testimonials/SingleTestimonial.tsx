@@ -25,7 +25,7 @@ const SingleTestimonial = ({ testimonial }: { testimonial: any }) => {
         data-wow-delay=".1s"
       >
         <div className="mb-5 flex items-center space-x-1">{ratingIcons}</div>
-        <p className="mb-4 border-b text-[#8D94AE] pb-4 text-base">
+        <p className="mb-4 border-b text-[#8D94AE] pb-4 text-sm">
           “{content}
         </p>
         <div className="flex items-center">
@@ -33,10 +33,10 @@ const SingleTestimonial = ({ testimonial }: { testimonial: any }) => {
             <Image src={image} alt={name} fill />
           </div>
           <div className="w-full">
-            <h5 className="mb-1 text-lg font-semibold text-dark dark:text-white lg:text-base xl:text-lg">
+            <h5 className="text-lg font-semibold text-primary dark:text-white lg:text-base xl:text-lg">
               {name}
             </h5>
-            <p className="text-sm text-body-color">{designation}</p>
+            <p className="text-sm text-gray-500">{designation}</p>
           </div>
         </div>
       </div>

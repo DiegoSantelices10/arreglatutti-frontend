@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn('bg-gradient-to-t from-primary to-secondary', inter.className)}
+        className={cn('bg-primary', inter.className)}
       >
         <Header />
         {children}

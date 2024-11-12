@@ -33,7 +33,7 @@ const testimonialData = [
 
 const Testimonials = () => {
   return (
-    <section className="relative z-10 bg-primary/[.03] pt-16 md:pt-20 lg:pt-28">
+    <section className="relative min-h-screen z-10 bg-primary/[.03] pt-16 md:pt-20 lg:pt-28">
       <div className="container">
         <SectionTitle
           title="Testimonios"

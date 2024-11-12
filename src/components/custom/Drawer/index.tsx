@@ -42,11 +42,9 @@ const Drawer: FC<IDrawerProps> = (props) => {
 
     return (
         <DrawerUI>
-            <DrawerTrigger>
-                <Button className='mt-2'>
-                    Ver perfil
-                    <FaUser />
-                </Button>
+            <DrawerTrigger className='bg-white flex text-secondary border border-secondary font-semibold justify-center items-center gap-2 px-4 rounded-xl h-9 text-[14px]'>
+                Ver perfil
+                <FaUser />
             </DrawerTrigger>
             <DrawerContent className='md:w-1/2 mx-auto'>
                 <DrawerHeader className='flex justify-start items-center gap-4'>
