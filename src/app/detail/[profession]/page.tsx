@@ -39,7 +39,7 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
             id="home"
             className="relative z-20 min-h-screen overflow-hidden pt-[80px] bg-[#FAFAFB] pb-10"
         >
-            <div className='absolute w-full h-24 rounded-b-3xl bg-primary -z-10' />
+            <div className='absolute w-full h-24 rounded-b-3xl bg-secondary -z-10' />
             <div className='px-4 md:px-14 space-y-8'>
                 <div className='bg-white rounded-xl p-6 shadow mt-10 md:mx-auto md:w-1/2'>
                     <p className='text-sm px-2 text-secondary font-medium pb-1'>En que zona buscas?</p>
