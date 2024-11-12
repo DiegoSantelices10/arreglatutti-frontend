@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'thoughtful-activity-d4dac2147c.media.strapiapp.com',
+        port: '',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
