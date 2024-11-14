@@ -42,7 +42,7 @@ const Drawer: FC<IDrawerProps> = (props) => {
 
     return (
         <DrawerUI>
-            <DrawerTrigger className='bg-white flex text-secondary border border-secondary font-semibold justify-center items-center gap-2 px-4 rounded-xl h-9 text-[14px]'>
+            <DrawerTrigger className='bg-white flex text-secondary border border-secondary font-semibold justify-center items-center gap-2 px-4 rounded h-9 text-[14px]'>
                 Ver perfil
                 <FaUser />
             </DrawerTrigger>
@@ -51,7 +51,7 @@ const Drawer: FC<IDrawerProps> = (props) => {
                     <Avatar image={avatar} />
                     <div>
                         <DrawerTitle className='text-primary'>{name}</DrawerTitle>
-                        <DrawerDescription className='text-left pl-1'>{profession}</DrawerDescription>
+                        <DrawerDescription className='text-left'>{profession}</DrawerDescription>
                     </div>
                 </DrawerHeader>
                 <div>
@@ -81,7 +81,7 @@ const Drawer: FC<IDrawerProps> = (props) => {
                 </div>
 
                 <DrawerFooter className='flex justify-end'>
-                    <Button className='mt-2'>
+                    <Button className='mt-2 rounded-xl'>
                         <a
                             className='flex justify-end w-auto items-center gap-2'
                             target="_blank"

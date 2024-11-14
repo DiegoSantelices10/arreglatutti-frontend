@@ -42,7 +42,7 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
         >
             <div className='absolute w-full h-24 rounded-b-3xl bg-primary -z-10' />
             <div className='px-4 md:px-14 space-y-8'>
-                <div className='bg-white rounded-xl p-6 shadow mt-10 md:mx-auto md:w-1/2'>
+                <div className='bg-white rounded-xl p-6 shadow-md mt-10 md:mx-auto md:w-1/2'>
                     <p className='text-sm px-2 text-primary font-medium pb-1'>En que zona buscas?</p>
                     <Select
                         placeholder='Selecciona un barrio'
@@ -63,10 +63,10 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
                         ]}
                     />
                 </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {professionals.map((professional: any) => (
                         <div key={professional.id}>
-                            <div className='rounded-xl bg-white p-4 shadow'>
+                            <div className='rounded-xl bg-white p-4 shadow-md'>
                                 <div className='flex flex-wrap justify-between'>
                                     <div className='flex items-center'>
                                         <div>
@@ -75,33 +75,19 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
                                         <div className='px-4'>
                                             <h1 className='text-primary font-semibold'>{professional.name}</h1>
                                             <div className='flex gap-1'>
-                                                <h1 className='text-primary text-xs'>Zona: </h1>
-                                                <h1 className='text-primary text-xs'>{professional.city}</h1>
+                                                <h1 className='text-xs'>Especialidad: </h1>
+                                                <h1 className='text-xs'>{professionText}</h1>
                                             </div>
                                             <div className='flex gap-1'>
-                                                <h1 className='text-primary text-xs'>Especialidad: </h1>
-                                                <h1 className='text-primary text-xs'>{professionText}</h1>
-
+                                                <h1 className='text-xs'>Zona: </h1>
+                                                <h1 className='text-xs'>{professional.city}</h1>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <p className='text-sm md:text-xs text-primary font-medium mt-2'>{professional.description}</p>
+                                <p className='text-xs text-textSecondary font-normal mt-2'>{professional.description}</p>
                                 <div className='mt-2 h-[1px] bg-gray-200' />
-                                {/* <div className='w-full'>
-                                    <Carousel images={professional.imgWorks} />
-                                </div> */}
                                 <div className='flex justify-between items-center mt-4'>
-                                    <a
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        href={`https://api.whatsapp.com/send?phone=549${professional.telephone}&text=Hola,%20necesito%20realizar%20una%20consulta`}
-                                    >
-                                        <Button className='rounded-xl'>
-                                            Contactame
-                                            <FaWhatsapp />
-                                        </Button>
-                                    </a>
                                     <Drawer
                                         name={professional.name}
                                         imagesWorks={professional.imgWorks}
@@ -110,6 +96,16 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
                                         avatar={professional.imgProfile.url}
                                         telephone={professional.telephone}
                                     />
+                                    <a
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        href={`https://api.whatsapp.com/send?phone=549${professional.telephone}&text=Hola,%20necesito%20realizar%20una%20consulta`}
+                                    >
+                                        <Button>
+                                            Contactame
+                                            <FaWhatsapp />
+                                        </Button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

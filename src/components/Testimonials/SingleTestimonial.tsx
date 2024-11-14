@@ -21,13 +21,10 @@ const SingleTestimonial = ({ testimonial }: { testimonial: any }) => {
   return (
     <div className="w-full">
       <div
-        className="wow fadeInUp rounded bg-white p-6 shadow-one dark:bg-[#1D2144] lg:px-5 xl:px-8"
+        className="wow fadeInUp rounded-xl bg-white p-6 shadow-one dark:bg-[#1D2144] lg:px-5 xl:px-8"
         data-wow-delay=".1s"
       >
-        <div className="mb-5 flex items-center space-x-1">{ratingIcons}</div>
-        <p className="mb-4 border-b text-[#8D94AE] pb-4 text-sm">
-          “{content}
-        </p>
+
         <div className="flex items-center">
           <div className="relative mr-4 h-[50px] w-full max-w-[50px] overflow-hidden rounded-full">
             <Image src={image} alt={name} fill />
@@ -36,9 +33,15 @@ const SingleTestimonial = ({ testimonial }: { testimonial: any }) => {
             <h5 className="text-lg font-semibold text-primary dark:text-white lg:text-base xl:text-lg">
               {name}
             </h5>
-            <p className="text-sm text-gray-500">{designation}</p>
+            <p className="text-sm text-textSecondary">{designation}</p>
+            <div className="mt-2 flex items-center space-x-1">{ratingIcons}</div>
+
           </div>
         </div>
+        <div className="w-full bg-gray-200 h-0.5 mt-2 mb-2" />
+        <p className=" text-[#8D94AE] mt-2 text-sm">
+          “{content}
+        </p>
       </div>
     </div>
   );

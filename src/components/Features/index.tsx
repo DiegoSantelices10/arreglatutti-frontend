@@ -12,7 +12,7 @@ const Features = () => {
         <div className="container">
           <SectionTitle
             title="Servicio garantizado"
-            textClassName="text-secondary"
+            textClassName="text-primary"
             center
           />
 

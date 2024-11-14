@@ -17,7 +17,7 @@ const SingleFeature = ({ feature }: { feature: Feature }) => {
         <h3 className="mb-5 text-xl font-bold text-primary sm:text-2xl lg:text-xl xl:text-2xl">
           {title}
         </h3>
-        <p className="pr-[10px] text-base font-medium leading-relaxed text-[#8D94AE]">
+        <p className="pr-[10px] text-base font-medium leading-relaxed text-textSecondary">
           {paragraph}
         </p>
       </div>

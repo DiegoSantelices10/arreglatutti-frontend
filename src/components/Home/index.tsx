@@ -185,8 +185,8 @@ const HomeUI = async () => {
                 <h1 className="text-2xl md:text-[44px] font-bold text-white">
                   Profesionales matriculados
                 </h1>
-                <p className="mb-12 mt-1 text-sm font-normal text-body-white text-gray-300">
-                  Gasistas, plomeros, electricistas, Instaladores de aire acondicionado...
+                <p className="mb-12 mt-1 text-sm font-normal text-body-white text-[#C0C0CF]">
+                  Gasistas, plomeros, electricistas, Instaladores de aire acondicionado y mucho mas
                 </p>
               </div>
             </div>
