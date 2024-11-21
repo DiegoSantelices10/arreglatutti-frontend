@@ -2,6 +2,8 @@
 import { FieldValues, useForm } from "react-hook-form";
 import Form from "../custom/Form";
 import SectionTitle from "../custom/SectionTitle";
+import CheckIcon from "@/images/icons/check-icon";
+import Solid from "../custom/BackgroundDesign/Solid";
 
 const Contact = () => {
 
@@ -16,21 +18,45 @@ const Contact = () => {
     },
   })
   return (
-    <section id="contact" className="overflow-hidden pt-16 md:pt-20 lg:pt-28 px-4 md:px-20 w-full">
-      <SectionTitle
-        title="Contactanos"
-        center
-      />
-      <div
-        className="md:w-1/2 md:mx-auto mb-12 p-8 rounded-xl bg-white sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
-        data-wow-delay=".15s"
-      >
-        <h2 className="mb-3 text-2xl font-bold text-primary text-center">
-          Solicita tu cotización
-        </h2>
+    <section id="contact" className="relative overflow-hidden py-16 md:py-20 lg:py-28 md:px-10 w-full ">
+      <Solid />
+      <div className="container">
+        <SectionTitle
+          title="Contactanos"
+          textClassName="md:text-[36px] lg:text-[40px]"
+          center
+        />
+        <div className="lg:flex lg:justify-between lg:items-start lg:gap-4">
 
-        <Form control={control} />
+          <div
+            className="mb-12 rounded-xl p-8 bg-white lg:w-1/2"
+            data-wow-delay=".15s"
+          >
+            <h2 className="mb-3 text-2xl font-bold text-primary text-center">
+              Solicita tu cotización
+            </h2>
+
+            <Form control={control} />
+          </div>
+          <div className="hidden lg:block lg:w-1/2  text-white space-y-4 pt-24 text-center ">
+            <h2 className="text-white font-bold text-3xl">Proceso de consulta</h2>
+            <div className="flex justify-center items-center gap-4 px-6">
+              <CheckIcon className="text-white size-6" />
+              <h2>Envianos tu consulta sobre el problema que tengas.</h2>
+            </div>
+            <div className="flex justify-center items-center gap-4 px-6">
+              <CheckIcon className="text-white size-6" />
+              <h2>Sera respondida en el menor tiempo posible.</h2>
+            </div>
+            <div className="flex justify-center items-center gap-4 px-6">
+              <CheckIcon className="text-white size-6" />
+              <h2>Con los mejores profesionales.</h2>
+            </div>
+          </div>
+        </div>
+
       </div>
+
     </section>
   );
 };

@@ -5,9 +5,10 @@ import Avatar from '@/components/custom/Avatar'
 import Button from '@/components/custom/Button'
 // import Carousel from '@/components/custom/Carousel'
 import Select from '@/components/custom/ControllerSelect/Select'
-import { obtenerProfesionales } from '@/services/profesional'
+// import { obtenerProfesionales } from '@/services/profesional'
 import { FaWhatsapp } from "react-icons/fa";
 import Drawer from '@/components/custom/Drawer'
+import { professionalsData } from '@/mocks/professionals'
 
 interface IProfessionDetail {
     params: Promise<{ profession: string }>
@@ -17,23 +18,29 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
 
     const { profession } = await params
 
-    const titleProfession = profession.includes('%C3%B1') || profession.includes('%20')
-        ? decodeURIComponent(profession)
-            .replace(/ñ/g, 'n') // Reemplaza todas las "ñ" con "n"
-            .replace(/ /g, '-')  // Reemplaza todos los espacios con "-"
-        : profession;
-
+    // const titleProfession = profession.includes('%C3%B1') || profession.includes('%20')
+    //     ? decodeURIComponent(profession)
+    //         .replace(/ñ/g, 'n') // Reemplaza todas las "ñ" con "n"
+    //         .replace(/ /g, '-')  // Reemplaza todos los espacios con "-"
+    //     : profession;
 
     const professionText = decodeURIComponent(profession)
 
-    let professionals = [];
+    const result = professionalsData[professionText]
+    console.log('result', result);
 
-    try {
-        const { data } = await obtenerProfesionales(titleProfession);
-        professionals = data;
-    } catch (error) {
-        console.error('Error fetching professionals:', error);
-    }
+
+
+    // let professionals = [];
+
+    // try {
+    //     const { data } = await obtenerProfesionales(titleProfession);
+    //     console.log('profesionales', data);
+
+    //     professionals = data;
+    // } catch (error) {
+    //     console.error('Error fetching professionals:', error);
+    // }
 
     return (
         <section
@@ -64,7 +71,7 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
                     />
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                    {professionals.map((professional: any) => (
+                    {result.map((professional: any) => (
                         <div key={professional.id}>
                             <div className='rounded-xl bg-white p-4 shadow-md'>
                                 <div className='flex flex-wrap justify-between'>
@@ -75,12 +82,12 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
                                         <div className='px-4'>
                                             <h1 className='text-primary font-semibold'>{professional.name}</h1>
                                             <div className='flex gap-1'>
-                                                <h1 className='text-xs'>Especialidad: </h1>
-                                                <h1 className='text-xs'>{professionText}</h1>
+                                                <h1 className='text-xs text-textSecondary'>Especialidad - </h1>
+                                                <h1 className='text-xs text-textSecondary'>{professionText}</h1>
                                             </div>
                                             <div className='flex gap-1'>
-                                                <h1 className='text-xs'>Zona: </h1>
-                                                <h1 className='text-xs'>{professional.city}</h1>
+                                                <h1 className='text-xs text-textSecondary'>Zona - </h1>
+                                                <h1 className='text-xs text-textSecondary'>{professional.city}</h1>
                                             </div>
                                         </div>
                                     </div>

@@ -19,9 +19,9 @@ const SingleTestimonial = ({ testimonial }: { testimonial: any }) => {
   }
 
   return (
-    <div className="w-full">
+    <div>
       <div
-        className="wow fadeInUp rounded-xl bg-white p-6 shadow-one dark:bg-[#1D2144] lg:px-5 xl:px-8"
+        className="rounded-xl shadow-lg border border-gray-50 bg-white p-6 shadow-one dark:bg-[#1D2144] lg:px-5 xl:px-8"
         data-wow-delay=".1s"
       >
 
