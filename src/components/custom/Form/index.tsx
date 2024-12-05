@@ -52,6 +52,7 @@ const Form: FC<any> = (props) => {
                             Nombre
                         </label>
                         <ControllerInput
+                            id='name'
                             control={control}
                             placeholder='Ingrese su nombre'
                             name='name'
@@ -67,6 +68,7 @@ const Form: FC<any> = (props) => {
                             Telefono
                         </label>
                         <ControllerInput
+                            id='email'
                             control={control}
                             placeholder='Ingrese su telefono'
                             name='telephone'
@@ -76,12 +78,13 @@ const Form: FC<any> = (props) => {
                 <div className="w-full px-4 md:w-full">
                     <div className="mb-8">
                         <label
-                            htmlFor="email"
+                            htmlFor="profesion"
                             className="mb-1 block text-sm font-medium text-primary"
                         >
                             Profesión
                         </label>
                         <ControllerSelect
+                            id='profesion'
                             options={selectOptions}
                             placeholder='Seleccione una profesión'
                             control={control}
@@ -98,6 +101,7 @@ const Form: FC<any> = (props) => {
                             Descripción del problema
                         </label>
                         <ControllerTextArea
+                            id='message'
                             control={control}
                             placeholder='Ingrese una breve descripcion del problema'
                             name='message'

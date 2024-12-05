@@ -42,10 +42,13 @@ const Drawer: FC<IDrawerProps> = (props) => {
 
     return (
         <DrawerUI>
-            <DrawerTrigger className='flex text-secondary bg-gray-100 border-secondary font-semibold justify-center items-center gap-2 px-4 rounded h-9 text-[14px]'>
-                Ver perfil
-                <FaUser />
+            <DrawerTrigger asChild>
+                <Button className='flex text-secondary hover:text-white hover:bg-secondary bg-gray-100 border-secondary font-semibold justify-center items-center gap-2 px-4 rounded h-9 text-[14px]'>
+                    Ver perfil
+                    <FaUser />
+                </Button>
             </DrawerTrigger>
+
             <DrawerContent className='md:w-1/2 mx-auto'>
                 <DrawerHeader className='flex justify-start items-center gap-4'>
                     <Avatar image={avatar} />
@@ -55,7 +58,6 @@ const Drawer: FC<IDrawerProps> = (props) => {
                     </div>
                 </DrawerHeader>
                 <div>
-
                     <div className='px-4 text-sm w-full space-y-2'>
                         <div className='flex gap-2 justify-between'>
                             <h2>Zona de cobertatura:</h2>

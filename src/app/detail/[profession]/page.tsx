@@ -43,13 +43,12 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
     // }
 
     return (
-        <section
-            id="home"
+        <div
             className="relative z-20 min-h-screen overflow-hidden pt-[80px] bg-[#FAFAFB] pb-10"
         >
             <div className='absolute w-full h-24 rounded-b-3xl bg-primary -z-10' />
             <div className='px-4 md:px-14 space-y-8'>
-                <div className='bg-white rounded-xl p-6 shadow-md mt-10 md:mx-auto md:w-1/2'>
+                <div className='bg-white rounded p-6 shadow-md mt-10 md:mx-auto md:w-1/2'>
                     <p className='text-sm px-2 text-primary font-medium pb-1'>En que zona buscas?</p>
                     <Select
                         placeholder='Selecciona un barrio'
@@ -73,7 +72,7 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {result.map((professional: any) => (
                         <div key={professional.id}>
-                            <div className='rounded-xl bg-white p-4 shadow-md'>
+                            <div className='rounded bg-white p-4 shadow-md'>
                                 <div className='flex flex-wrap justify-between'>
                                     <div className='flex items-center'>
                                         <div>
@@ -119,7 +118,7 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
                     ))}
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
 

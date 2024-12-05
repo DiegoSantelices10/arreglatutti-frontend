@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+'use client'
 import ProfessionButton from "../custom/ProfessionButton";
 import Form from "../custom/Form";
 import Link from "next/link";
 import ProfessionSkeleton from "./Skeleton";
+import { motion } from "framer-motion";
 import Solid from "../custom/BackgroundDesign/Solid";
 import { profesionesData } from "@/mocks/profession";
 
-const HomeUI = async () => {
+const HomeUI = () => {
 
   const professions = profesionesData;
 
@@ -32,8 +34,13 @@ const HomeUI = async () => {
       >
         <Solid />
 
-        <div className="lg:flex lg:gap-4 lg:justify-between lg:items-center ">
-          <div className="pb-6 lg:w-1/2">
+        <div className="lg:flex lg:gap-4 lg:justify-between lg:items-center">
+        <motion.div
+        className="lg:w-1/2"
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5 }}>
+          <div className="pb-6 w-full">
             {/* Title */}
             <div className="flex flex-col items-center fadeInUp mx-auto text-center"
               data-wow-delay=".2s"
@@ -68,11 +75,13 @@ const HomeUI = async () => {
               </div>
             )}
           </div>
+        </motion.div>
+        
 
           {/* Form */}
           <div className="container w-full lg:w-1/2 mt-4 md:mt-0 md:pl-10">
             <div
-              className="mb-12 rounded-xl p-8 bg-white"
+              className="mb-12 rounded p-8 bg-white"
               data-wow-delay=".15s"
             >
               <h2 className="mb-3 text-2xl font-bold text-primary text-center">

@@ -9,6 +9,7 @@ import {
 
 
 export interface ControllerTextAreaProps {
+  id: string;
   name: string;
   control: Control<FieldValues>;
   placeholder?: string;

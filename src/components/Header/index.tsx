@@ -29,17 +29,17 @@ const Header: FC = () => {
       >
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
-            <div className="w-60 max-w-full px-4 xl:mr-12">
+            <div className="w-80 max-w-full px-8">
               <Link
                 href="/"
-                className={`header-logo block w-full ${sticky ? "py-2 lg:py-2" : "py-2"
+                className={`header-logo block w-full ${sticky ? "py-4 lg:py-4" : "py-4"
                   } `}
               >
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo-aquiles.png"
                   alt="logo"
-                  width={90}
-                  height={90}
+                  width={180}
+                  height={180}
                 />
               </Link>
             </div>

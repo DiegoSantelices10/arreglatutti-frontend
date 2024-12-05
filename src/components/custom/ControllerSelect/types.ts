@@ -24,6 +24,7 @@ export interface SelectProps extends RadixSelectProps {
 }
 
 export interface ControllerSelectProps extends SelectProps {
+  id: string;
   name: string;
   control: Control<FieldValues>;
   rules?: RegisterOptions;
