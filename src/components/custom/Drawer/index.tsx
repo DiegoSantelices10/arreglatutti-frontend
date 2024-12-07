@@ -12,6 +12,10 @@ import { Button } from '@/components/ui/button'
 import { FaUser, FaWhatsapp } from 'react-icons/fa';
 import Avatar from '../Avatar';
 import Carousel from '../Carousel';
+import DniIcon from '../../../../public/images/dni-icon';
+import TelephoneIcon from '../../../../public/images/telephone-icon';
+import EmailIcon from '../../../../public/images/email-icon';
+import LocationIcon from '../../../../public/images/location-icon';
 
 type imageWork = {
     id: number,
@@ -59,21 +63,21 @@ const Drawer: FC<IDrawerProps> = (props) => {
                 </DrawerHeader>
                 <div>
                     <div className='px-4 text-sm w-full space-y-2'>
-                        <div className='flex gap-2 justify-between'>
-                            <h2>Zona de cobertatura:</h2>
-                            <h2 className='font-medium'>Belgrano, nuñez, Saavedra</h2>
+                        <div className='flex gap-2 items-center'>
+                            <LocationIcon className='size-4' />
+                            <h2>Belgrano, nuñez, Saavedra</h2>
                         </div>
-                        <div className='flex gap-2 justify-between'>
-                            <h2>DNI:</h2>
-                            <h2 className='font-medium'>33781733</h2>
+                        <div className='flex gap-2 items-center'>
+                            <DniIcon className='size-4' />
+                            <h2>33781733</h2>
                         </div>
-                        <div className='flex gap-2 justify-between'>
-                            <h2>Telefono:</h2>
-                            <h2 className='font-medium'>{telephone}</h2>
+                        <div className='flex gap-2 items-center'>
+                            <TelephoneIcon className='size-4' />
+                            <h2>{telephone}</h2>
                         </div>
-                        <div className='flex gap-2 justify-between'>
-                            <h2>Email:</h2>
-                            <h2 className='font-medium'>{email}</h2>
+                        <div className='flex gap-2 items-center'>
+                            <EmailIcon className='size-4' />
+                            <h2>{email}</h2>
                         </div>
                     </div>
                     <div className='w-full px-4 mt-2'>
