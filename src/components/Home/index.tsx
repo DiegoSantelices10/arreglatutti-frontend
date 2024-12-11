@@ -68,8 +68,8 @@ const HomeUI = () => {
       <Carousel images={windowWidth > 768 ? imagesDesktop : imagesMobile} />
       <motion.div
         className="w-full z-50"
-        initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}>
         <section
           id="home"
