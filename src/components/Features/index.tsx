@@ -22,7 +22,7 @@ const Features = () => {
     <>
       <section
         id="features"
-        className="relative py-20 pb-32"
+        className="py-2"
       >
         <Solid />
         <motion.div
@@ -34,7 +34,7 @@ const Features = () => {
           transition={{ duration: 1.5 }}>
           <SectionTitle
             title="Servicio garantizado"
-            textClassName="text-white md:text-[36px] lg:text-[40px] "
+            textClassName="pt-40 md:pt-10  text-white md:text-[36px] lg:text-[40px] "
             center
           />
 

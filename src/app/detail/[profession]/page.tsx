@@ -61,7 +61,7 @@ const ProfessionDetail: FC<IProfessionDetail> = async ({ params }) => {
             <div className='absolute w-full h-24 rounded-b-3xl bg-primary -z-10' />
             <div className='px-4 md:px-14 space-y-6'>
                 <div className='bg-white rounded p-6 shadow-md mt-10 md:mx-auto md:w-1/2'>
-                    <p className='text-sm px-2 text-primary font-medium pb-1'>En que zona buscas?</p>
+                    <p className='text-sm px-1 font-medium pb-1'>En que zona buscas?</p>
                     <Select
                         placeholder='Selecciona un barrio'
                         className='bg-white'
