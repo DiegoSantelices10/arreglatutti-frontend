@@ -56,14 +56,15 @@ const Drawer: FC<IDrawerProps> = (props) => {
 
             <DrawerContent className='md:w-1/2 mx-auto'>
                 <DrawerHeader className='flex justify-start items-center gap-4'>
-                    <Avatar image={avatar} />
-                    <div>
-                        <DrawerTitle className='text-primary'>{name}</DrawerTitle>
-                        <DrawerDescription className='text-left'>{profession}</DrawerDescription>
+                    <Avatar image={avatar} className='size-16' />
+                    <div className='space-y-0.5'>
+                        <DrawerTitle className='text-primary font-semibold'>{name}</DrawerTitle>
+                        <DrawerDescription className='pl-1 text-left text-textSecondary'>{profession}</DrawerDescription>
                     </div>
                 </DrawerHeader>
-                <div>
-                    <div className='px-4 text-sm w-full space-y-2'>
+                <div className='h-[1px] w-full bg-gray-300' />
+                <div className='p-4'>
+                    <div className='text-sm w-full space-y-2'>
                         <div className='flex gap-2 items-center'>
                             <LocationIcon className='size-4' />
                             <h2>Belgrano, nuñez, Saavedra</h2>
@@ -81,7 +82,7 @@ const Drawer: FC<IDrawerProps> = (props) => {
                             <h2>{email}</h2>
                         </div>
                     </div>
-                    <div className='w-full px-4 mt-2'>
+                    <div className='w-full mt-2'>
                         <h2 className='text-primary text-sm font-semibold py-2'>Trabajos Realizados</h2>
                         <Carousel images={imagesWorks} />
                     </div>

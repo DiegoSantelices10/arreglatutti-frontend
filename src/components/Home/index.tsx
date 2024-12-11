@@ -62,14 +62,14 @@ const HomeUI = () => {
 
   return (
     <>
-      <div className="absolute h-full bg-gradient-to-t from-primary md:from-primary md:via-transparent via-primary to-transparent z-20 inset-0" />
-      <div className="absolute h-full bg-primary bg-opacity-30 z-20 inset-0" />
+      {/* <div className="absolute h-full bg-gradient-to-t from-primary md:from-primary md:via-transparent via-primary to-transparent z-20 inset-0" /> */}
+      {/* <div className="absolute h-full bg-primary bg-opacity-30 z-20 inset-0" /> */}
 
       <Carousel images={windowWidth > 768 ? imagesDesktop : imagesMobile} />
       <motion.div
-        className="w-full z-50"
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
+        className="w-full z-50 inset-0 absolute"
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}>
         <section
           id="home"

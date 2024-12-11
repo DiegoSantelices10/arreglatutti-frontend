@@ -1,17 +1,20 @@
 import { AvatarImage, Avatar as AvatarUI } from '@/components/ui/avatar'
-import React, { FC } from 'react'
+import { cn } from '@/utils'
+import React, { FC, HTMLAttributes } from 'react'
 
 interface IAvatarProps {
     image: string
+    className?: HTMLAttributes<HTMLDivElement>['className']
 }
 const Avatar: FC<IAvatarProps> = (props) => {
     const {
-        image
+        image,
+        className,
     } = props
 
     return (
         <AvatarUI
-            className='bg-white'
+            className={cn('bg-white', className)}
         >
             <AvatarImage src={image} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
         </AvatarUI>

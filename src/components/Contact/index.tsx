@@ -48,7 +48,7 @@ const Contact = () => {
           <div className="lg:flex lg:justify-between lg:items-start lg:gap-4">
 
             <div
-              className="mb-12 rounded-xl p-8 bg-white lg:w-1/2"
+              className="mb-12 rounded p-8 bg-white lg:w-1/2"
               data-wow-delay=".15s"
             >
               <h2 className="mb-3 text-2xl font-bold text-primary text-center">
@@ -57,7 +57,7 @@ const Contact = () => {
 
               <ProfessionalForm control={control} handleSubmit={handleSubmit} />
             </div>
-            <div className="hidden lg:block lg:w-1/2  text-white space-y-4 pt-24 text-center ">
+            <div className="hidden lg:block lg:w-1/2  text-white space-y-8 pt-28 text-center ">
               <h2 className="text-white font-bold text-3xl">Proceso de selección</h2>
               <div className="flex justify-center items-center gap-4 px-6">
                 <CheckIcon className="text-white size-6" />
