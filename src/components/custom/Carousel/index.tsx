@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/carousel"
 import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/card'
-import Autoplay from 'embla-carousel-autoplay'
 
 type imageWork = {
     id: number,
@@ -23,30 +22,35 @@ const Carousel: FC<ICarouselProps> = (props) => {
 
     return (
         <CarouselUI
-            plugins={[Autoplay({ delay: 4000 })]}
-            className="w-full absolute"
-        >
-            <CarouselContent
-                className='h-screen z-0'
-            >
-                {images?.map((image: any) => (
-                    <CarouselItem className="border-none w-full h-full flex justify-center items-center" key={image.id}>
-                        <Card className="overflow-hidden w-full h-full">
-                            <CardContent className="p-0 overflow-hidden border-none w-auto h-auto">
+        opts={{
+            align: "start",
+        }}
+        className="w-full"
+    >
+        <CarouselContent>
+            {images?.map((image: any) => {
+                return (
+                    <CarouselItem
+                        className="basis-auto"
+                        key={image.id}
+                    >
+                        <Card className="overflow-hidden h-24 w-40">
+                            <CardContent className="p-0 overflow-hidden rounded h-full w-full">
                                 <Image
-                                    src={image.url}
-                                    width={1920}
-                                    height={1080}
-                                    objectFit="cover" // Para que la imagen se recorte adecuadamente
+                                    src={`${image.url}`}
+                                    width={100}
+                                    height={100}
                                     alt={image.url}
-                                    className="border-none"
+                                    className="object-cover h-full w-full rounded-md"
                                 />
                             </CardContent>
                         </Card>
                     </CarouselItem>
-                ))}
-            </CarouselContent>
-        </CarouselUI>
+                )
+            })
+            }
+        </CarouselContent>
+    </CarouselUI>
     )
 }
 

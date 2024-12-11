@@ -7,8 +7,8 @@ import ProfessionSkeleton from "./Skeleton";
 import { motion } from "framer-motion";
 import Solid from "../custom/BackgroundDesign/Solid";
 import { profesionesData } from "@/mocks/profession";
-import Carousel from "../custom/Carousel";
 import { useEffect, useState } from "react";
+import Carousel from "./components/Carousel";
 
 const HomeUI = () => {
 

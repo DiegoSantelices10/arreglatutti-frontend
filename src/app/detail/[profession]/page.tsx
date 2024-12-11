@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-''
+
 import React, { FC } from 'react'
 import Avatar from '@/components/custom/Avatar'
 import Button from '@/components/custom/Button'
