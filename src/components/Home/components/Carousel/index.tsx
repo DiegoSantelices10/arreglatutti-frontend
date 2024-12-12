@@ -22,7 +22,7 @@ const Carousel: FC<ICarouselProps> = (props) => {
     const { images } = props
 
     return (
-        <div className='relative w-full h-screen'>
+        <div className='absolute w-full h-screen'>
             <div className="absolute h-full bg-gradient-to-t from-primary md:from-primary md:via-transparent via-primary to-transparent z-20 inset-0" />
             <div className="absolute h-full bg-primary bg-opacity-30 z-20 inset-0" />
 

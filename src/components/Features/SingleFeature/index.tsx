@@ -1,18 +1,19 @@
+import { ReactNode } from "react";
 
 interface Feature {
   id: number;
-  icon: JSX.Element;
+  icon: ReactNode;
   title: string;
   paragraph: string;
 };
 
 const SingleFeature = ({ feature }: { feature: Feature }) => {
-  const { icon, title, paragraph } = feature;
+  const { icon: Icon, title, paragraph } = feature;
   return (
     <div className="w-full">
       <div>
-        <div className="mb-10 flex h-[70px] w-[70px] items-center justify-center rounded bg-[#4a6cf7] bg-opacity-10 text-[#4a6cf7]">
-          {icon}
+        <div className="mb-10 flex h-[70px] w-[70px] items-center justify-center rounded-xl bg-[#4a6cf7] bg-opacity-10 text-[#4a6cf7]">
+          {Icon}
         </div>
         <h3 className="mb-5 font-bold text-white text-xl xl:text-2xl">
           {title}

@@ -67,13 +67,13 @@ const HomeUI = () => {
 
       <Carousel images={windowWidth > 768 ? imagesDesktop : imagesMobile} />
       <motion.div
-        className="w-full z-50 inset-0 absolute"
-        initial={{ opacity: 0, y: -100 }}
+        className="w-full z-50 inset-0 relative"
+        initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}>
         <section
           id="home"
-          className="relative z-50 min-h-screen overflow-hidden pt-[120px] md:px-10 "
+          className="z-50 min-h-screen overflow-hidden pt-[120px] md:px-10 "
         >
           <Solid />
 
