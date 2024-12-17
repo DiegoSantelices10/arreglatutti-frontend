@@ -29,8 +29,8 @@ const CityTable: FC<ICityTableProps> = (props) => {
                     <TableRow key={city.id}>
                         <TableCell className="font-medium">{city.id}</TableCell>
                         <TableCell className="font-medium">{city.name}</TableCell>
-                        <TableCell className='pl-4'><EditIcon /></TableCell>
-                        <TableCell className='pl-5'><DeleteIcon /></TableCell>
+                        <TableCell className='pl-4 cursor-pointer'><EditIcon /></TableCell>
+                        <TableCell className='pl-5 cursor-pointer'><DeleteIcon /></TableCell>
                     </TableRow>
                 ))}
             </TableBody>

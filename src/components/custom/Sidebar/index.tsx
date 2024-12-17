@@ -8,6 +8,7 @@ import {
     SidebarMenuItem,
     SidebarMenuButton,
     SidebarFooter,
+    useSidebar,
 } from "@/components/ui/sidebar"
 import Image from "next/image"
 import HomeIcon from "../../../../public/images/home-icon";
@@ -18,10 +19,25 @@ import EmailIcon from "../../../../public/images/email-icon";
 import LogoutIcon from "../../../../public/images/logout-icon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const Sidebar = () => {
-
+    const { toggleSidebar } = useSidebar();
     const router = useRouter();
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768); // Define como móvil si el ancho es menor o igual a 768px
+        };
+
+        // Verificar al montar el componente
+        handleResize();
+
+        // Escuchar cambios de tamaño
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const items = [
         {
@@ -49,12 +65,11 @@ const Sidebar = () => {
             url: '/admin/backoffice/message',
             icon: <EmailIcon className="text-white" />
         }
-    ]
+    ];
 
     const onLogoutPress = () => {
         router.push('/admin/login');
-    }
-
+    };
 
     return (
         <SidebarUI side="left" variant="sidebar" collapsible="offcanvas" className="border-none">
@@ -66,16 +81,14 @@ const Sidebar = () => {
                     height={160}
                 />
             </SidebarHeader>
-            <SidebarContent
-                className="mt-20 bg-primary"
-            >
-                <SidebarMenu
-                    className="space-y-4"
-                >
+            <SidebarContent className="mt-20 bg-primary">
+                <SidebarMenu className="space-y-4">
                     {items.map((item: any) => (
                         <SidebarMenuItem key={item.title}>
                             <SidebarMenuButton asChild>
-                                <Link href={item.url}>
+                                <Link href={item.url}
+                                    onClick={() => isMobile && toggleSidebar()} // Solo se ejecuta en dispositivos móviles
+                                >
                                     <div className="w-auto">
                                         {item.icon}
                                     </div>
@@ -92,7 +105,7 @@ const Sidebar = () => {
                 </div>
             </SidebarFooter>
         </SidebarUI>
-    )
-}
+    );
+};
 
 export default Sidebar;

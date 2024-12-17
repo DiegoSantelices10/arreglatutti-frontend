@@ -29,8 +29,8 @@ const ProfessionalTable: FC<IProfessionalTableProps> = (props) => {
                     <TableRow key={professional.id}>
                         <TableCell className="font-medium">{professional.name}</TableCell>
                         <TableCell>{professional.category}</TableCell>
-                        <TableCell className='pl-4'><EditIcon /></TableCell>
-                        <TableCell className='pl-5'><DeleteIcon /></TableCell>
+                        <TableCell className='pl-4 cursor-pointer'><EditIcon /></TableCell>
+                        <TableCell className='pl-5 cursor-pointer'><DeleteIcon /></TableCell>
                     </TableRow>
                 ))}
             </TableBody>

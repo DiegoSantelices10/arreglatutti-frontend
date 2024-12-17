@@ -1,7 +1,9 @@
 'use client'
 import Button from '@/components/custom/Button'
 import ControllerInput from '@/components/custom/ControllerInput'
+import ControllerSelect from '@/components/custom/ControllerSelect'
 import HeaderTitle from '@/components/custom/HeaderTitle'
+import { profesionesData } from '@/mocks/profession'
 import React from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
 
@@ -20,6 +22,8 @@ const CreateProfessional = () => {
             images: []
         }
     })
+
+    const professions = profesionesData.map((profession) => ({ value: profession.name, label: profession.name }))
 
     return (
         <div className='space-y-4'>
@@ -49,7 +53,9 @@ const CreateProfessional = () => {
                         >
                             Profesión
                         </label>
-                        <ControllerInput
+                        <ControllerSelect
+                            placeholder='Selecciona una profesión'
+                            options={professions}
                             id='profession'
                             control={control}
                             name='profession'
@@ -75,7 +81,7 @@ const CreateProfessional = () => {
                             htmlFor="telephone"
                             className="mb-1 block text-xs font-medium text-primary"
                         >
-                            Nombre
+                            Telefono
                         </label>
                         <ControllerInput
                             id='telephone'

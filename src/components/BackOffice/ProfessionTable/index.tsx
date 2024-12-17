@@ -29,8 +29,8 @@ const ProfessionTable: FC<IProsessionTable> = (props) => {
                     <TableRow key={profession.id}>
                         <TableCell>{profession.id}</TableCell>
                         <TableCell className="font-medium">{profession.name}</TableCell>
-                        <TableCell className='pl-4'><EditIcon /></TableCell>
-                        <TableCell className='pl-5'><DeleteIcon /></TableCell>
+                        <TableCell className='pl-4 cursor-pointer'><EditIcon /></TableCell>
+                        <TableCell className='pl-5 cursor-pointer'><DeleteIcon /></TableCell>
                     </TableRow>
                 ))}
             </TableBody>
