@@ -22,7 +22,7 @@ const Login: FC = () => {
         }
     })
 
-    const onSubmit = (values: any) => {
+    const onSubmit = (values: FieldValues) => {
         if (values.username === 'aquiles123' && values.password === 'aquiles123') {
             toast({
                 title: 'Bienvenido',

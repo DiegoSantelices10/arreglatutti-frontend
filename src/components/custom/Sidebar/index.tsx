@@ -17,7 +17,6 @@ import UserProfessionalIcon from "../../../../public/images/user-professional-ic
 import EmailIcon from "../../../../public/images/email-icon";
 import LogoutIcon from "../../../../public/images/logout-icon";
 import { useRouter } from "next/navigation";
-import Button from "../Button";
 
 const Sidebar = () => {
 

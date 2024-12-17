@@ -19,7 +19,6 @@ import {
 import { cn } from "@/utils"
 import SidebarLeftIcon from "../../../public/images/panel-icon"
 import { DialogTitle } from "./dialog"
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
