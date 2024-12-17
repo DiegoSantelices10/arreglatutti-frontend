@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../app/globals.css";
 import { cn } from "@/utils";
-import Header from "@/components/Header";
 import ScrollToTop from "@/components/custom/ScrollToTop";
-import Footer from "@/components/Footer";
-import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
-
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,10 +21,7 @@ export default function RootLayout({
       <body
         className={cn('bg-primary', inter.className)}
       >
-        <Header />
         {children}
-        <Toaster />
-        <Footer />
         <ScrollToTop />
       </body>
     </html>

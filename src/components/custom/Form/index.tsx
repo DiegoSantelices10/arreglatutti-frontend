@@ -47,7 +47,7 @@ const Form: FC<any> = (props) => {
                     <div className="mb-8">
                         <label
                             htmlFor="name"
-                            className="mb-1 block text-sm font-medium text-primary"
+                            className="mb-1 block text-xs font-medium text-primary"
                         >
                             Nombre
                         </label>
@@ -63,7 +63,7 @@ const Form: FC<any> = (props) => {
                     <div className="mb-8">
                         <label
                             htmlFor="email"
-                            className="mb-1 block text-sm font-medium text-primary"
+                            className="mb-1 block text-xs font-medium text-primary"
                         >
                             Telefono
                         </label>
@@ -79,7 +79,7 @@ const Form: FC<any> = (props) => {
                     <div className="mb-8">
                         <label
                             htmlFor="profesion"
-                            className="mb-1 block text-sm font-medium text-primary"
+                            className="mb-1 block text-xs font-medium text-primary"
                         >
                             Profesión
                         </label>
@@ -96,7 +96,7 @@ const Form: FC<any> = (props) => {
                     <div className="mb-8">
                         <label
                             htmlFor="message"
-                            className="mb-1 block text-sm font-medium text-primary"
+                            className="mb-1 block text-xs font-medium text-primary"
                         >
                             Descripción del problema
                         </label>

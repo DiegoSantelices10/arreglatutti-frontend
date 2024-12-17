@@ -103,7 +103,7 @@ const HomeUI = () => {
                       key={item.id}
                       className="cursor-pointer"
                       href={{
-                        pathname: `/detail/${item.name}`,
+                        pathname: `/${item.name}`,
                       }}
                     >
                       <ProfessionButton
