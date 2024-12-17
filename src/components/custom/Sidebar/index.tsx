@@ -17,6 +17,7 @@ import UserProfessionalIcon from "../../../../public/images/user-professional-ic
 import EmailIcon from "../../../../public/images/email-icon";
 import LogoutIcon from "../../../../public/images/logout-icon";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Sidebar = () => {
 
@@ -74,12 +75,12 @@ const Sidebar = () => {
                     {items.map((item: any) => (
                         <SidebarMenuItem key={item.title}>
                             <SidebarMenuButton asChild>
-                                <a href={item.url} className="space-x-2">
+                                <Link href={item.url}>
                                     <div className="w-auto">
                                         {item.icon}
                                     </div>
                                     <h2 className="text-white text-left">{item.title}</h2>
-                                </a>
+                                </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     ))}
