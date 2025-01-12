@@ -1,13 +1,32 @@
 // const API_VERSION = 'api/v1';
-const API_URL_BASE = `https://thoughtful-activity-d4dac2147c.strapiapp.com/api/`;
+// const API_URL_BASE = `http://localhost:4000/`;
+const API_URL_BASE = `https://aquiles-backend.onrender.com/`;
 
 const SERVICES = {
-PROFESIONES: {
-    OBTENER_PROFESIONES: 'profesiones',
-},
-PROFESIONALES: {
-    OBTENER_PROFESIONALES: 'profesionales',
-}
+  PROFESIONES: {
+    GET_PROFESSIONS: 'profession',
+    UPDATE_PROFESSION: 'profession',
+    DELETE_PROFESSION: 'profession',
+    CREATE: 'profession',
+  },
+  PROFESIONALES: {
+    GET_PROFESSIONALS: 'professional',
+    UPDATE_PROFESSIONAL: 'professional',
+    DELETE_PROFESSIONAL: 'professional',
+    CREATE: 'professional',
+  },
+  BARRIOS: {
+    GET_CITIES: 'city',
+    CREATE: 'city',
+    UPDATE_CITY: 'city',
+    DELETE_CITY: 'city',
+  },
+  MENSAJES: {
+    GET_MESSAGES: 'message',
+    CREATE: 'message',
+    UPDATE_MESSAGE: 'message',
+    DELETE_MESSAGE: 'message',
+  },
 };
 const HTTP_METHODS = {
   GET: 'GET',
@@ -17,8 +36,4 @@ const HTTP_METHODS = {
   DELETE: 'DELETE',
 };
 
-export {
-  API_URL_BASE,
-  SERVICES,
-  HTTP_METHODS,
-};
+export { API_URL_BASE, SERVICES, HTTP_METHODS };

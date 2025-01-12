@@ -9,20 +9,10 @@ const ControllerSelect = ({
   rules,
   ...rest
 }: ControllerSelectProps) => {
-
   const renderInput = ({
-    field: {
-      onChange,
-      value,
-      name: inputName,
-    },
+    field: { onChange, value, name: inputName },
   }: RenderSelectProps) => (
-    <Select
-      name={inputName}
-      onValueChange={onChange}
-      value={value}
-      {...rest}
-    />
+    <Select name={inputName} onValueChange={onChange} value={value} {...rest} />
   );
 
   return (

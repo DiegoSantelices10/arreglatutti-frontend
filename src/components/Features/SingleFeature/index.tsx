@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 interface Feature {
   id: number;
   icon: ReactNode;
   title: string;
   paragraph: string;
-};
+}
 
 const SingleFeature = ({ feature }: { feature: Feature }) => {
   const { icon: Icon, title, paragraph } = feature;

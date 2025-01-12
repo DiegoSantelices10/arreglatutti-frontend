@@ -1,11 +1,10 @@
-'use client'
-import Solid from "../custom/BackgroundDesign/Solid";
-import SectionTitle from "../custom/SectionTitle";
-import SingleFeature from "./SingleFeature";
-import featuresData from "./featuresData";
-import { motion } from "framer-motion";
+'use client';
+import Solid from '../custom/BackgroundDesign/Solid';
+import SectionTitle from '../custom/SectionTitle';
+import SingleFeature from './SingleFeature';
+import featuresData from './featuresData';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
 
 const Features = () => {
   const [ref, inView] = useInView({
@@ -20,18 +19,16 @@ const Features = () => {
 
   return (
     <>
-      <section
-        id="features"
-        className="pt-20"
-      >
+      <section id="features" className="pt-20 pb-10 md:pb-0">
         <Solid />
         <motion.div
           ref={ref}
           variants={variants}
-          animate={inView ? "visible" : "hidden"}
+          animate={inView ? 'visible' : 'hidden'}
           className="w-full"
           initial={{ opacity: 0, y: 100 }}
-          transition={{ duration: 1.5 }}>
+          transition={{ duration: 1.5 }}
+        >
           <SectionTitle
             title="Servicio garantizado"
             textClassName="text-white md:text-[36px] lg:text-[40px] "
@@ -47,7 +44,6 @@ const Features = () => {
           </div>
         </motion.div>
       </section>
-
     </>
   );
 };

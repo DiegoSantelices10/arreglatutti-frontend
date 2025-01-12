@@ -7,7 +7,6 @@ import {
   UseFormStateReturn,
 } from 'react-hook-form';
 
-
 export interface ControllerTextAreaProps {
   id: string;
   name: string;

@@ -1,6 +1,13 @@
 import { cn } from '@/utils';
 import { SelectProps } from './types';
-import { SelectGroup, Select as ShadcnSelect, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  SelectGroup,
+  Select as ShadcnSelect,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const Select = (props: SelectProps) => {
   const {
@@ -13,28 +20,17 @@ const Select = (props: SelectProps) => {
     ...rest
   } = props;
   return (
-    <SelectGroup
-      className={className}
-    >
-      <ShadcnSelect
-
-        defaultValue={defaultValue}
-        {...rest}
-      >
+    <SelectGroup className={className}>
+      <ShadcnSelect defaultValue={defaultValue} {...rest}>
         <SelectTrigger
           data-value={!!value || !!defaultValue}
-          className={cn('data-[value=false]:text-gray-400', triggerClassName)}
+          className={cn('text-gray-500', triggerClassName)}
         >
-          <SelectValue
-            placeholder={placeholder}
-          />
+          <SelectValue placeholder={value || placeholder} />
         </SelectTrigger>
         <SelectContent>
           {options?.map((option) => (
-            <SelectItem
-              key={option.value}
-              value={option.value}
-            >
+            <SelectItem key={option.value} value={option.value}>
               {option.label}
             </SelectItem>
           ))}

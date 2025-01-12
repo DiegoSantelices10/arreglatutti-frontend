@@ -1,3 +1,3 @@
 export interface IProfessionButtonProps {
-    title: string;
+  title: string;
 }

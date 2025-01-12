@@ -8,12 +8,12 @@ import {
   UseFormStateReturn,
 } from 'react-hook-form';
 
-import {SelectProps as RadixSelectProps} from '@radix-ui/react-select';
+import { SelectProps as RadixSelectProps } from '@radix-ui/react-select';
 
 export type Option = {
   value: string;
   label: string;
-}
+};
 
 export interface SelectProps extends RadixSelectProps {
   className?: HTMLAttributes<HTMLDivElement>['className'];

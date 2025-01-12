@@ -1,159 +1,19 @@
-'use client'
-import Button from '@/components/custom/Button'
-import ControllerInput from '@/components/custom/ControllerInput'
-import ControllerSelect from '@/components/custom/ControllerSelect'
-import HeaderTitle from '@/components/custom/HeaderTitle'
-import { profesionesData } from '@/mocks/profession'
-import React from 'react'
-import { FieldValues, useForm } from 'react-hook-form'
+import CreateForm from '@/components/BackOffice/Professional/CreateForm';
+import HeaderTitle from '@/components/custom/HeaderTitle';
+import { getCities } from '@/services/city';
+import { getProfessions } from '@/services/profesion';
+import React from 'react';
 
-const CreateProfessional = () => {
-    const {
-        control
-    } = useForm<FieldValues>({
-        defaultValues: {
-            name: '',
-            profession: '',
-            email: '',
-            telephone: '',
-            dni: '',
-            cities: [],
-            description: '',
-            images: []
-        }
-    })
+const CreateProfessional = async () => {
+  const { data: professions } = await getProfessions();
+  const { data: cities } = await getCities();
 
-    const professions = profesionesData.map((profession) => ({ value: profession.name, label: profession.name }))
+  return (
+    <div className="space-y-4">
+      <HeaderTitle title="Nuevo Profesional" />
+      <CreateForm professionList={professions} cityList={cities} />
+    </div>
+  );
+};
 
-    return (
-        <div className='space-y-4'>
-            <HeaderTitle
-                title='Nuevo Profesional'
-            />
-            <div className='py-8'>
-                <div className='grid grid-cols-2 gap-4'>
-                    <div className='col-span-2 md:col-span-1'>
-                        <label
-                            htmlFor="name"
-                            className="mb-1 block text-xs font-medium text-primary"
-                        >
-                            Nombre
-                        </label>
-                        <ControllerInput
-                            id='name'
-                            control={control}
-                            name='name'
-                            rules={{ required: true }}
-                        />
-                    </div>
-                    <div className='col-span-2 md:col-span-1'>
-                        <label
-                            htmlFor="profession"
-                            className="mb-1 block text-xs font-medium text-primary"
-                        >
-                            Profesión
-                        </label>
-                        <ControllerSelect
-                            placeholder='Selecciona una profesión'
-                            options={professions}
-                            id='profession'
-                            control={control}
-                            name='profession'
-                            rules={{ required: true }}
-                        />
-                    </div>
-                    <div className='col-span-2 md:col-span-1'>
-                        <label
-                            htmlFor="email"
-                            className="mb-1 block text-xs font-medium text-primary"
-                        >
-                            Email
-                        </label>
-                        <ControllerInput
-                            id='email'
-                            control={control}
-                            name='email'
-                            rules={{ required: true }}
-                        />
-                    </div>
-                    <div className='col-span-2 md:col-span-1'>
-                        <label
-                            htmlFor="telephone"
-                            className="mb-1 block text-xs font-medium text-primary"
-                        >
-                            Telefono
-                        </label>
-                        <ControllerInput
-                            id='telephone'
-                            control={control}
-                            name='telephone'
-                            rules={{ required: true }}
-                        />
-                    </div>
-                    <div className='col-span-2 md:col-span-1'>
-                        <label
-                            htmlFor="dni"
-                            className="mb-1 block text-xs font-medium text-primary"
-                        >
-                            Dni
-                        </label>
-                        <ControllerInput
-                            id='dni'
-                            control={control}
-                            name='dni'
-                            rules={{ required: true }}
-                        />
-                    </div>
-                    <div className='col-span-2 md:col-span-1'>
-                        <label
-                            htmlFor="cities"
-                            className="mb-1 block text-xs font-medium text-primary"
-                        >
-                            Barrio
-                        </label>
-                        <ControllerInput
-                            id='cities'
-                            control={control}
-                            name='cities'
-                            rules={{ required: true }}
-                        />
-                    </div>
-                    <div className='col-span-2 md:col-span-1'>
-                        <label
-                            htmlFor="description"
-                            className="mb-1 block text-xs font-medium text-primary"
-                        >
-                            Descripción
-                        </label>
-                        <ControllerInput
-                            id='description'
-                            control={control}
-                            name='description'
-                            rules={{ required: true }}
-                        />
-                    </div>
-                    <div className='col-span-2 md:col-span-1'>
-                        <label
-                            htmlFor="images"
-                            className="mb-1 block text-xs font-medium text-primary"
-                        >
-                            Imagenes
-                        </label>
-                        <ControllerInput
-                            id='images'
-                            control={control}
-                            name='images'
-                            rules={{ required: true }}
-                        />
-                    </div>
-                    <div className='flex justify-end col-span-2'>
-                        <Button>Agregar</Button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    )
-}
-
-export default CreateProfessional
+export default CreateProfessional;

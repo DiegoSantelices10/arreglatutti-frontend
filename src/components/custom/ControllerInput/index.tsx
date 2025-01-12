@@ -9,14 +9,8 @@ const ControllerInput = ({
   rules,
   ...rest
 }: ControllerInputProps) => {
-
   const renderInput = ({
-    field: {
-      onChange,
-      onBlur,
-      value,
-      name: inputName,
-    },
+    field: { onChange, onBlur, value, name: inputName },
   }: RenderInputProps) => (
     <Input
       name={inputName}

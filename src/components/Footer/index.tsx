@@ -9,7 +9,6 @@ const Footer = () => {
           Desarrollado por dinhodev
         </p>
       </div>
-
     </footer>
   );
 };
