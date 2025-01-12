@@ -1,9 +1,8 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
-import { NextApiRequest } from 'next';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async function POST(req: NextApiRequest) {
+export const POST = async (req: Request) => {
   try {
     // const { name, email, message } = await req.body;
     const transporter = nodemailer.createTransport({
@@ -61,4 +60,4 @@ export async function POST(req: NextApiRequest) {
       { status: 500 }
     );
   }
-}
+};
