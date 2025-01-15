@@ -10,6 +10,8 @@ import { useRouter } from 'next/navigation';
 import React, { FC } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { IImage } from '../EditModal/ContentModal';
+import CancelIcon from '../../../../../public/images/cancel-icon';
+import ControllerInputFile from '@/components/custom/ControllerFileInput';
 
 interface IEditProfessional {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -37,23 +39,26 @@ const EditForm: FC<IEditProfessional> = (props) => {
     description,
     image,
   } = props;
+  console.log('image edit form', image);
 
   console.log('profession', profession);
 
-  const { control, reset, handleSubmit } = useForm<FieldValues>({
-    defaultValues: {
-      name: name || '',
-      profession: profession || '',
-      email: email || '',
-      telephone: telephone || '',
-      dni: dni || '',
-      cities: cities || [],
-      description: description || '',
-      image: image || [],
-    },
-  });
+  const { control, reset, handleSubmit, watch, getValues, setValue } =
+    useForm<FieldValues>({
+      defaultValues: {
+        name: name || '',
+        profession: profession || '',
+        email: email || '',
+        telephone: telephone || '',
+        dni: dni || '',
+        cities: cities || [],
+        description: description || '',
+        image: image || [],
+      },
+    });
 
   const router = useRouter();
+  const imagesList = watch('image');
 
   const onSubmit = async (values: any) => {
     const { status } = await editProfessional(id, values);
@@ -72,6 +77,12 @@ const EditForm: FC<IEditProfessional> = (props) => {
     value: profession.name,
     label: profession.name,
   }));
+
+  const removeImage = (image: string) => {
+    const imagesForm = getValues('image');
+    const newImages = imagesForm.filter((item: any) => item.fileName !== image);
+    setValue('image', newImages);
+  };
 
   return (
     <div className="space-y-4">
@@ -162,7 +173,27 @@ const EditForm: FC<IEditProfessional> = (props) => {
             >
               Imagenes
             </label>
-            <ControllerInput id="image" control={control} name="image" />
+            <ControllerInputFile
+              id="image"
+              multiple
+              control={control}
+              name="image"
+            />
+            <div className="flex flex-wrap gap-2">
+              {imagesList?.length > 0 &&
+                imagesList.map((item: any, index: number) => (
+                  <div
+                    key={index}
+                    className="flex items-end gap-2 mt-2 p-1 px-2 bg-gray-100 rounded-xl"
+                  >
+                    <h2 className="text-xs">{item.fileName}</h2>
+                    <CancelIcon
+                      onClick={() => removeImage(item.fileName)}
+                      className="size-[14px] cursor-pointer"
+                    />
+                  </div>
+                ))}
+            </div>
           </div>
           <div className="flex justify-end col-span-2">
             <Button onClick={handleSubmit(onSubmit)}>Actualizar</Button>
