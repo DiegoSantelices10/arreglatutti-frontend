@@ -22,7 +22,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
     >
       <section
         id="home"
-        className="z-50 min-h-screen overflow-hidden pt-36 pb-20 md:px-10 "
+        className="z-50 min-h-screen overflow-hidden pt-14 pb-20 md:px-10 "
       >
         <Solid />
 
@@ -37,7 +37,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
                 <h1 className="text-2xl lg:text-[36px] font-bold text-white">
                   Profesionales matriculados
                 </h1>
-                <p className="mb-12 mt-1 text-sm font-normal text-body-white text-[#C0C0CF]">
+                <p className="mb-12 mt-1 text-sm font-normal text-body-white text-gray-300">
                   Gasistas, plomeros, electricistas, Instaladores de aire
                   acondicionado y mucho mas
                 </p>
@@ -54,9 +54,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
                   <Link
                     key={item._id}
                     className="cursor-pointer"
-                    href={{
-                      pathname: `/${item.name}`,
-                    }}
+                    href={`/${item.name}`}
                   >
                     <ProfessionButton title={item.name} />
                   </Link>
@@ -67,7 +65,10 @@ const HomeContent: FC<IHomeContent> = (props) => {
           {/* Form */}
 
           <div className="container w-full lg:w-1/2 mt-4 md:mt-0 md:pl-10">
-            <div className="mb-12 rounded p-8 bg-white" data-wow-delay=".15s">
+            <div
+              className="mb-12 rounded-md p-8 bg-white"
+              data-wow-delay=".15s"
+            >
               <h2 className="mb-3 text-2xl font-bold text-primary text-center">
                 Solicita tu cotización
               </h2>

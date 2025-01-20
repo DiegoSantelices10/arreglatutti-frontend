@@ -6,13 +6,20 @@ import { ControllerSelectProps, RenderSelectProps } from './types';
 const ControllerSelect = ({
   control,
   name,
+  id,
   rules,
   ...rest
 }: ControllerSelectProps) => {
   const renderInput = ({
     field: { onChange, value, name: inputName },
   }: RenderSelectProps) => (
-    <Select name={inputName} onValueChange={onChange} value={value} {...rest} />
+    <Select
+      name={inputName}
+      id={id}
+      onValueChange={onChange}
+      value={value}
+      {...rest}
+    />
   );
 
   return (

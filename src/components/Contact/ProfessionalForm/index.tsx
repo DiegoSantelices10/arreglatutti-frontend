@@ -28,7 +28,7 @@ const ProfessionalForm: FC<any> = (props) => {
   return (
     <form>
       <div className="-mx-4 flex flex-wrap">
-        <div className="w-full px-4 md:w-1/2">
+        <div className="w-full px-2 md:px-4 md:w-1/2">
           <div className="mb-8">
             <label
               htmlFor="name"
@@ -44,23 +44,24 @@ const ProfessionalForm: FC<any> = (props) => {
             />
           </div>
         </div>
-        <div className="w-full px-4 md:w-1/2">
+        <div className="w-full px-2 md:px-4 md:w-1/2">
           <div className="mb-8">
             <label
-              htmlFor="email"
+              htmlFor="telephone"
               className="mb-1 block text-xs font-medium text-primary"
             >
               Telefono
             </label>
             <ControllerInput
-              id="email"
+              id="telephone"
               control={control}
+              type="tel"
               placeholder="Ingrese su telefono"
               name="telephone"
             />
           </div>
         </div>
-        <div className="w-full px-4 md:w-full">
+        <div className="w-full px-2 md:px-4 md:w-full">
           <div className="mb-8">
             <label
               htmlFor="profession"
@@ -77,7 +78,7 @@ const ProfessionalForm: FC<any> = (props) => {
             />
           </div>
         </div>
-        <div className="w-full px-4">
+        <div className="w-full px-2 md:px-4">
           <div className="mb-8">
             <label
               htmlFor="message"
@@ -88,12 +89,12 @@ const ProfessionalForm: FC<any> = (props) => {
             <ControllerTextArea
               id="message"
               control={control}
-              placeholder="Ingrese una breve descripcion del problema"
+              placeholder="Ingrese una breve descripción"
               name="message"
             />
           </div>
         </div>
-        <div className="w-full px-4">
+        <div className="w-full px-4 flex justify-end">
           <Button onClick={handleSubmit(onSubmit)}>Enviar solicitud</Button>
         </div>
       </div>

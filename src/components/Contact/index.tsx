@@ -29,7 +29,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden py-16 md:py-20 lg:py-28 md:px-10 w-full "
+      className="relative overflow-hidden pt-16 md:pt-20 lg:pt-28 md:px-10 w-full "
     >
       <Solid />
       <motion.div
@@ -48,7 +48,7 @@ const Contact = () => {
           />
           <div className="lg:flex lg:justify-between lg:items-start lg:gap-4">
             <div
-              className="mb-12 rounded p-8 bg-white lg:w-1/2"
+              className="mb-12 rounded-md p-8 bg-white lg:w-1/2"
               data-wow-delay=".15s"
             >
               <h2 className="mb-3 text-2xl font-bold text-primary text-center">

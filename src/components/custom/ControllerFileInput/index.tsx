@@ -54,7 +54,7 @@ const ControllerInputFile: FC<ControllerInputFileProps> = ({
             {children ? (
               children
             ) : (
-              <div className="px-2 text-gray-500 cursor-pointer text-center border border-gray-200 py-2 font-medium rounded text-[14px]">
+              <div className="px-2 text-gray-500 cursor-pointer text-center border border-gray-200 py-2 font-medium rounded-md text-[14px]">
                 <span>Seleccionar archivo</span>
               </div>
             )}

@@ -13,10 +13,10 @@ const Form: FC<any> = (props) => {
 
   const { control, handleSubmit } = useForm<FieldValues>({
     defaultValues: {
-      name: '',
-      telephone: '',
-      message: '',
-      profesional: '',
+      client: '',
+      telephoneClient: '',
+      messageClient: '',
+      professional: '',
     },
   });
 
@@ -37,72 +37,72 @@ const Form: FC<any> = (props) => {
   return (
     <form>
       <div className="-mx-4 flex flex-wrap">
-        <div className="w-full px-4 md:w-1/2">
+        <div className="w-full px-2 md:px-4 md:w-1/2">
           <div className="mb-8">
             <label
-              htmlFor="name"
+              htmlFor="client"
               className="mb-1 block text-xs font-medium text-primary"
             >
               Nombre
             </label>
             <ControllerInput
-              id="name"
+              id="client"
               control={control}
               placeholder="Ingrese su nombre"
-              name="name"
+              name="client"
             />
           </div>
         </div>
-        <div className="w-full px-4 md:w-1/2">
+        <div className="w-full px-2 md:px-4 md:w-1/2">
           <div className="mb-8">
             <label
-              htmlFor="email"
+              htmlFor="telephoneClient"
               className="mb-1 block text-xs font-medium text-primary"
             >
               Telefono
             </label>
             <ControllerInput
-              id="email"
+              id="telephoneClient"
               control={control}
               placeholder="Ingrese su telefono"
-              name="telephone"
+              name="telephoneClient"
             />
           </div>
         </div>
-        <div className="w-full px-4 md:w-full">
+        <div className="w-full px-2 md:px-4 md:w-full">
           <div className="mb-8">
             <label
-              htmlFor="profesion"
+              htmlFor="professional"
               className="mb-1 block text-xs font-medium text-primary"
             >
               Profesión
             </label>
             <ControllerSelect
-              id="profesion"
+              id="professional"
               options={selectOptions}
               placeholder="Seleccione una profesión"
               control={control}
-              name="profesional"
+              name="professional"
             />
           </div>
         </div>
-        <div className="w-full px-4">
+        <div className="w-full px-2 md:px-4">
           <div className="mb-8">
             <label
-              htmlFor="message"
+              htmlFor="messageClient"
               className="mb-1 block text-xs font-medium text-primary"
             >
-              Descripción del problema
+              Descripción
             </label>
             <ControllerTextArea
-              id="message"
+              id="messageClient"
               control={control}
-              placeholder="Ingrese una breve descripcion del problema"
-              name="message"
+              placeholder="Ingrese una breve descripción"
+              name="messageClient"
             />
           </div>
         </div>
-        <div className="w-full px-4">
+        <div className="w-full px-2 md:px-4 flex justify-end">
           <Button onClick={handleSubmit(onSubmit)}>Enviar solicitud</Button>
         </div>
       </div>

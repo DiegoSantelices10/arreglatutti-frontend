@@ -1,11 +1,11 @@
 const Footer = () => {
   return (
     <footer
-      className="wow fadeInUp relative z-10 bg-primary bg-opacity-5"
+      className="wow fadeInUp relative z-10 bg-secondary bg-opacity-5"
       data-wow-delay=".1s"
     >
-      <div className="container p-6">
-        <p className="text-center text-base text-[#8D94AE]">
+      <div className="container p-4">
+        <p className="text-center text-base text-gray-300">
           Desarrollado por dinhodev
         </p>
       </div>

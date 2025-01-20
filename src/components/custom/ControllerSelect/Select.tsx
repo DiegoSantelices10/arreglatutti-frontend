@@ -14,6 +14,7 @@ const Select = (props: SelectProps) => {
     placeholder = 'Selecciona una opción',
     options,
     className,
+    id,
     triggerClassName,
     defaultValue,
     value,
@@ -24,13 +25,22 @@ const Select = (props: SelectProps) => {
       <ShadcnSelect defaultValue={defaultValue} {...rest}>
         <SelectTrigger
           data-value={!!value || !!defaultValue}
-          className={cn('text-gray-500', triggerClassName)}
+          id={id}
+          className={cn(
+            'rounded-md text-base',
+            value ? 'text-gray-500' : 'text-gray-300',
+            triggerClassName
+          )}
         >
           <SelectValue placeholder={value || placeholder} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="space-y-2">
           {options?.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
+            <SelectItem
+              key={option.value}
+              className="text-base text-gray-400"
+              value={option.value}
+            >
               {option.label}
             </SelectItem>
           ))}

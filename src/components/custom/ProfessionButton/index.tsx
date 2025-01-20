@@ -27,8 +27,8 @@ const ProfessionButton: FC<IProfessionButtonProps> = (props) => {
   const IconComponent = typeProfession[title] || ThermometerColdIcon;
 
   return (
-    <div className="flex flex-col items-center justify-start gap-1 rounded w-20">
-      <div className="bg-white rounded-xl p-3">
+    <div className="flex flex-col items-center justify-start gap-1 rounded-md w-20">
+      <div className="bg-white rounded-md p-3">
         <IconComponent className="text-blue-950" />
       </div>
       <h1 className="uppercase tracking-wide font-semibold text-xs text-white text-center">

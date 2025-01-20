@@ -7,7 +7,6 @@ import {
 } from '@/components/ui/carousel';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { getRandomKey } from '@/utils';
 
 type imageWork = {
   id: number;
@@ -29,11 +28,11 @@ const Carousel: FC<ICarouselProps> = (props) => {
       className="w-full"
     >
       <CarouselContent>
-        {images?.map((image: any) => {
+        {images?.map((image: any, index) => {
           return (
-            <CarouselItem className="basis-auto" key={getRandomKey()}>
-              <Card className="overflow-hidden h-24 w-40">
-                <CardContent className="p-0 overflow-hidden rounded h-full w-full">
+            <CarouselItem className="basis-auto" key={index}>
+              <Card className="overflow-hidden h-32 w-52">
+                <CardContent className="p-0 overflow-hidden rounded-md h-full w-full">
                   <Image
                     src={`${image.url}`}
                     width={100}

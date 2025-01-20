@@ -18,7 +18,8 @@ export type Option = {
 export interface SelectProps extends RadixSelectProps {
   className?: HTMLAttributes<HTMLDivElement>['className'];
   ref?: Ref<HTMLSelectElement>;
-  placeholder: string;
+  id: string;
+  placeholder?: string;
   options: Option[];
   triggerClassName?: HTMLAttributes<HTMLDivElement>['className'];
 }

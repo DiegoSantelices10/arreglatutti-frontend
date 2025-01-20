@@ -45,7 +45,7 @@ const Login: FC = () => {
         />
       </div>
       <div className="flex w-full shadow">
-        <div className="bg-blue-950 hidden md:flex justify-center items-center rounded w-1/2">
+        <div className="bg-blue-950 hidden md:flex justify-center items-center rounded-md w-1/2">
           <div>
             <Image
               src="/images/logo-aquiles.png"
@@ -55,7 +55,7 @@ const Login: FC = () => {
             />
           </div>
         </div>
-        <div className="bg-white rounded w-full md:w-1/2">
+        <div className="bg-white rounded-md w-full md:w-1/2">
           <div className="space-y-4 px-6 lg:px-14 py-8 md:py-24">
             <h2 className="font-bold text-center text-lg text-primary">
               Bienvenido
