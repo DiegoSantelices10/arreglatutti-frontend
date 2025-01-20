@@ -22,8 +22,6 @@ const Professional = async () => {
 
   const { data } = await getProfessionals();
 
-  console.log('profesionales', data);
-
   return (
     <div className="space-y-8">
       <HeaderTitle title="Profesionales" />
@@ -35,6 +33,7 @@ const Professional = async () => {
             </Link>
           </div>
           <Select
+            id="profesiones"
             placeholder="Selecciona una profesión"
             className="w-full md:w-1/3"
             options={selectOptions}
