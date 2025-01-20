@@ -27,7 +27,7 @@ const Select = (props: SelectProps) => {
           data-value={!!value || !!defaultValue}
           id={id}
           className={cn(
-            'rounded-md text-base',
+            'rounded-md',
             value ? 'text-gray-500' : 'text-gray-300',
             triggerClassName
           )}

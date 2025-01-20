@@ -50,16 +50,16 @@ const Drawer: FC<IDrawerProps> = (props) => {
         </DrawerHeader>
         <div className="px-4 space-y-4">
           <div>
-            <h2 className="text-primary font-bold text-center pb-2">
+            <h2 className="text-primary font-medium text-center pb-2">
               Datos personales
             </h2>
-            <div className="text-sm w-full space-y-3 p-4 bg-white rounded-md shadow-md">
+            <div className="text-sm w-full space-y-3 p-4 bg-white rounded-md">
               <div className="flex gap-2 items-center">
-                <LocationIcon className="size-4 text-gray-600" />
+                <LocationIcon className="size-4 text-textSecondary" />
                 {cities.map((city, index) => (
                   <h2
                     key={index}
-                    className="text-gray-600 font-normal text-base"
+                    className="text-textSecondary font-normal text-base"
                   >
                     {city}
                     {index < cities.length - 1 && ', '}
@@ -67,26 +67,30 @@ const Drawer: FC<IDrawerProps> = (props) => {
                 ))}
               </div>
               <div className="flex gap-2 items-center">
-                <DniIcon className="size-4 text-gray-600" />
-                <h2 className="text-gray-600 font-normal text-base">{dni}</h2>
+                <DniIcon className="size-4 text-textSecondary" />
+                <h2 className="text-textSecondary font-normal text-base">
+                  {dni}
+                </h2>
               </div>
               <div className="flex gap-2 items-center">
-                <TelephoneIcon className="size-4 text-gray-600" />
-                <h2 className="text-gray-600 font-normal text-base">
+                <TelephoneIcon className="size-4 text-textSecondary" />
+                <h2 className="text-textSecondary font-normal text-base">
                   {telephone}
                 </h2>
               </div>
               <div className="flex gap-2 items-center">
-                <EmailIcon className="size-4 text-gray-600" />
-                <h2 className="text-gray-600 font-normal text-base">{email}</h2>
+                <EmailIcon className="size-4 text-textSecondary" />
+                <h2 className="text-textSecondary font-normal text-base">
+                  {email}
+                </h2>
               </div>
             </div>
           </div>
           <div>
-            <h2 className="text-primary font-bold text-center py-2">
+            <h2 className="text-primary font-medium text-center py-2">
               Trabajos Realizados
             </h2>
-            <div className="w-full bg-white rounded-md shadow-md p-4">
+            <div className="w-full bg-white rounded-md p-4">
               <Carousel images={imagesWorks} />
             </div>
           </div>
