@@ -18,7 +18,7 @@ const Contact = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
-  const { control, handleSubmit } = useForm<FieldValues>({
+  const { control, handleSubmit, reset } = useForm<FieldValues>({
     defaultValues: {
       name: '',
       telephone: '',
@@ -26,6 +26,7 @@ const Contact = () => {
       profession: '',
     },
   });
+
   return (
     <section
       id="contact"
@@ -55,7 +56,11 @@ const Contact = () => {
                 Profesional matriculado
               </h2>
 
-              <ProfessionalForm control={control} handleSubmit={handleSubmit} />
+              <ProfessionalForm
+                control={control}
+                handleSubmit={handleSubmit}
+                reset={reset}
+              />
             </div>
             <div className="hidden lg:block lg:w-1/2  text-white space-y-8 pt-28 text-center ">
               <h2 className="text-white font-bold text-3xl">

@@ -26,7 +26,8 @@ const Form: FC<any> = (props) => {
   }));
 
   const onSubmit = (value: any) => {
-    console.log('value', value);
+    console.log('response', value);
+
     toast({
       title: 'Enviado',
       description:

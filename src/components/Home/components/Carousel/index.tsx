@@ -72,9 +72,8 @@ const Carousel = () => {
                     src={image.url}
                     width={1920}
                     height={1080}
-                    objectFit="cover" // Para que la imagen se recorte adecuadamente
                     alt={image.url}
-                    className="border-none"
+                    className="border-none object-cover"
                   />
                 </CardContent>
               </Card>

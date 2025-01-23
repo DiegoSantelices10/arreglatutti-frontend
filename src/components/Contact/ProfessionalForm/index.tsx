@@ -7,22 +7,30 @@ import ControllerInput from '@/components/custom/ControllerInput';
 import ControllerSelect from '@/components/custom/ControllerSelect';
 import ControllerTextArea from '@/components/custom/ControllerTextArea';
 import { profesionesData } from '@/mocks/profession';
+import axios from 'axios';
 
 const ProfessionalForm: FC<any> = (props) => {
-  const { control, handleSubmit } = props;
+  const { control, handleSubmit, reset } = props;
 
   const selectOptions = profesionesData?.map((item: any) => ({
     label: item.name,
     value: item.name, // ajusta `item.id` si deseas usar otro campo como valor
   }));
 
-  const onSubmit = (value: any) => {
-    console.log('value', value);
-    toast({
-      title: 'Enviado',
-      description:
-        'Gracias por contactarnos, pronto nos pondremos en contacto con usted.',
-    });
+  const sendEmail = async (value: any) => {
+    return await axios.post('/api/professionalEmail', value);
+  };
+
+  const onSubmit = async (value: any) => {
+    const { status } = await sendEmail(value);
+
+    if (status === 200) {
+      reset();
+      toast({
+        description:
+          'Gracias por contactarnos, pronto nos pondremos en contacto con usted.',
+      });
+    }
   };
 
   return (

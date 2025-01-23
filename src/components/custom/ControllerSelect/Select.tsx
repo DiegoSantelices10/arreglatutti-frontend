@@ -20,6 +20,7 @@ const Select = (props: SelectProps) => {
     value,
     ...rest
   } = props;
+
   return (
     <SelectGroup className={className}>
       <ShadcnSelect defaultValue={defaultValue} {...rest}>
@@ -38,7 +39,7 @@ const Select = (props: SelectProps) => {
           {options?.map((option) => (
             <SelectItem
               key={option.value}
-              className="text-base text-gray-400"
+              className=" text-gray-400"
               value={option.value}
             >
               {option.label}

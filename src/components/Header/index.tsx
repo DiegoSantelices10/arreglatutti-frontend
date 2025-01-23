@@ -46,6 +46,7 @@ const Header: FC = () => {
                   <Image
                     src="/images/logo-aquiles.png"
                     alt="logo"
+                    layout="intrinsic"
                     width={140}
                     height={140}
                   />
