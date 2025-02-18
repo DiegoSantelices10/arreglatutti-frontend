@@ -21,11 +21,20 @@ const SERVICES = {
     UPDATE_CITY: 'city',
     DELETE_CITY: 'city',
   },
+  REGISTRO_PROFESIONALES: {
+    GET_PROFESSIONAL_APPLICATION: 'professionalApplication',
+    CREATE_MESSAGE: 'professionalApplication',
+    DELETE_MESSAGE: 'professionalApplication',
+  },
   MENSAJES: {
     GET_MESSAGES: 'message',
     CREATE: 'message',
     UPDATE_MESSAGE: 'message',
     DELETE_MESSAGE: 'message',
+  },
+  AUTENTICACION: {
+    LOGIN: 'auth/login',
+    REGISTER: 'auth/register',
   },
 };
 const HTTP_METHODS = {

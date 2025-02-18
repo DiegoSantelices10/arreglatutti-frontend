@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import React, { FC } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import CancelIcon from '../../../../../public/images/cancel-icon';
+import ControllerTextArea from '@/components/custom/ControllerTextArea';
 
 interface ISelectOptions {
   _id: string;
@@ -152,7 +153,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
           >
             Descripción
           </label>
-          <ControllerInput
+          <ControllerTextArea
             id="description"
             control={control}
             name="description"

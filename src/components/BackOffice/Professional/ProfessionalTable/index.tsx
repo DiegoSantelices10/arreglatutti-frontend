@@ -1,50 +1,42 @@
-import React, { FC } from 'react';
-
-import {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Table,
-} from '@/components/ui/table';
+import React, { FC, Fragment } from 'react';
 import { IProfessionalTableProps } from './types';
 import DeleteIcon from '../../../../../public/images/delete-icon';
 import { EditModal } from '../EditModal';
 import DeleteModal from '../DeleteModal';
+import Table from '@/components/custom/Table';
+import { TableCell, TableHead, TableRow } from '@/components/ui/table';
 
 const ProfessionalTable: FC<IProfessionalTableProps> = (props) => {
   const { data } = props;
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Id</TableHead>
+    <Table
+      childrenHeader={
+        <Fragment>
           <TableHead>Profesional</TableHead>
           <TableHead>Profesión</TableHead>
-          <TableHead>Editar</TableHead>
-          <TableHead>Eliminar</TableHead>
+        </Fragment>
+      }
+    >
+      {data?.map((professional) => (
+        <TableRow key={professional._id}>
+          <TableCell className="font-medium">{professional.name}</TableCell>
+          <TableCell>{professional.profession}</TableCell>
+          <TableCell className="text-right w-14">
+            <EditModal professional={professional} />
+          </TableCell>
+          <TableCell className="text-right">
+            <DeleteModal
+              id={professional._id.toString()}
+              name={professional.name}
+              trigger={
+                <div className="rounded-full cursor-pointer bg-red-600 h-8 w-8 flex justify-center items-center">
+                  <DeleteIcon className="h-5 w-5 text-white" />
+                </div>
+              }
+            />
+          </TableCell>
         </TableRow>
-      </TableHeader>
-      <TableBody>
-        {data?.map((professional, index) => (
-          <TableRow key={professional._id}>
-            <TableCell className="font-medium">{index + 1}</TableCell>
-            <TableCell className="font-medium">{professional.name}</TableCell>
-            <TableCell>{professional.profession}</TableCell>
-            <TableCell className="pl-4 cursor-pointer">
-              <EditModal id={professional._id.toString()} />
-            </TableCell>
-            <TableCell className="pl-5 cursor-pointer">
-              <DeleteModal
-                id={professional._id.toString()}
-                name={professional.name}
-                trigger={<DeleteIcon />}
-              />
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
+      ))}
     </Table>
   );
 };

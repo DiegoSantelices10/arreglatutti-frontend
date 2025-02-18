@@ -21,7 +21,6 @@ export const getApi = async ({
       data,
     });
 
-    // Devolvemos tanto el status como los datos
     return {
       status: response.status,
       data: response.data,

@@ -11,14 +11,18 @@ const ControllerInput = ({
 }: ControllerInputProps) => {
   const renderInput = ({
     field: { onChange, onBlur, value, name: inputName },
+    fieldState: { error },
   }: RenderInputProps) => (
-    <Input
-      name={inputName}
-      onChange={onChange}
-      onBlur={onBlur}
-      value={value}
-      {...rest}
-    />
+    <div>
+      <Input
+        name={inputName}
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
+        {...rest}
+      />
+      {error && <span className="text-red-500 text-xs">{error.message}</span>}
+    </div>
   );
 
   return (

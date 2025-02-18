@@ -26,15 +26,19 @@ export const DeleteModal: FC<IDeleteModal> = (props) => {
   const router = useRouter();
 
   const deleteProfesion = async (id: string) => {
-    const response = await deleteProfession(id);
-    if (response.status === 200) {
+    try {
+      await deleteProfession(id);
       toast({
         title: 'Profesión eliminada',
         description: 'Profesión eliminada con exito',
       });
       router.push('/admin/backoffice/profession');
-    } else {
-      console.log(response);
+    } catch (error) {
+      console.log('error', error);
+      toast({
+        title: 'Error',
+        description: 'Error al eliminar la profesión',
+      });
     }
   };
 

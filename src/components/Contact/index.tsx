@@ -1,11 +1,13 @@
 'use client';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import SectionTitle from '../custom/SectionTitle';
 import CheckIcon from '@/images/icons/check-icon';
 import Solid from '../custom/BackgroundDesign/Solid';
 import ProfessionalForm from './ProfessionalForm';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
+import { ContactFormSchema, ContactSchemaType } from './schema';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -18,13 +20,20 @@ const Contact = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
-  const { control, handleSubmit, reset } = useForm<FieldValues>({
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { isValid },
+  } = useForm<ContactSchemaType>({
+    resolver: zodResolver(ContactFormSchema),
     defaultValues: {
       name: '',
       telephone: '',
       message: '',
       profession: '',
     },
+    mode: 'onSubmit',
   });
 
   return (
@@ -59,6 +68,7 @@ const Contact = () => {
               <ProfessionalForm
                 control={control}
                 handleSubmit={handleSubmit}
+                isValid={isValid}
                 reset={reset}
               />
             </div>

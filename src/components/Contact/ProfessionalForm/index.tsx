@@ -1,35 +1,50 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { Button } from '@/components/ui/button';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { toast } from '@/hooks/use-toast';
 import ControllerInput from '@/components/custom/ControllerInput';
 import ControllerSelect from '@/components/custom/ControllerSelect';
 import ControllerTextArea from '@/components/custom/ControllerTextArea';
 import { profesionesData } from '@/mocks/profession';
 import axios from 'axios';
+import { createMessage } from '@/services/professionalApplication';
+import Button from '@/components/custom/Button';
 
 const ProfessionalForm: FC<any> = (props) => {
-  const { control, handleSubmit, reset } = props;
+  const { control, handleSubmit, reset, isValid } = props;
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const selectOptions = profesionesData?.map((item: any) => ({
     label: item.name,
     value: item.name, // ajusta `item.id` si deseas usar otro campo como valor
   }));
 
+  const submitIsvalid = !isValid || isLoading;
+
   const sendEmail = async (value: any) => {
     return await axios.post('/api/professionalEmail', value);
   };
 
   const onSubmit = async (value: any) => {
-    const { status } = await sendEmail(value);
+    setIsLoading(true);
+    try {
+      const { status } = await createMessage(value);
+      if (status === 201) {
+        const { status } = await sendEmail(value);
 
-    if (status === 200) {
-      reset();
-      toast({
-        description:
-          'Gracias por contactarnos, pronto nos pondremos en contacto con usted.',
-      });
+        if (status === 200) {
+          reset();
+          toast({
+            title: 'Envío exitoso',
+            description:
+              'Gracias por contactarnos, pronto nos pondremos en contacto con usted.',
+          });
+        }
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.log('error::', error);
     }
   };
 
@@ -63,7 +78,7 @@ const ProfessionalForm: FC<any> = (props) => {
             <ControllerInput
               id="telephone"
               control={control}
-              type="tel"
+              type="number"
               placeholder="Ingrese su telefono"
               name="telephone"
             />
@@ -103,7 +118,13 @@ const ProfessionalForm: FC<any> = (props) => {
           </div>
         </div>
         <div className="w-full px-4 flex justify-end">
-          <Button onClick={handleSubmit(onSubmit)}>Enviar solicitud</Button>
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            disabled={submitIsvalid}
+            isLoading={isLoading}
+          >
+            Enviar solicitud
+          </Button>
         </div>
       </div>
     </form>

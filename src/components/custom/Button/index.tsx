@@ -1,11 +1,16 @@
 import { FC } from 'react';
 
 import { Button as ShadcnButton, ButtonProps } from '@/components/ui/button';
-import { cn } from '@/utils';
+import { Loader2 } from 'lucide-react';
 
-const Button: FC<ButtonProps> = ({ children, className, ...rest }, ref) => (
-  <ShadcnButton className={cn(className)} ref={ref} {...rest}>
+interface IButtonProps extends ButtonProps {
+  isLoading?: boolean;
+}
+
+const Button: FC<IButtonProps> = ({ children, isLoading, ...rest }, ref) => (
+  <ShadcnButton ref={ref} {...rest}>
     {children}
+    {isLoading && <Loader2 className="animate-spin" />}
   </ShadcnButton>
 );
 
