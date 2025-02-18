@@ -24,7 +24,7 @@ const ProfessionalTable: FC<IProfessionalTableProps> = (props) => {
           <TableCell className="text-right w-14">
             <EditModal professional={professional} />
           </TableCell>
-          <TableCell className="text-right">
+          <TableCell className="text-right w-14">
             <DeleteModal
               id={professional._id.toString()}
               name={professional.name}
