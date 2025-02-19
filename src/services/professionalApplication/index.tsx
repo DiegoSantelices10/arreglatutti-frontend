@@ -2,13 +2,11 @@
 import { SERVICES } from '@/enviroments';
 import { getApi } from '..';
 
-const { signal } = new AbortController();
-
 export const getProfessionalApplication = () => {
   const response = getApi({
     path: SERVICES.REGISTRO_PROFESIONALES.GET_PROFESSIONAL_APPLICATION,
     method: 'GET',
-    signal,
+    params: { _t: Date.now() }, // Agrega el timestamp como parámetro
   });
   return response;
 };

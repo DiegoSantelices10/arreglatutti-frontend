@@ -10,18 +10,17 @@ export const getApi = async ({
   data,
   contentType = 'application/json',
   query = '',
-  signal,
-}: IApiProps & { signal?: AbortSignal }) => {
+  params,
+}: IApiProps) => {
   try {
     const response = await axios({
       method,
       headers: {
         'Content-Type': contentType,
-        'Cache-Control': 'no-cache',
       },
       url: `${apiBase}${path}${query}`,
       data,
-      signal,
+      params,
     });
 
     return {

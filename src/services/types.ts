@@ -8,6 +8,7 @@ export interface IApiProps {
   data?: any;
   contentType?: string;
   query?: string;
+  params?: any;
 }
 
 export interface Query {
