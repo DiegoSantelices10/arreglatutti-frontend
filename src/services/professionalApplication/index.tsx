@@ -4,9 +4,8 @@ import { getApi } from '..';
 
 export const getProfessionalApplication = () => {
   const response = getApi({
-    path: SERVICES.REGISTRO_PROFESIONALES.GET_PROFESSIONAL_APPLICATION,
+    path: `${SERVICES.REGISTRO_PROFESIONALES.GET_PROFESSIONAL_APPLICATION}?_ts=${Date.now().toString()}`,
     method: 'GET',
-    params: { _t: Date.now() }, // Agrega el timestamp como parámetro
   });
   return response;
 };
