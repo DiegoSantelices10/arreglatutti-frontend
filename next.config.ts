@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  cacheMaxMemorySize: 0,
 };
 
 export default nextConfig;

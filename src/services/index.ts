@@ -17,6 +17,7 @@ export const getApi = async ({
       method,
       headers: {
         'Content-Type': contentType,
+        'Cache-Control': 'no-cache',
       },
       url: `${apiBase}${path}${query}`,
       data,
