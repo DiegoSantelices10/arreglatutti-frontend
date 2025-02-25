@@ -1,6 +1,6 @@
 // const API_VERSION = 'api/v1';
-const API_URL_BASE = `http://localhost:4000/`;
-// const API_URL_BASE = `https://aquiles-backend.onrender.com/`;
+// const API_URL_BASE = `http://localhost:4000/`;
+const API_URL_BASE = `https://aquiles-backend.onrender.com/`;
 
 const SERVICES = {
   PROFESSIONS: {
