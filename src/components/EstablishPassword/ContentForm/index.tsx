@@ -8,14 +8,15 @@ import { ContentFormSchema, ContentFormSchemaType } from '../schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { resetPassword } from '@/services/auth';
 import { toast } from '@/hooks/use-toast';
-import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 
-const ContentForm: FC<any> = () => {
+interface IContentFormProps {
+  token: string;
+}
+
+const ContentForm: FC<IContentFormProps> = ({ token }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const token: any = searchParams.get('token');
 
   const {
     control,

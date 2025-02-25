@@ -1,7 +1,12 @@
 import ContentForm from '@/components/EstablishPassword/ContentForm';
 import React, { FC } from 'react';
 
-const EstablishPassword: FC = () => {
+interface IEstablishPasswordProps {
+  params: Promise<{ token: string }>;
+}
+
+const EstablishPassword: FC<IEstablishPasswordProps> = async ({ params }) => {
+  const { token } = await params;
   return (
     <div className="relative z-20 min-h-screen overflow-hidden pt-[80px] bg-[#FAFAFB] pb-10">
       <div className="absolute w-full h-20 rounded-b-3xl bg-primary -z-10" />
@@ -9,7 +14,7 @@ const EstablishPassword: FC = () => {
         <h1 className="text-lg text-primary text-center font-bold">
           Establecer contraseña
         </h1>
-        <ContentForm />
+        <ContentForm token={token} />
       </div>
     </div>
   );
