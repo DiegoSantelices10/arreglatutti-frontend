@@ -8,7 +8,7 @@ import { ContentFormSchema, ContentFormSchemaType } from '../schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { resetPassword } from '@/services/auth';
 import { toast } from '@/hooks/use-toast';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 interface IContentFormProps {
   token: string;
