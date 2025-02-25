@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ContentForm from '@/components/EstablishPassword/ContentForm';
 import React, { FC } from 'react';
 
 interface IEstablishPasswordProps {
-  params: Promise<{ token: string }>;
+  searchParams: { token?: string };
 }
 
-const EstablishPassword: FC<IEstablishPasswordProps> = async ({ params }) => {
-  const { token } = await params;
+const EstablishPassword: FC<IEstablishPasswordProps> = async ({
+  searchParams,
+}) => {
+  const token: any = searchParams.token;
   return (
     <div className="relative z-20 min-h-screen overflow-hidden pt-[80px] bg-[#FAFAFB] pb-10">
       <div className="absolute w-full h-20 rounded-b-3xl bg-primary -z-10" />

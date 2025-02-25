@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
 import React, { FC } from 'react';
 import UserSignInForm from '@/components/Onboarding/UserSignInForm';
 
 interface IUserSignInProps {
-  params: Promise<{ type: string }>;
+  searchParams: { type?: string };
 }
-const UserSignIn: FC<IUserSignInProps> = async ({ params }) => {
-  const { type } = await params;
+const UserSignIn: FC<IUserSignInProps> = async ({ searchParams }) => {
+  const type: any = searchParams?.type;
+
   return (
     <div className="min-h-screen flex justify-center items-center px-2 md:p-16">
       <div className="flex w-full shadow">
