@@ -9,7 +9,13 @@ const ControllerTextArea = (props: ControllerTextAreaProps) => {
   const renderTextArea = ({
     field: { onChange, value, name: textAreaName },
   }: RenderTextAreaProps) => (
-    <Textarea name={textAreaName} onChange={onChange} value={value} {...rest} />
+    <Textarea
+      rows={8}
+      name={textAreaName}
+      onChange={onChange}
+      value={value}
+      {...rest}
+    />
   );
 
   return (

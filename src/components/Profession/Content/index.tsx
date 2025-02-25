@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import Button from '@/components/custom/Button';
 import Drawer from '@/components/custom/Drawer';
 import React, { FC, useEffect, useState } from 'react';
 import LocationIcon from '../../../../public/images/location-icon';
@@ -9,17 +8,14 @@ import { titleProfessionalEnum } from '../utils';
 import CitiesSelect from '../CitiesSelect';
 import { getProfessionals } from '@/services/profesional';
 import { FieldValues, useForm } from 'react-hook-form';
-import SignInSignUp from '@/components/Header/SignInSignUp';
-import ModalOfConsultation from './ModalOfConsultation';
+import QueryDrawer from '../QueryDrawer';
 
 interface IContentProps {
   profession: string;
-  isLoggedIn: boolean;
-  userId?: string;
 }
 
 const Content: FC<IContentProps> = (props) => {
-  const { profession, isLoggedIn, userId } = props;
+  const { profession } = props;
 
   const [professionals, setProfessionals] = useState<any[]>([]);
   const [professionSelect, setProfessionSelect] = useState<string>('');
@@ -107,29 +103,14 @@ const Content: FC<IContentProps> = (props) => {
                     <div className="flex justify-between items-center mt-4">
                       <Drawer
                         cities={professional.cities}
-                        dni={professional.dni}
                         name={professional.name}
+                        description={professional.description}
                         imagesWorks={professional.image}
-                        email={professional.email}
-                        telephone={professional.telephone}
                       />
-                      {isLoggedIn && userId ? (
-                        <ModalOfConsultation
-                          professional={professional}
-                          userId={userId}
-                        />
-                      ) : (
-                        <SignInSignUp
-                          triggerButton={<Button>Dejame tu consulta</Button>}
-                        />
-                      )}
-                      {/* <a
-                          target="_blank"
-                          rel="noreferrer"
-                          href={`https://api.whatsapp.com/send?phone=549${professional.telephone}&text=Hola,%20necesito%20realizar%20una%20consulta`}
-                        >
-                          <Button>Dejame tu consulta</Button>
-                        </a> */}
+                      <QueryDrawer
+                        name={professional.name}
+                        profession={professional.profession}
+                      />
                     </div>
                   </div>
                 </div>

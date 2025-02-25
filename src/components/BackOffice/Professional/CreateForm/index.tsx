@@ -8,11 +8,10 @@ import ControllerSelect from '@/components/custom/ControllerSelect';
 import { toast } from '@/hooks/use-toast';
 import { createProfessional } from '@/services/profesional';
 import { useRouter } from 'next/navigation';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import CancelIcon from '../../../../../public/images/cancel-icon';
 import ControllerTextArea from '@/components/custom/ControllerTextArea';
-import axios from 'axios';
 
 interface ISelectOptions {
   _id: string;
@@ -28,10 +27,13 @@ const CreateForm: FC<ICreateForm> = (props) => {
 
   const router = useRouter();
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const { control, reset, handleSubmit, getValues, setValue, watch } =
     useForm<FieldValues>({
       defaultValues: {
         name: '',
+        imageUser: '',
         profession: '',
         email: '',
         telephone: '',
@@ -59,15 +61,8 @@ const CreateForm: FC<ICreateForm> = (props) => {
   });
 
   const onSubmit = async (value: any) => {
-    const { data, status } = await createProfessional(value);
-
-    console.log('data', data);
-
-    const emailValues = {
-      name: data.professional.name,
-      resetToken: data.resetToken,
-      email: data.professional.email,
-    };
+    setIsLoading(true);
+    const { status } = await createProfessional(value);
 
     if (status === 201) {
       reset();
@@ -75,8 +70,8 @@ const CreateForm: FC<ICreateForm> = (props) => {
         title: 'Profesional creado',
         description: 'Profesional creado con exito',
       });
-      await axios.post('/api/resetPasswordEmail', emailValues);
       router.push('/admin/backoffice/professional');
+      setIsLoading(false);
     }
   };
 
@@ -199,7 +194,9 @@ const CreateForm: FC<ICreateForm> = (props) => {
           </div>
         </div>
         <div className="flex justify-end col-span-2">
-          <Button onClick={handleSubmit(onSubmit)}>Agregar profesional</Button>
+          <Button isLoading={isLoading} onClick={handleSubmit(onSubmit)}>
+            Agregar profesional
+          </Button>
         </div>
       </div>
     </div>

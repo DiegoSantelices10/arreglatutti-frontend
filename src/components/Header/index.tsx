@@ -4,14 +4,8 @@ import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../custom/Button';
-import Authentication from './Authentication';
 
-interface IHeaderProps {
-  isLoggedIn: boolean;
-}
-
-const Header: FC<IHeaderProps> = (props) => {
-  const { isLoggedIn } = props;
+const Header: FC = () => {
   const [sticky, setSticky] = useState(false);
   const handleStickyNavbar = () => {
     if (window.scrollY >= 80) {
@@ -74,7 +68,7 @@ const Header: FC<IHeaderProps> = (props) => {
           >
             ¿Sos profesional?
           </Button>
-          <Authentication isLoggedIn={isLoggedIn} />
+          {/* <Authentication isLoggedIn={isLoggedIn} /> */}
         </motion.div>
       </header>
     </>

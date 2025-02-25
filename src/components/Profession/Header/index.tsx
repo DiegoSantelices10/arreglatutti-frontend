@@ -20,7 +20,7 @@ const Header: FC = () => {
   return (
     <>
       <header
-        className={`header top-0 left-0 z-50 flex w-full items-center bg-primary ${
+        className={`header top-0 left-0 z-[9999] flex w-full items-center bg-primary ${
           sticky
             ? '!fixed !z-[9990] !bg-primary !bg-opacity-50 shadow-sticky backdrop-blur-sm !transition dark:!bg-primary dark:!bg-opacity-20'
             : 'absolute z-10'

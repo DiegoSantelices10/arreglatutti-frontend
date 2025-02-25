@@ -31,7 +31,7 @@ const Carousel: FC<ICarouselProps> = (props) => {
         {images?.map((image: any, index) => {
           return (
             <CarouselItem className="basis-auto" key={index}>
-              <Card className="overflow-hidden h-32 w-52">
+              <Card className="overflow-hidden h-36 w-52">
                 <CardContent className="p-0 overflow-hidden rounded-md h-full w-full">
                   <Image
                     src={`${image.url}`}

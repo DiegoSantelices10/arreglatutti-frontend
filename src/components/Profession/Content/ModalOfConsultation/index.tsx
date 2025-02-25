@@ -8,29 +8,28 @@ import { FieldValues, useForm } from 'react-hook-form';
 
 interface IModalOfConsultationProps {
   professional: any;
-  userId: string;
 }
 
 const ModalOfConsultation: FC<IModalOfConsultationProps> = (props) => {
   const {
-    professional: { _id, email },
-    userId,
+    professional: { name, profession },
   } = props;
 
   const { control, handleSubmit } = useForm<FieldValues>({
     defaultValues: {
+      professionalName: '',
+      profession: '',
       description: '',
     },
   });
 
   const onSubmit = (value: FieldValues) => {
     const newQuery = {
-      professionalId: _id,
-      clienteId: userId,
+      professionalName: name,
+      profession,
       description: value.description,
     };
     console.log('newQuery', newQuery);
-    console.log('email', email);
   };
 
   return (

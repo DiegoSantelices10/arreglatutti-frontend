@@ -39,9 +39,9 @@ const ClientSignUp = () => {
       password: values.password,
       name: values.name,
     };
-    const reponse: any = await signUp(newUser);
+    const { data }: any = await signUp(newUser);
 
-    if (reponse.success) {
+    if (data.success) {
       toast({
         title: 'Registro exitoso',
         description: 'Redirigiendo al inicio de sesion',
@@ -111,7 +111,7 @@ const ClientSignUp = () => {
                 htmlFor="password"
                 className="mb-1 block text-xs font-medium text-primary"
               >
-                Password
+                Contraseña
               </label>
               <ControllerInput
                 id="password"

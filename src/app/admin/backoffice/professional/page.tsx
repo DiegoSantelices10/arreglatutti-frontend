@@ -41,7 +41,9 @@ const Professional = async () => {
         </div>
         <div className="py-4">
           {data.length === 0 ? (
-            <h1>No se encontraron profesionales</h1>
+            <h1 className="text-center text-gray-500">
+              No se encontraron profesionales
+            </h1>
           ) : (
             <ProfessionalTable data={data} />
           )}

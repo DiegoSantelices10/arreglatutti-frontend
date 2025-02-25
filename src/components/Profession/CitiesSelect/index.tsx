@@ -32,7 +32,7 @@ const CitiesSelect: FC<ICitiesSelectProps> = (props) => {
 
   return (
     <div
-      className="bg-white rounded-md p-6 shadow-md mt-10 md:mx-auto md:w-1/2"
+      className="bg-white rounded-md p-6 mt-10 md:mx-auto md:w-1/2"
       {...rest}
     >
       <p className="text-sm px-1 font-medium pb-1 text-primary">
