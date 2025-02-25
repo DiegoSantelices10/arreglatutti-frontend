@@ -2,17 +2,18 @@
 import { useToast } from '@/hooks/use-toast';
 import { FC, ReactNode, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import {
-  loginRegisterFormSchema,
-  LoginRegisterSchemaType,
-} from '../Header/Authentication/schema';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ISignIn, ISignUp, signUp } from '@/services/auth';
 import { login } from '@/actions';
-import Modal from '../custom/Modal';
 import { cn } from '@/utils';
-import Button from '../custom/Button';
-import ControllerInput from '../custom/ControllerInput';
+import {
+  loginRegisterFormSchema,
+  LoginRegisterSchemaType,
+} from '../Authentication/schema';
+import Modal from '@/components/custom/Modal';
+import Button from '@/components/custom/Button';
+import ControllerInput from '@/components/custom/ControllerInput';
 
 interface ISignInSignUpProps {
   triggerButton: ReactNode;
@@ -166,6 +167,8 @@ const SignInSignUp: FC<ISignInSignUpProps> = (props) => {
         <ControllerInput
           id="password"
           control={control}
+          type="password"
+          hasSegurity
           placeholder={
             register ? 'Ingrese una contraseña' : 'Ingrese su contraseña'
           }

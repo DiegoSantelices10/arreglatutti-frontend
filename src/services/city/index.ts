@@ -7,7 +7,7 @@ interface ICity {
 
 export const getCities = async () => {
   const response = await getApi({
-    path: SERVICES.BARRIOS.GET_CITIES,
+    path: SERVICES.CITIES.GET_CITIES,
     method: 'GET',
   });
   return response;
@@ -15,7 +15,7 @@ export const getCities = async () => {
 
 export const getCityById = async (id: string) => {
   const response = await getApi({
-    path: `${SERVICES.BARRIOS.GET_CITIES}/${id}`,
+    path: `${SERVICES.CITIES.GET_CITIES}/${id}`,
     method: 'GET',
   });
   return response;
@@ -23,7 +23,7 @@ export const getCityById = async (id: string) => {
 
 export const createCity = async (data: ICity) => {
   const response = await getApi({
-    path: SERVICES.BARRIOS.CREATE,
+    path: SERVICES.CITIES.CREATE,
     method: 'POST',
     data,
   });
@@ -32,7 +32,7 @@ export const createCity = async (data: ICity) => {
 
 export const editCity = async (id: string, data: ICity) => {
   const response = await getApi({
-    path: `${SERVICES.BARRIOS.UPDATE_CITY}/${id}`,
+    path: `${SERVICES.CITIES.UPDATE_CITY}/${id}`,
     method: 'PUT',
     data,
   });
@@ -41,7 +41,7 @@ export const editCity = async (id: string, data: ICity) => {
 
 export const deleteCity = async (id: string) => {
   const response = await getApi({
-    path: `${SERVICES.BARRIOS.DELETE_CITY}/${id}`,
+    path: `${SERVICES.CITIES.DELETE_CITY}/${id}`,
     method: 'DELETE',
   });
   return response;

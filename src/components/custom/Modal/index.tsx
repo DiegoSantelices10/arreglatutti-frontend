@@ -23,7 +23,7 @@ const Modal: FC<IModalProps> = (props) => {
   return (
     <Dialog {...rest}>
       <DialogTrigger asChild>{triggerButton}</DialogTrigger>
-      <DialogContent className="max-w-screen-md max-h-screen overflow-y-auto border-0 bg-white rounded-xl">
+      <DialogContent className="max-w-screen-md z-[999999] max-h-screen overflow-y-auto border-0 bg-white rounded-xl">
         <DialogHeader>
           <DialogTitle className="text-primary text-center">
             {title}

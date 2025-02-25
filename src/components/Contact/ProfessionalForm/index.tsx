@@ -27,9 +27,13 @@ const ProfessionalForm: FC<any> = (props) => {
   };
 
   const onSubmit = async (value: any) => {
+    console.log('value', value);
+
     setIsLoading(true);
     try {
       const { status } = await createMessage(value);
+      console.log('status', status);
+
       if (status === 201) {
         const { status } = await sendEmail(value);
 
@@ -45,6 +49,11 @@ const ProfessionalForm: FC<any> = (props) => {
       setIsLoading(false);
     } catch (error) {
       console.log('error::', error);
+      toast({
+        title: 'Error',
+        description: 'Ocurrió un error al enviar la solicitud.',
+        variant: 'error',
+      });
     }
   };
 

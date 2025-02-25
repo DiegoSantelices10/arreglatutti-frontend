@@ -9,7 +9,7 @@ import { titleProfessionalEnum } from '../utils';
 import CitiesSelect from '../CitiesSelect';
 import { getProfessionals } from '@/services/profesional';
 import { FieldValues, useForm } from 'react-hook-form';
-import SignInSignUp from '@/components/SignInSignUp';
+import SignInSignUp from '@/components/Header/SignInSignUp';
 import ModalOfConsultation from './ModalOfConsultation';
 
 interface IContentProps {

@@ -23,7 +23,7 @@ export const getProfessionals = async (
   const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
 
   const response = await getApi({
-    path: SERVICES.PROFESIONALES.GET_PROFESSIONALS,
+    path: SERVICES.PROFESSIONALS.GET_PROFESSIONALS,
     method: 'GET',
     query: queryString,
   });
@@ -32,7 +32,7 @@ export const getProfessionals = async (
 
 export const getProfessionalById = async (id: string) => {
   const response = await getApi({
-    path: `${SERVICES.PROFESIONALES.GET_PROFESSIONALS}/${id}`,
+    path: `${SERVICES.PROFESSIONALS.GET_PROFESSIONALS}/${id}`,
     method: 'GET',
   });
   return response;
@@ -40,7 +40,7 @@ export const getProfessionalById = async (id: string) => {
 
 export const createProfessional = async (data: IProfessional) => {
   const response = await getApi({
-    path: SERVICES.PROFESIONALES.CREATE,
+    path: SERVICES.PROFESSIONALS.CREATE,
     method: 'POST',
     data,
   });
@@ -49,7 +49,7 @@ export const createProfessional = async (data: IProfessional) => {
 
 export const editProfessional = async (id: string, data: IProfessional) => {
   const response = await getApi({
-    path: `${SERVICES.PROFESIONALES.UPDATE_PROFESSIONAL}/${id}`,
+    path: `${SERVICES.PROFESSIONALS.UPDATE_PROFESSIONAL}/${id}`,
     method: 'PUT',
     data,
   });
@@ -58,8 +58,22 @@ export const editProfessional = async (id: string, data: IProfessional) => {
 
 export const deleteProfessional = async (id: string) => {
   const response = await getApi({
-    path: `${SERVICES.PROFESIONALES.DELETE_PROFESSIONAL}/${id}`,
+    path: `${SERVICES.PROFESSIONALS.DELETE_PROFESSIONAL}/${id}`,
     method: 'DELETE',
   });
+  return response;
+};
+
+export const signInProfessional = async (data: {
+  email: string;
+  password: string;
+}) => {
+  const response = await getApi({
+    path: SERVICES.PROFESSIONALS.LOGIN,
+    method: 'POST',
+    data,
+  });
+  console.log('response services', response);
+
   return response;
 };

@@ -13,20 +13,43 @@ export interface ISignIn {
   password: string;
 }
 
+interface IResetPassword {
+  token: string;
+  password: string;
+}
+
 export const signUp = async (data: ISignUp) => {
+  try {
+    const response = await getApi({
+      path: SERVICES.AUTHENTICATION.REGISTER,
+      method: 'POST',
+      data,
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const signIn = async (data: ISignIn) => {
   const response = await getApi({
-    path: SERVICES.AUTENTICACION.REGISTER,
+    path: SERVICES.AUTHENTICATION.LOGIN,
     method: 'POST',
     data,
   });
   return response;
 };
 
-export const signIn = async (data: ISignIn) => {
-  const response = await getApi({
-    path: SERVICES.AUTENTICACION.LOGIN,
-    method: 'POST',
-    data,
-  });
-  return response;
+export const resetPassword = async (data: IResetPassword) => {
+  try {
+    const response = await getApi({
+      path: SERVICES.AUTHENTICATION.RESET_PASSWORD,
+      method: 'POST',
+      data,
+    });
+
+    return response;
+  } catch (error) {
+    return error;
+  }
 };

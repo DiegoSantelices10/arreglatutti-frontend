@@ -4,7 +4,7 @@ import { getApi } from '..';
 
 export const getProfessionalApplication = () => {
   const response = getApi({
-    path: `${SERVICES.REGISTRO_PROFESIONALES.GET_PROFESSIONAL_APPLICATION}?_ts=${Date.now().toString()}`,
+    path: `${SERVICES.PROFESSIONAL_APPLICATION.GET_PROFESSIONAL_APPLICATION}?_ts=${Date.now().toString()}`,
     method: 'GET',
   });
   return response;
@@ -12,7 +12,7 @@ export const getProfessionalApplication = () => {
 
 export const createMessage = (data: any) => {
   const response = getApi({
-    path: SERVICES.REGISTRO_PROFESIONALES.CREATE_MESSAGE,
+    path: SERVICES.PROFESSIONAL_APPLICATION.CREATE_MESSAGE,
     method: 'POST',
     data,
   });
@@ -21,7 +21,7 @@ export const createMessage = (data: any) => {
 
 export const deleteMessage = (id: string) => {
   const response = getApi({
-    path: `${SERVICES.REGISTRO_PROFESIONALES.DELETE_MESSAGE}/${id}`,
+    path: `${SERVICES.PROFESSIONAL_APPLICATION.DELETE_MESSAGE}/${id}`,
     method: 'DELETE',
   });
   return response;

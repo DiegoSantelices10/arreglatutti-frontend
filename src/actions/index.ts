@@ -1,7 +1,7 @@
 'use server';
-
 import { sessionOptions, SessionData, defaultSession } from '@/actions/types';
 import { ISignIn, signIn } from '@/services/auth';
+import { signInProfessional } from '@/services/profesional';
 import { getIronSession } from 'iron-session';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -24,6 +24,27 @@ export const login = async (username: ISignIn) => {
 
   try {
     const { data } = await signIn(username);
+
+    session.id = data.id;
+    session.name = data.name;
+    session.email = data.email;
+    session.isLoggedIn = true;
+
+    await session.save();
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const professionaLogin = async (username: {
+  email: string;
+  password: string;
+}) => {
+  const session = await getSession();
+
+  try {
+    const { data } = await signInProfessional(username);
 
     session.id = data.id;
     session.name = data.name;

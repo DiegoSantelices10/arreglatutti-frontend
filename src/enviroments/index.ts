@@ -1,40 +1,42 @@
 // const API_VERSION = 'api/v1';
-// const API_URL_BASE = `http://localhost:4000/`;
-const API_URL_BASE = `https://aquiles-backend.onrender.com/`;
+const API_URL_BASE = `http://localhost:4000/`;
+// const API_URL_BASE = `https://aquiles-backend.onrender.com/`;
 
 const SERVICES = {
-  PROFESIONES: {
+  PROFESSIONS: {
     GET_PROFESSIONS: 'profession',
     UPDATE_PROFESSION: 'profession',
     DELETE_PROFESSION: 'profession',
     CREATE: 'profession',
   },
-  PROFESIONALES: {
+  PROFESSIONALS: {
     GET_PROFESSIONALS: 'professional',
     UPDATE_PROFESSIONAL: 'professional',
     DELETE_PROFESSIONAL: 'professional',
     CREATE: 'professional',
+    LOGIN: 'professional/login',
   },
-  BARRIOS: {
+  CITIES: {
     GET_CITIES: 'city',
     CREATE: 'city',
     UPDATE_CITY: 'city',
     DELETE_CITY: 'city',
   },
-  REGISTRO_PROFESIONALES: {
+  PROFESSIONAL_APPLICATION: {
     GET_PROFESSIONAL_APPLICATION: 'professionalApplication',
     CREATE_MESSAGE: 'professionalApplication',
     DELETE_MESSAGE: 'professionalApplication',
   },
-  MENSAJES: {
+  MESSAGES: {
     GET_MESSAGES: 'message',
     CREATE: 'message',
     UPDATE_MESSAGE: 'message',
     DELETE_MESSAGE: 'message',
   },
-  AUTENTICACION: {
+  AUTHENTICATION: {
     LOGIN: 'auth/login',
     REGISTER: 'auth/register',
+    RESET_PASSWORD: 'professional/reset-password',
   },
 };
 const HTTP_METHODS = {

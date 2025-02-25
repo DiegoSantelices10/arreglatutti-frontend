@@ -31,4 +31,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  input:-webkit-autofill {
+    @apply bg-white;
+  }
 }
+
+

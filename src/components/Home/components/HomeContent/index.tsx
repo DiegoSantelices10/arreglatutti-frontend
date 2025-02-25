@@ -54,7 +54,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
                   <Link
                     key={item._id}
                     className="cursor-pointer"
-                    href={`/${item.name}`}
+                    href={`/profession/${item.name}`}
                   >
                     <ProfessionButton title={item.name} />
                   </Link>
