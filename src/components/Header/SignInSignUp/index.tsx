@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { useToast } from '@/hooks/use-toast';
 import { FC, ReactNode, useState } from 'react';
@@ -50,7 +51,7 @@ const SignInSignUp: FC<ISignInSignUpProps> = (props) => {
     };
 
     if (register) {
-      const { data } = await signUp(newUser);
+      const { data }: any = await signUp(newUser);
       toast({ title: data.message });
       reset();
       setRegister(false);
