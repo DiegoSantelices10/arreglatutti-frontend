@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Select from '@/components/custom/ControllerSelect/Select';
 import HeaderTitle from '@/components/custom/HeaderTitle';
@@ -14,13 +15,23 @@ interface Professional {
   slug: string;
   image: string;
 }
-const Professional = async () => {
+const Professional = () => {
+  const [professionals, setProfessionals] = React.useState<Professional[]>([]);
+  const [isLoading, setIsLoading] = React.useState(false);
+  React.useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const { data } = await getProfessionals();
+      setProfessionals(data);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
   const selectOptions = profesionesData?.map((item: Professional) => ({
     label: item.name,
     value: item.name,
   }));
-
-  const { data } = await getProfessionals();
 
   return (
     <div className="space-y-8">
@@ -40,12 +51,14 @@ const Professional = async () => {
           />
         </div>
         <div className="py-4">
-          {data.length === 0 ? (
+          {isLoading ? (
+            <h1 className="text-center text-gray-500">Cargando...</h1>
+          ) : professionals.length === 0 ? (
             <h1 className="text-center text-gray-500">
               No se encontraron profesionales
             </h1>
           ) : (
-            <ProfessionalTable data={data} />
+            <ProfessionalTable data={professionals} />
           )}
         </div>
       </div>
