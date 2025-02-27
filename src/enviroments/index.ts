@@ -1,6 +1,6 @@
 // const API_VERSION = 'api/v1';
-// const API_URL_BASE = `http://localhost:4000/`;
-const API_URL_BASE = `https://aquiles-backend.onrender.com/`;
+const API_URL_BASE = `http://localhost:4000/`;
+// const API_URL_BASE = `https://aquiles-backend.onrender.com/`;
 
 const SERVICES = {
   PROFESSIONS: {
@@ -27,11 +27,10 @@ const SERVICES = {
     CREATE_MESSAGE: 'professionalApplication',
     DELETE_MESSAGE: 'professionalApplication',
   },
-  MESSAGES: {
-    GET_MESSAGES: 'message',
-    CREATE: 'message',
-    UPDATE_MESSAGE: 'message',
-    DELETE_MESSAGE: 'message',
+  CONSULTATIONS: {
+    GET_MESSAGES: 'consultation',
+    CREATE: 'consultation',
+    DELETE_MESSAGE: 'consultation',
   },
   AUTHENTICATION: {
     LOGIN: 'auth/login',

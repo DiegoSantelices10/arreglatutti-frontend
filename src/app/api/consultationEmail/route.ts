@@ -3,12 +3,13 @@ import { NextResponse } from 'next/server';
 
 export const POST = async (req: Request) => {
   try {
-    const { name, telephone, message, profession } = await req.json();
+    const { name, telephone, message, profession, professionalName } =
+      await req.json();
 
     const mailOptions = {
-      from: `"Nuevo Profesional" <${process.env.SMTP_FROM}>`,
+      from: `"Nueva consulta de usuario" <${process.env.SMTP_FROM}>`,
       to: 'asuarez@aquilessoluciones.com.ar',
-      subject: 'Consulta de profesional matriculado',
+      subject: 'Consulta de usuario',
       html: `
         <div style="background-color: #002C53; padding: 20px;">
              <img src="https://res.cloudinary.com/dd6yemp1j/image/upload/v1737609561/aquiles-soluciones/q4yhur0hozafwxsyadur.png" 
@@ -17,6 +18,7 @@ export const POST = async (req: Request) => {
         </div>
         <div style="text-align: left;">
             <p font-weight: bold; margin-bottom: 10px;">Datos del usuario</p>
+            ${professionalName ? `<p><strong>Profesional seleccionado:</strong> ${professionalName}</p>` : ''}
             <ul style="list-style-type: disc; margin-left: 20px;">
               <li><strong>Nombre:</strong> ${name}</li>
               <li><strong>Teléfono:</strong> ${telephone}</li>

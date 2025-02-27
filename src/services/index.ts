@@ -1,7 +1,8 @@
 /* eslint-disable no-useless-catch */
 import { API_URL_BASE } from '@/enviroments';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { IApiProps } from './types';
+import { IResponse } from './consultation';
 
 export const getApi = async ({
   apiBase = API_URL_BASE,
@@ -11,7 +12,7 @@ export const getApi = async ({
   contentType = 'application/json',
   query = '',
   params,
-}: IApiProps) => {
+}: IApiProps): Promise<IResponse> => {
   try {
     const response = await axios({
       method,
@@ -29,12 +30,13 @@ export const getApi = async ({
     };
   } catch (error) {
     // Manejo de errores detallado
-    if (axios.isAxiosError(error)) {
-      throw {
-        status: error.response?.status,
-        message: error.response?.data || error.message,
+    if (error instanceof AxiosError) {
+      return {
+        status: error.response?.status ?? 500,
+        data: error.response?.data || error.message,
       };
+    } else {
+      throw error;
     }
-    throw error;
   }
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { useForm } from 'react-hook-form';
 import SectionTitle from '../custom/SectionTitle';
@@ -8,8 +9,10 @@ import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import { ContactFormSchema, ContactSchemaType } from './schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { FC } from 'react';
 
-const Contact = () => {
+const Contact: FC<any> = (props) => {
+  const { professions } = props;
   const [ref, inView] = useInView({
     triggerOnce: true, // Solo activa la animación la primera vez que aparece
     threshold: 0.2, // Cuánto de la sección debe estar visible (0.2 = 20%)
@@ -68,6 +71,7 @@ const Contact = () => {
               <ProfessionalForm
                 control={control}
                 handleSubmit={handleSubmit}
+                professions={professions}
                 isValid={isValid}
                 reset={reset}
               />

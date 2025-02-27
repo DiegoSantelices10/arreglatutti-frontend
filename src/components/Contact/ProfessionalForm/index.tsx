@@ -5,19 +5,18 @@ import { toast } from '@/hooks/use-toast';
 import ControllerInput from '@/components/custom/ControllerInput';
 import ControllerSelect from '@/components/custom/ControllerSelect';
 import ControllerTextArea from '@/components/custom/ControllerTextArea';
-import { profesionesData } from '@/mocks/profession';
 import axios from 'axios';
 import { createMessage } from '@/services/professionalApplication';
 import Button from '@/components/custom/Button';
 
 const ProfessionalForm: FC<any> = (props) => {
-  const { control, handleSubmit, reset, isValid } = props;
+  const { control, handleSubmit, reset, isValid, professions } = props;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const selectOptions = profesionesData?.map((item: any) => ({
+  const selectOptions = professions?.map((item: any) => ({
     label: item.name,
-    value: item.name, // ajusta `item.id` si deseas usar otro campo como valor
+    value: item.name,
   }));
 
   const submitIsvalid = !isValid || isLoading;
@@ -27,12 +26,9 @@ const ProfessionalForm: FC<any> = (props) => {
   };
 
   const onSubmit = async (value: any) => {
-    console.log('value', value);
-
     setIsLoading(true);
     try {
       const { status } = await createMessage(value);
-      console.log('status', status);
 
       if (status === 201) {
         const { status } = await sendEmail(value);

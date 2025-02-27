@@ -19,15 +19,15 @@ const Professional = () => {
   const [professionals, setProfessionals] = React.useState<Professional[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
   React.useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const { data } = await getProfessionals();
-      setProfessionals(data);
-      setIsLoading(false);
-    };
     fetchData();
   }, []);
 
+  const fetchData = async () => {
+    setIsLoading(true);
+    const { data } = await getProfessionals();
+    setProfessionals(data);
+    setIsLoading(false);
+  };
   const selectOptions = profesionesData?.map((item: Professional) => ({
     label: item.name,
     value: item.name,

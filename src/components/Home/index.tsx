@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Carousel from './components/Carousel';
-import { getProfessions } from '@/services/profesion';
 import HomeContent from './components/HomeContent';
-import { Fragment } from 'react';
+import { FC, Fragment } from 'react';
 
-const HomeUI = async () => {
-  const { data } = await getProfessions();
+const HomeUI: FC<any> = async (props) => {
+  const { professions } = props;
 
   return (
     <Fragment>
       <Carousel />
-      <HomeContent data={data} />
+      <HomeContent data={professions} />
     </Fragment>
   );
 };

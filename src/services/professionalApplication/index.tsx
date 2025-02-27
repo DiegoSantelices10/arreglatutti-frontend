@@ -2,16 +2,16 @@
 import { SERVICES } from '@/enviroments';
 import { getApi } from '..';
 
-export const getProfessionalApplication = () => {
-  const response = getApi({
-    path: `${SERVICES.PROFESSIONAL_APPLICATION.GET_PROFESSIONAL_APPLICATION}?_ts=${Date.now().toString()}`,
+export const getProfessionalApplication = async () => {
+  const response = await getApi({
+    path: `${SERVICES.PROFESSIONAL_APPLICATION.GET_PROFESSIONAL_APPLICATION}`,
     method: 'GET',
   });
   return response;
 };
 
-export const createMessage = (data: any) => {
-  const response = getApi({
+export const createMessage = async (data: any) => {
+  const response = await getApi({
     path: SERVICES.PROFESSIONAL_APPLICATION.CREATE_MESSAGE,
     method: 'POST',
     data,
@@ -19,8 +19,8 @@ export const createMessage = (data: any) => {
   return response;
 };
 
-export const deleteMessage = (id: string) => {
-  const response = getApi({
+export const deleteMessage = async (id: string) => {
+  const response = await getApi({
     path: `${SERVICES.PROFESSIONAL_APPLICATION.DELETE_MESSAGE}/${id}`,
     method: 'DELETE',
   });
