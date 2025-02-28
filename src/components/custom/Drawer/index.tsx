@@ -7,13 +7,14 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
+  DrawerDescription,
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import { FaUser } from 'react-icons/fa';
 import Carousel from '../Carousel';
 import LocationIcon from '../../../../public/images/location-icon';
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import Avatar from '../Avatar';
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 
 interface IDrawerProps {
   name: string;
@@ -34,22 +35,17 @@ const Drawer: FC<IDrawerProps> = (props) => {
           <FaUser />
         </Button>
       </DrawerTrigger>
-
-      <DrawerContent className="md:w-1/2 mx-auto bg-gray-50">
-        <DrawerHeader className="p-0">
-          <VisuallyHidden.Root>
-            <DrawerTitle className="text-primary text-center font-bold font-roboto">
-              {name}
+      <div className="mx-auto w-full max-w-sm">
+        <DrawerContent className="md:w-1/2 mx-auto border-0 border-none bg-slate-50">
+          <DrawerHeader className="bg-primary p-3 flex justify-center items-center">
+            <DrawerTitle className="text-white text-center text-xl font-bold">
+              Perfil
             </DrawerTitle>
-          </VisuallyHidden.Root>
-        </DrawerHeader>
-        <div className="px-4 space-y-12">
-          <div>
-            <h2 className="text-primary font-bold text-xl text-center pb-2">
-              Datos personales
-            </h2>
+            <DrawerDescription></DrawerDescription>
+          </DrawerHeader>
+          <div className="p-2 md:p-4 grid content-center gap-4 h-full">
             <div className="bg-white shadow-sm p-4 min-h-32 rounded-lg">
-              <div className="flex justify-between items-start  gap-6">
+              <div className="flex justify-between items-start  gap-4">
                 <Avatar className="w-14 h-14" image={'/images/avatar.png'} />
                 <div className="w-full">
                   <div className="flex gap-2 items-center">
@@ -57,12 +53,12 @@ const Drawer: FC<IDrawerProps> = (props) => {
                       {name}
                     </h2>
                   </div>
-                  <div className="flex gap-2 items-center">
+                  <div className="flex gap-1 items-center">
                     <LocationIcon className="size-4 text-textSecondary" />
                     {cities.map((city, index) => (
                       <h2
                         key={index}
-                        className="text-textSecondary font-normal text-base"
+                        className="text-textSecondary font-normal text-sm"
                       >
                         {city}
                         {index < cities.length - 1 && ', '}
@@ -73,20 +69,21 @@ const Drawer: FC<IDrawerProps> = (props) => {
               </div>
               {description && (
                 <div className="mt-4">
-                  <p className="text-textSecondary font-normal text-base">
+                  <p className="text-textSecondary font-normal text-sm">
                     {description}
                   </p>
                 </div>
               )}
             </div>
+            <div className="w-full bg-white rounded-lg shadow-sm p-4">
+              <Carousel images={imagesWorks} />
+            </div>
           </div>
-          <div className="w-full bg-white rounded-lg shadow-sm p-4">
-            <Carousel images={imagesWorks} />
-          </div>
-        </div>
-
-        <DrawerFooter className="flex justify-end pt-10"></DrawerFooter>
-      </DrawerContent>
+          <VisuallyHidden.Root>
+            <DrawerFooter></DrawerFooter>
+          </VisuallyHidden.Root>
+        </DrawerContent>
+      </div>
     </DrawerUI>
   );
 };

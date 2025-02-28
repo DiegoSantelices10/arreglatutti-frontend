@@ -56,14 +56,14 @@ const Header: FC = () => {
           </div>
         </motion.div>
         <motion.div
-          className="w-full z-50 flex justify-end items-center gap-2"
+          className="w-full z-50 flex justify-end items-center"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.5 }}
         >
           <Button
             variant={'ghost'}
-            className="text-base"
+            className="text-base p-0"
             onClick={scrollToBottom}
           >
             ¿Sos profesional?

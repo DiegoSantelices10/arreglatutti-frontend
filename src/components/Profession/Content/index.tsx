@@ -69,13 +69,13 @@ const Content: FC<IContentProps> = (props) => {
             </h1>
             <div className="h-[1px] w-full bg-gray-300" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="w-full grid md:grid-cols-2 gap-6">
             {isLoading ? (
               <Skeleton className="h-40 w-full bg-gray-200 rounded-md" />
             ) : professionals && professionals?.length > 0 ? (
               professionals.map((professional: any) => (
                 <div key={professional._id}>
-                  <div className="rounded-md bg-white p-4 shadow-md">
+                  <div className="rounded-md flex flex-col justify-between bg-white p-4 shadow-md h-full">
                     <div className="space-y-1">
                       <h1 className="text-primary font-semibold">
                         {professional.name}
@@ -94,23 +94,26 @@ const Content: FC<IContentProps> = (props) => {
                           )
                         )}
                       </div>
-
-                      <p className="text-xs text-textSecondary font-normal">
-                        {professional.description}
-                      </p>
+                      <div className="pt-2">
+                        <p className="text-xs text-textSecondary font-normal">
+                          {professional.description}
+                        </p>
+                      </div>
                     </div>
-                    <div className="mt-4 h-[1px] bg-gray-200" />
-                    <div className="flex justify-between items-center mt-4">
-                      <Drawer
-                        cities={professional.cities}
-                        name={professional.name}
-                        description={professional.description}
-                        imagesWorks={professional.image}
-                      />
-                      <QueryDrawer
-                        name={professional.name}
-                        profession={professional.profession}
-                      />
+                    <div>
+                      <div className="mt-4 h-[1px] bg-gray-200" />
+                      <div className="flex justify-between items-center mt-4">
+                        <Drawer
+                          cities={professional.cities}
+                          name={professional.name}
+                          description={professional.description}
+                          imagesWorks={professional.image}
+                        />
+                        <QueryDrawer
+                          name={professional.name}
+                          profession={professional.profession}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

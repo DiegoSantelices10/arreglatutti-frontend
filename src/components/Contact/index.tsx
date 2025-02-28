@@ -53,7 +53,7 @@ const Contact: FC<any> = (props) => {
         initial={{ opacity: 0, y: 100 }}
         transition={{ duration: 1.5 }}
       >
-        <div className="container">
+        <div>
           <SectionTitle
             title="Trabaja con nosotros"
             textClassName="md:text-[36px] lg:text-[40px]"

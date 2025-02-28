@@ -36,7 +36,7 @@ const ControllerInput = ({
   }: RenderInputProps) => {
     return (
       <div>
-        <div className="flex px-3 justify-between items-center rounded-md overflow-hidden border focus:border-primary/20 border-gray-200  bg-transparent">
+        <div className="flex px-3 justify-between items-center rounded-md overflow-hidden border  border-gray-200 bg-transparent">
           <Input
             name={inputName}
             onChange={onChange}

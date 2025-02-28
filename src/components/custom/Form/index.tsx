@@ -19,10 +19,11 @@ import axios from 'axios';
 interface IForm {
   data: any;
   professionalName?: string;
+  professionalType?: string;
 }
 
 const Form: FC<IForm> = (props) => {
-  const { data, professionalName } = props;
+  const { data, professionalName, professionalType } = props;
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,7 +38,7 @@ const Form: FC<IForm> = (props) => {
       client: '',
       telephoneClient: '',
       messageClient: '',
-      professionalType: '',
+      professionalType: professionalType || '',
       professionalName: '',
     },
     mode: 'onTouched',
@@ -45,7 +46,7 @@ const Form: FC<IForm> = (props) => {
 
   const selectOptions = data?.map((item: any) => ({
     label: item.name,
-    value: item.name, // ajusta `item.id` si deseas usar otro campo como valor
+    value: item.name,
   }));
 
   const buttonDisabled = !isValid || isLoading;

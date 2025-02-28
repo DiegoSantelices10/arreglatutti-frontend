@@ -22,7 +22,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
     >
       <section
         id="home"
-        className="z-50 min-h-screen overflow-hidden pt-14 pb-20 md:px-10 "
+        className="z-50 min-h-screen overflow-hidden pt-14 pb-20 md:px-10"
       >
         <Solid />
 
@@ -64,7 +64,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
 
           {/* Form */}
 
-          <div className="container w-full lg:w-1/2 mt-4 md:mt-0 md:pl-10">
+          <div className=" w-full lg:w-1/2 mt-4 md:mt-0 md:pl-10">
             <div
               className="mb-12 rounded-md p-8 bg-white"
               data-wow-delay=".15s"
