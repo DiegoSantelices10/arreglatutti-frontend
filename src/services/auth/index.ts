@@ -13,11 +13,6 @@ export interface ISignIn {
   password: string;
 }
 
-interface IResetPassword {
-  token: string;
-  password: string;
-}
-
 export const signUp = async (data: ISignUp) => {
   try {
     const response = await getApi({
@@ -32,24 +27,17 @@ export const signUp = async (data: ISignUp) => {
 };
 
 export const signIn = async (data: ISignIn) => {
-  const response = await getApi({
-    path: SERVICES.AUTHENTICATION.LOGIN,
-    method: 'POST',
-    data,
-  });
-  return response;
-};
-
-export const resetPassword = async (data: IResetPassword) => {
   try {
     const response = await getApi({
-      path: SERVICES.AUTHENTICATION.RESET_PASSWORD,
+      path: SERVICES.AUTHENTICATION.LOGIN,
       method: 'POST',
       data,
     });
-
     return response;
-  } catch (error) {
-    return error;
+  } catch (error: any) {
+    return {
+      status: error?.status,
+      data: error.data,
+    };
   }
 };

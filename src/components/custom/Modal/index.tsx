@@ -23,7 +23,7 @@ const Modal: FC<IModalProps> = (props) => {
   return (
     <Dialog {...rest}>
       <DialogTrigger asChild>{triggerButton}</DialogTrigger>
-      <DialogContent className="max-w-screen-md z-[999999] max-h-screen overflow-y-auto border-0 bg-white rounded-xl">
+      <DialogContent className="max-w-screen-md overflow-visible max-h-screen overflow-y-auto border-0 bg-white rounded-xl">
         <DialogHeader>
           <DialogTitle className="text-primary text-center">
             {title}
@@ -31,7 +31,9 @@ const Modal: FC<IModalProps> = (props) => {
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">{children}</div>
-        <DialogFooter>{childrenFooter}</DialogFooter>
+        <DialogFooter>
+          <DialogTrigger asChild>{childrenFooter}</DialogTrigger>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

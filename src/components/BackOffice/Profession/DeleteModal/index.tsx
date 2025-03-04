@@ -1,5 +1,5 @@
 'use client';
-import { FC, ReactNode } from 'react';
+import { Dispatch, FC, ReactNode, useState } from 'react';
 import { deleteProfession } from '@/services/profesion';
 import {
   Dialog,
@@ -12,34 +12,43 @@ import {
 } from '@/components/ui/dialog';
 import { toast } from '@/hooks/use-toast';
 import Button from '@/components/custom/Button';
-import { useRouter } from 'next/navigation';
+import { IProfession } from '../ProfessionTable/types';
 
 interface IDeleteModal {
   id: string;
   name: string;
   trigger: ReactNode;
+  setRenderProfessions: Dispatch<React.SetStateAction<IProfession[]>>;
 }
 
 export const DeleteModal: FC<IDeleteModal> = (props) => {
-  const { id, name, trigger } = props;
+  const { id, name, trigger, setRenderProfessions } = props;
 
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const deleteProfesion = async (id: string) => {
-    try {
-      await deleteProfession(id);
+    setIsLoading(true);
+    const { status } = await deleteProfession(id);
+
+    if (status !== 200) {
       toast({
-        title: 'Profesión eliminada',
-        description: 'Profesión eliminada con exito',
-      });
-      router.push('/admin/backoffice/profession');
-    } catch (error) {
-      console.log('error', error);
-      toast({
+        variant: 'error',
         title: 'Error',
-        description: 'Error al eliminar la profesión',
+        description: 'Error al eliminar la profesion',
       });
+      return;
     }
+
+    toast({
+      title: 'Profesion eliminada',
+      description: 'Profesion eliminada con exito',
+    });
+
+    setRenderProfessions((prev) => {
+      return prev.filter((prof) => prof._id !== id);
+    });
+
+    setIsLoading(false);
   };
 
   return (
@@ -57,7 +66,13 @@ export const DeleteModal: FC<IDeleteModal> = (props) => {
         </DialogHeader>
         <DialogFooter>
           <DialogTrigger asChild>
-            <Button onClick={() => deleteProfesion(id)}>Aceptar</Button>
+            <Button
+              disabled={isLoading}
+              isLoading={isLoading}
+              onClick={() => deleteProfesion(id)}
+            >
+              Aceptar
+            </Button>
           </DialogTrigger>
         </DialogFooter>
       </DialogContent>

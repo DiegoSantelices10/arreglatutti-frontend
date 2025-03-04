@@ -22,8 +22,11 @@ export const getConsultations = async () => {
       method: 'GET',
     });
     return response;
-  } catch (error) {
-    return error;
+  } catch (error: any) {
+    return {
+      status: error?.status,
+      data: error.data,
+    };
   }
 };
 
@@ -52,7 +55,10 @@ export const deleteMessage = async (id: string) => {
       method: 'DELETE',
     });
     return response;
-  } catch (error) {
-    return error;
+  } catch (error: any) {
+    return {
+      status: error?.status,
+      data: error.data,
+    };
   }
 };

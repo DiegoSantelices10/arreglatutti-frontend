@@ -23,7 +23,7 @@ const Select = (props: SelectProps) => {
 
   return (
     <SelectGroup className={className}>
-      <ShadcnSelect defaultValue={defaultValue} {...rest}>
+      <ShadcnSelect {...rest}>
         <SelectTrigger
           data-value={!!value || !!defaultValue}
           id={id}

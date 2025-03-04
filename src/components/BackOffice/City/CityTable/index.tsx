@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 
 import { ICityTableProps } from './types';
 import DeleteIcon from '../../../../../public/images/delete-icon';
@@ -8,7 +8,9 @@ import Table from '@/components/custom/Table';
 import { TableCell, TableHead, TableRow } from '@/components/ui/table';
 
 const CityTable: FC<ICityTableProps> = (props) => {
-  const { data } = props;
+  const { cities } = props;
+
+  const [renderCities, setRenderCities] = useState(cities);
 
   return (
     <Table
@@ -18,15 +20,16 @@ const CityTable: FC<ICityTableProps> = (props) => {
         </Fragment>
       }
     >
-      {data?.map((city) => (
+      {renderCities?.map((city) => (
         <TableRow key={city._id}>
           <TableCell className="font-medium">{city.name}</TableCell>
           <TableCell className="text-right w-14">
-            <EditModal city={city} />
+            <EditModal city={city} setRenderCities={setRenderCities} />
           </TableCell>
           <TableCell className="text-right w-14">
             <DeleteModal
               id={city._id.toString()}
+              setRenderCities={setRenderCities}
               name={city.name}
               trigger={
                 <div className="rounded-full cursor-pointer bg-red-600 h-8 w-8 flex justify-center items-center">

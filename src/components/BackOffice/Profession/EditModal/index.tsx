@@ -1,42 +1,63 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { FC, useState } from 'react';
+import { Dispatch, FC, useState } from 'react';
 import { editProfession } from '@/services/profesion';
-import { useRouter } from 'next/navigation';
 import { toast } from '@/hooks/use-toast';
 import { FieldValues, useForm } from 'react-hook-form';
 import Modal from '@/components/custom/Modal';
 import EditIcon from '../../../../../public/images/edit-icon';
 import Button from '@/components/custom/Button';
 import ControllerInput from '@/components/custom/ControllerInput';
+import { IProfession } from '../ProfessionTable/types';
 
 interface IEditModal {
   profession: any;
+  setRenderProfessions: Dispatch<React.SetStateAction<IProfession[]>>;
 }
 
 export const EditModal: FC<IEditModal> = (props) => {
-  const { profession } = props;
+  const { profession, setRenderProfessions } = props;
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const { control, reset, handleSubmit } = useForm<FieldValues>({
+  const {
+    control,
+    reset,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<FieldValues>({
     defaultValues: {
       name: profession.name || '',
     },
   });
 
-  const router = useRouter();
+  const buttonDisabled = !isValid || isLoading;
 
   const onSubmit = async (values: any) => {
+    setIsLoading(true);
     const { status } = await editProfession(profession._id, values);
-    if (status === 200) {
-      reset();
+    if (status !== 200) {
       toast({
-        title: 'Profesión Actualizada',
-        description: 'Profesión actualizada con exito',
+        title: 'Error',
+        description: 'Error al actualizar la profesión',
+        variant: 'error',
       });
-      setOpenModal(false);
-      router.push('/admin/backoffice/profession');
+      setIsLoading(false);
     }
+    toast({
+      title: 'Profesión Actualizada',
+      description: 'Profesión actualizada con exito',
+    });
+
+    setRenderProfessions((prev) =>
+      prev.map((prof) =>
+        prof._id === profession._id ? { ...prof, ...values } : prof
+      )
+    );
+    reset(values);
+    setIsLoading(false);
+    setOpenModal(false);
   };
 
   return (
@@ -50,7 +71,13 @@ export const EditModal: FC<IEditModal> = (props) => {
         </div>
       }
       childrenFooter={
-        <Button onClick={handleSubmit(onSubmit)}>Actualizar</Button>
+        <Button
+          disabled={buttonDisabled}
+          isLoading={isLoading}
+          onClick={handleSubmit(onSubmit)}
+        >
+          Actualizar
+        </Button>
       }
     >
       <div className="grid grid-cols-1 gap-4">

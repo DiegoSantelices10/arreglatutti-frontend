@@ -3,15 +3,19 @@
 import Button from '@/components/custom/Button';
 import ControllerInputFile from '@/components/custom/ControllerFileInput';
 import ControllerInput from '@/components/custom/ControllerInput';
-import ControllerMultiSelect from '@/components/custom/ControllerMultiSelect';
 import ControllerSelect from '@/components/custom/ControllerSelect';
 import { toast } from '@/hooks/use-toast';
 import { createProfessional } from '@/services/profesional';
-import { useRouter } from 'next/navigation';
 import React, { FC, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import CancelIcon from '../../../../../public/images/cancel-icon';
+import { useForm } from 'react-hook-form';
 import ControllerTextArea from '@/components/custom/ControllerTextArea';
+import { ProfessionalFormSchema, ProfessionalSchemaType } from './schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { uploadImages, uploadImageUser } from '@/services/cloudinary';
+import CloudUploadIcon from '@/images/icons/cloud-upload-icon';
+import Image from 'next/image';
+import Avatar from '@/components/custom/Avatar';
+import DeleteIcon from '../../../../../public/images/delete-icon';
 
 interface ISelectOptions {
   _id: string;
@@ -25,26 +29,36 @@ interface ICreateForm {
 const CreateForm: FC<ICreateForm> = (props) => {
   const { professionList, cityList } = props;
 
-  const router = useRouter();
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { control, reset, handleSubmit, getValues, setValue, watch } =
-    useForm<FieldValues>({
-      defaultValues: {
-        name: '',
-        imageUser: '',
-        profession: '',
-        email: '',
-        telephone: '',
-        dni: '',
-        cities: [],
-        description: '',
-        image: [],
-      },
-    });
+  const {
+    control,
+    reset,
+    handleSubmit,
+    getValues,
+    setValue,
+    watch,
+    formState: { isValid },
+  } = useForm<ProfessionalSchemaType>({
+    resolver: zodResolver(ProfessionalFormSchema),
+    defaultValues: {
+      name: '',
+      profession: '',
+      city: '',
+      email: '',
+      telephone: '',
+      dni: '',
+      description: '',
+      imageUser: '',
+      images: [],
+    },
+    mode: 'onChange',
+  });
 
-  const imagesList = watch('image');
+  const imagesList = watch('images');
+  const imageUser = watch('imageUser');
+
+  const buttonDisabled = !isValid || isLoading;
 
   const profession = professionList?.map((item) => {
     return {
@@ -60,31 +74,72 @@ const CreateForm: FC<ICreateForm> = (props) => {
     };
   });
 
-  const onSubmit = async (value: any) => {
-    setIsLoading(true);
-    const { status } = await createProfessional(value);
+  const toastError = () =>
+    toast({
+      title: 'Error',
+      description: 'Error al crear profesional',
+      variant: 'error',
+    });
 
-    if (status === 201) {
-      reset();
-      toast({
-        title: 'Profesional creado',
-        description: 'Profesional creado con exito',
-      });
-      router.push('/admin/backoffice/professional');
+  const onSubmit = async (values: any) => {
+    setIsLoading(true);
+
+    const response = await uploadImages(values.images);
+
+    if (response.status !== 200) {
+      toastError();
       setIsLoading(false);
+      return;
     }
+
+    const imageUser = await uploadImageUser(values.imageUser);
+
+    if (imageUser.status !== 200) {
+      toastError();
+      setIsLoading(false);
+      return;
+    }
+
+    const newValues = {
+      ...values,
+      images: response.data,
+      imageUser: {
+        fileName: values.imageUser.fileName,
+        public_id: imageUser.public_id,
+        url: imageUser.url,
+      },
+    };
+
+    const { status } = await createProfessional(newValues);
+
+    if (status !== 201) {
+      toastError();
+      setIsLoading(false);
+      return;
+    }
+
+    toast({
+      title: 'Profesional creado',
+      description: 'Profesional creado con exito',
+    });
+    reset();
+    setIsLoading(false);
   };
 
   const removeImage = (image: string) => {
-    const imagesForm = getValues('image');
+    const imagesForm = getValues('images');
     const newImages = imagesForm.filter((item: any) => item.fileName !== image);
-    setValue('image', newImages);
+    setValue('images', newImages);
+  };
+
+  const removeImageUser = () => {
+    setValue('imageUser', '');
   };
 
   return (
-    <div className="py-8">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="col-span-2 md:col-span-1">
+    <div className="pt-8">
+      <div className="grid grid-cols-6 gap-4">
+        <div className="col-span-6 md:col-span-2">
           <label
             htmlFor="name"
             className="mb-1 block text-xs font-medium text-primary"
@@ -93,7 +148,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
           </label>
           <ControllerInput id="name" control={control} name="name" />
         </div>
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-6 md:col-span-2">
           <label
             htmlFor="profession"
             className="mb-1 block text-xs font-medium text-primary"
@@ -108,22 +163,22 @@ const CreateForm: FC<ICreateForm> = (props) => {
             name="profession"
           />
         </div>
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-6 md:col-span-2">
           <label
-            htmlFor="cities"
+            htmlFor="city"
             className="mb-1 block text-xs font-medium text-primary"
           >
             Barrio
           </label>
-          <ControllerMultiSelect
-            id="cities"
-            name="cities"
+          <ControllerSelect
+            id="city"
+            name="city"
             placeholder="selecciona un barrio"
             options={cities}
             control={control}
           />
         </div>
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-6 md:col-span-2">
           <label
             htmlFor="email"
             className="mb-1 block text-xs font-medium text-primary"
@@ -132,7 +187,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
           </label>
           <ControllerInput id="email" control={control} name="email" />
         </div>
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-6 md:col-span-2">
           <label
             htmlFor="telephone"
             className="mb-1 block text-xs font-medium text-primary"
@@ -141,7 +196,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
           </label>
           <ControllerInput id="telephone" control={control} name="telephone" />
         </div>
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-6 md:col-span-2">
           <label
             htmlFor="dni"
             className="mb-1 block text-xs font-medium text-primary"
@@ -151,7 +206,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
           <ControllerInput id="dni" control={control} name="dni" />
         </div>
 
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-6">
           <label
             htmlFor="description"
             className="mb-1 block text-xs font-medium text-primary"
@@ -164,38 +219,84 @@ const CreateForm: FC<ICreateForm> = (props) => {
             name="description"
           />
         </div>
-        <div className="col-span-2 md:col-span-1">
-          <label
-            htmlFor="image"
-            className="mb-1 block text-xs font-medium text-primary"
-          >
-            Imagenes
-          </label>
+        <div className="col-span-6 md:col-span-3 space-y-4">
           <ControllerInputFile
-            id="image"
+            id="imageUser"
+            htmlForLabel="imageUser"
+            control={control}
+            name="imageUser"
+          >
+            <div className="w-full cursor-pointer p-4 border rounded-lg border-gray-200 flex justify-center items-center gap-2">
+              <h3 className="text-sm text-textSecondary">
+                Subir imagen de perfil
+              </h3>
+              <CloudUploadIcon className="size-6 text-textSecondary" />
+            </div>
+          </ControllerInputFile>
+          {imageUser && imageUser.url && (
+            <div className="flex justify-center items-center">
+              <div className="relative inline-block">
+                <div
+                  onClick={() => removeImageUser()}
+                  className="absolute z-[9999] inline-block cursor-pointer rounded-full p-1 bottom-5 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white/60"
+                >
+                  <DeleteIcon className="text-white transition-all size-6 duration-150 hover:text-red-400" />
+                </div>
+                <Avatar className="mx-auto size-32" image={imageUser.url} />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="col-span-6 md:col-span-3 space-y-4">
+          <ControllerInputFile
+            id="images"
+            htmlForLabel="images"
             multiple
             control={control}
-            name="image"
-          />
-          <div className="flex flex-wrap gap-2">
+            name="images"
+          >
+            <div className="w-full cursor-pointer p-4 border rounded-lg border-gray-200 flex justify-center items-center gap-2">
+              <h3 className="text-sm text-textSecondary">
+                Subir imagenes de trabajos
+              </h3>
+              <CloudUploadIcon className="size-6 text-textSecondary" />
+            </div>
+          </ControllerInputFile>
+          <div className="grid grid-cols-2 content-center  gap-2">
             {imagesList?.length > 0 &&
               imagesList.map((item: any, index: number) => (
                 <div
                   key={index}
-                  className="flex items-end gap-2 mt-2 p-1 px-2 bg-gray-100 rounded-xl"
+                  className="flex mx-auto  gap-2 col-span-2 lg:col-span-1  rounded-xl"
                 >
-                  <h2 className="text-xs">{item.fileName}</h2>
-                  <CancelIcon
-                    onClick={() => removeImage(item.fileName)}
-                    className="size-[14px] cursor-pointer"
-                  />
+                  <div className="inline-block relative">
+                    <div
+                      onClick={() => removeImage(item.fileName)}
+                      className="absolute cursor-pointer rounded-full p-1 bg-white/60 top-2 right-2"
+                    >
+                      <DeleteIcon className="text-white size-6 transition-all duration-150 hover:text-red-400" />
+                    </div>
+                    <Image
+                      src={item.url}
+                      alt={item.fileName}
+                      className="rounded-xl"
+                      layout="intrinsic"
+                      width={500} // Se ajustará automáticamente manteniendo la proporción
+                      height={500}
+                    />
+                  </div>
                 </div>
               ))}
           </div>
         </div>
-        <div className="flex justify-end col-span-2">
-          <Button isLoading={isLoading} onClick={handleSubmit(onSubmit)}>
-            Agregar profesional
+
+        <div className="flex justify-end col-span-6">
+          <Button
+            isLoading={isLoading}
+            disabled={buttonDisabled}
+            onClick={handleSubmit(onSubmit)}
+          >
+            Nuevo profesional
           </Button>
         </div>
       </div>

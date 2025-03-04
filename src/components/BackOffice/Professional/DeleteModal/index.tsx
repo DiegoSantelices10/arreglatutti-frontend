@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -11,31 +12,39 @@ import {
 } from '@/components/ui/dialog';
 import { toast } from '@/hooks/use-toast';
 import Button from '@/components/custom/Button';
-import { useRouter } from 'next/navigation';
 import { deleteProfessional } from '@/services/profesional';
 
 interface IDeleteModal {
   id: string;
   name: string;
   trigger: ReactNode;
+  onSuccess: () => Promise<void>;
 }
 
 const DeleteModal: FC<IDeleteModal> = (props) => {
-  const { id, name, trigger } = props;
+  const { id, name, trigger, onSuccess } = props;
 
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const deleteProfesional = async (id: string) => {
-    const response = await deleteProfessional(id);
-    if (response.status === 200) {
+    setIsLoading(true);
+    const { status } = await deleteProfessional(id);
+
+    if (status !== 200) {
       toast({
-        title: 'Profesional eliminado',
-        description: 'Profesional eliminado con exito',
+        variant: 'error',
+        title: 'Error',
+        description: 'Error al eliminar el profesional',
       });
-      router.push('/admin/backoffice/professional');
-    } else {
-      console.log(response);
+      return;
     }
+
+    toast({
+      title: 'Profesional eliminado',
+      description: 'Profesional eliminado con exito',
+    });
+    onSuccess();
+    setIsLoading(false);
   };
 
   return (
@@ -53,7 +62,13 @@ const DeleteModal: FC<IDeleteModal> = (props) => {
         </DialogHeader>
         <DialogFooter>
           <DialogTrigger asChild>
-            <Button onClick={() => deleteProfesional(id)}>Aceptar</Button>
+            <Button
+              disabled={isLoading}
+              isLoading={isLoading}
+              onClick={() => deleteProfesional(id)}
+            >
+              Aceptar
+            </Button>
           </DialogTrigger>
         </DialogFooter>
       </DialogContent>

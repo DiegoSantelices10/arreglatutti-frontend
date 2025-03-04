@@ -8,15 +8,21 @@ const ControllerTextArea = (props: ControllerTextAreaProps) => {
 
   const renderTextArea = ({
     field: { onChange, value, name: textAreaName },
-  }: RenderTextAreaProps) => (
-    <Textarea
-      rows={6}
-      name={textAreaName}
-      onChange={onChange}
-      value={value}
-      {...rest}
-    />
-  );
+    fieldState: { error },
+  }: RenderTextAreaProps) => {
+    return (
+      <div>
+        <Textarea
+          rows={6}
+          name={textAreaName}
+          onChange={onChange}
+          value={value}
+          {...rest}
+        />
+        {error && <span className="text-red-500 text-xs">{error.message}</span>}
+      </div>
+    );
+  };
 
   return (
     <Controller

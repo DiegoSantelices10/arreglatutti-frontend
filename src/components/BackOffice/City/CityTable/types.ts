@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ICityTableProps {
-  data: any[];
+  cities: any[];
   actions?: any;
 }

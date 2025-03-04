@@ -27,6 +27,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.5.1",
     "clsx": "^2.1.1",
     "embla-carousel": "^8.5.1",
     "embla-carousel-autoplay": "^8.5.1",

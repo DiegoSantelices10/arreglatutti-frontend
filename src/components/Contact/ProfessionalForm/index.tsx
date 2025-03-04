@@ -27,30 +27,38 @@ const ProfessionalForm: FC<any> = (props) => {
 
   const onSubmit = async (value: any) => {
     setIsLoading(true);
-    try {
-      const { status } = await createMessage(value);
+    const { status } = await createMessage(value);
 
-      if (status === 201) {
-        const { status } = await sendEmail(value);
-
-        if (status === 200) {
-          reset();
-          toast({
-            title: 'Envío exitoso',
-            description:
-              'Gracias por contactarnos, pronto nos pondremos en contacto con usted.',
-          });
-        }
-      }
-      setIsLoading(false);
-    } catch (error) {
-      console.log('error::', error);
+    if (status !== 201) {
       toast({
         title: 'Error',
-        description: 'Ocurrió un error al enviar la solicitud.',
+        description:
+          'Ocurrio un error al enviar la solicitud, intente nuevamente más tarde.',
         variant: 'error',
       });
+      setIsLoading(false);
+      return;
     }
+
+    const response = await sendEmail(value);
+
+    if (response.status !== 200) {
+      toast({
+        title: 'Error',
+        description:
+          'Ocurrio un error al enviar la solicitud, intente nuevamente más tarde.',
+        variant: 'error',
+      });
+      setIsLoading(false);
+      return;
+    }
+    toast({
+      title: 'Enviado',
+      description:
+        'Gracias por contactarnos, pronto nos pondremos en contacto con usted.',
+    });
+    reset();
+    setIsLoading(false);
   };
 
   return (

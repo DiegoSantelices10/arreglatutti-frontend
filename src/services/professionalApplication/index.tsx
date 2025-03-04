@@ -3,26 +3,47 @@ import { SERVICES } from '@/enviroments';
 import { getApi } from '..';
 
 export const getProfessionalApplication = async () => {
-  const response = await getApi({
-    path: `${SERVICES.PROFESSIONAL_APPLICATION.GET_PROFESSIONAL_APPLICATION}`,
-    method: 'GET',
-  });
-  return response;
+  try {
+    const response = await getApi({
+      path: `${SERVICES.PROFESSIONAL_APPLICATION.GET_PROFESSIONAL_APPLICATION}`,
+      method: 'GET',
+    });
+    return response;
+  } catch (error: any) {
+    return {
+      status: error?.status,
+      data: error.data,
+    };
+  }
 };
 
 export const createMessage = async (data: any) => {
-  const response = await getApi({
-    path: SERVICES.PROFESSIONAL_APPLICATION.CREATE_MESSAGE,
-    method: 'POST',
-    data,
-  });
-  return response;
+  try {
+    const response = await getApi({
+      path: SERVICES.PROFESSIONAL_APPLICATION.CREATE_MESSAGE,
+      method: 'POST',
+      data,
+    });
+    return response;
+  } catch (error: any) {
+    return {
+      status: error?.status,
+      data: error.data,
+    };
+  }
 };
 
 export const deleteMessage = async (id: string) => {
-  const response = await getApi({
-    path: `${SERVICES.PROFESSIONAL_APPLICATION.DELETE_MESSAGE}/${id}`,
-    method: 'DELETE',
-  });
-  return response;
+  try {
+    const response = await getApi({
+      path: `${SERVICES.PROFESSIONAL_APPLICATION.DELETE_MESSAGE}/${id}`,
+      method: 'DELETE',
+    });
+    return response;
+  } catch (error: any) {
+    return {
+      status: error?.status,
+      data: error.data,
+    };
+  }
 };

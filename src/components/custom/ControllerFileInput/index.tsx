@@ -10,6 +10,7 @@ const ControllerInputFile: FC<ControllerInputFileProps> = ({
   control,
   className,
   errorMessage,
+  htmlForLabel,
   children,
   multiple,
   ...rest
@@ -40,7 +41,7 @@ const ControllerInputFile: FC<ControllerInputFileProps> = ({
         if (multiple) {
           onChange([...value, image]);
         } else {
-          onChange(resizedImage);
+          onChange(image);
         }
       } else {
         console.warn('No se ha seleccionado ningún archivo.');
@@ -49,8 +50,8 @@ const ControllerInputFile: FC<ControllerInputFileProps> = ({
 
     return (
       <div className="grid gap-1">
-        <div className={cn(`${children ? 'flex' : 'flex-1'}`, className)}>
-          <label htmlFor="image">
+        <div className={cn(className)}>
+          <label htmlFor={htmlForLabel}>
             {children ? (
               children
             ) : (
@@ -60,12 +61,9 @@ const ControllerInputFile: FC<ControllerInputFileProps> = ({
             )}
           </label>
           <Input
-            {...field}
-            id="image"
             type="file"
             accept=".png, .jpg, .jpeg"
             className="hidden"
-            value={value?.fileName}
             onChange={handleFileChange}
             multiple={multiple}
             {...rest}

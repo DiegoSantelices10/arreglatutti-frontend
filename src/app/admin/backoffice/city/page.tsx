@@ -1,12 +1,26 @@
+'use client';
 import CityTable from '@/components/BackOffice/City/CityTable';
 import Button from '@/components/custom/Button';
 import HeaderTitle from '@/components/custom/HeaderTitle';
+import { Skeleton } from '@/components/ui/skeleton';
 import { getCities } from '@/services/city';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const City = async () => {
-  const { data } = await getCities();
+const City = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    getCitiesData();
+  }, []);
+
+  const getCitiesData = async () => {
+    setIsLoading(true);
+    const { data } = await getCities();
+    setCities(data);
+    setIsLoading(false);
+  };
 
   return (
     <div className="space-y-8">
@@ -20,7 +34,20 @@ const City = async () => {
           </div>
         </div>
         <div className="py-4">
-          <CityTable data={data} />
+          {isLoading ? (
+            <div className="space-y-4 mt-6">
+              <Skeleton className="h-8 w-full rounded-md" />
+              <Skeleton className="h-8 w-full rounded-md" />
+              <Skeleton className="h-8 w-full rounded-md" />
+              <Skeleton className="h-8 w-full rounded-md" />
+            </div>
+          ) : cities.length === 0 ? (
+            <h1 className="text-center text-gray-500">
+              No se encontraron profesionales
+            </h1>
+          ) : (
+            <CityTable cities={cities} />
+          )}
         </div>
       </div>
     </div>

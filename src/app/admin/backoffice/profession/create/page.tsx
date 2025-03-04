@@ -5,20 +5,26 @@ import ControllerInput from '@/components/custom/ControllerInput';
 import HeaderTitle from '@/components/custom/HeaderTitle';
 import { toast } from '@/hooks/use-toast';
 import { createProfession } from '@/services/profesion';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
 const CreateProfession = () => {
-  const { control, reset, handleSubmit } = useForm<FieldValues>({
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    control,
+    reset,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<FieldValues>({
     defaultValues: {
       name: '',
     },
   });
 
-  const router = useRouter();
+  const buttonDisabled = !isValid || isLoading;
 
   const onSubmit = async (values: any) => {
+    setIsLoading(true);
     const response = await createProfession(values);
 
     if (response.status === 201) {
@@ -27,8 +33,9 @@ const CreateProfession = () => {
         title: 'Profesión creada',
         description: 'Profesión creada con exito',
       });
-      router.push('/admin/backoffice/profession');
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -51,7 +58,13 @@ const CreateProfession = () => {
             />
           </div>
           <div className="flex justify-end items-end">
-            <Button onClick={handleSubmit(onSubmit)}>Agregar</Button>
+            <Button
+              disabled={buttonDisabled}
+              isLoading={isLoading}
+              onClick={handleSubmit(onSubmit)}
+            >
+              Nueva Profesión
+            </Button>
           </div>
         </div>
       </div>

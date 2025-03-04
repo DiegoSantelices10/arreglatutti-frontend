@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { FC, ReactNode } from 'react';
+import { Dispatch, FC, ReactNode, useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -11,35 +12,43 @@ import {
 } from '@/components/ui/dialog';
 import { toast } from '@/hooks/use-toast';
 import Button from '@/components/custom/Button';
-import { useRouter } from 'next/navigation';
 import { deleteCity } from '@/services/city';
 
 interface IDeleteModal {
   id: string;
   name: string;
   trigger: ReactNode;
+  setRenderCities: Dispatch<React.SetStateAction<any[]>>;
 }
 
 const DeleteModal: FC<IDeleteModal> = (props) => {
-  const { id, name, trigger } = props;
+  const { id, name, trigger, setRenderCities } = props;
 
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const deleteItem = async (id: string) => {
-    console.log('id', id);
+    setIsLoading(true);
+    const { status } = await deleteCity(id);
 
-    const response = await deleteCity(id);
-    console.log('response', response);
-
-    if (response.status === 200) {
+    if (status !== 200) {
       toast({
-        title: 'Barrio eliminado',
-        description: 'Barrio eliminado con exito',
+        variant: 'error',
+        title: 'Error',
+        description: 'Error al eliminar la ciudad',
       });
-      router.push('/admin/backoffice/city');
-    } else {
-      console.log(response);
+      return;
     }
+
+    toast({
+      title: 'Ciudad eliminada',
+      description: 'Ciudad eliminada con exito',
+    });
+
+    setRenderCities((prev) => {
+      return prev.filter((prof) => prof._id !== id);
+    });
+
+    setIsLoading(false);
   };
 
   return (
@@ -57,7 +66,13 @@ const DeleteModal: FC<IDeleteModal> = (props) => {
         </DialogHeader>
         <DialogFooter>
           <DialogTrigger asChild>
-            <Button onClick={() => deleteItem(id)}>Aceptar</Button>
+            <Button
+              disabled={isLoading}
+              isLoading={isLoading}
+              onClick={() => deleteItem(id)}
+            >
+              Aceptar
+            </Button>
           </DialogTrigger>
         </DialogFooter>
       </DialogContent>

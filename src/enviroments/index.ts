@@ -11,10 +11,12 @@ const SERVICES = {
   },
   PROFESSIONALS: {
     GET_PROFESSIONALS: 'professional',
+    GET_PROFESSIONAL_BY_ID: 'professional',
     UPDATE_PROFESSIONAL: 'professional',
     DELETE_PROFESSIONAL: 'professional',
     CREATE: 'professional',
     LOGIN: 'professional/login',
+    DELETE_IMAGE: 'professional',
   },
   CITIES: {
     GET_CITIES: 'city',

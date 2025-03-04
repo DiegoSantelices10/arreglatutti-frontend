@@ -38,6 +38,8 @@ const Content: FC<IContentProps> = (props) => {
       if (profession) {
         setProfessionSelect(profession);
         const { data } = await getProfessionals(profession);
+        console.log('data', data);
+
         setProfessionals(data);
         setIsLoading(false);
       }
@@ -73,7 +75,7 @@ const Content: FC<IContentProps> = (props) => {
             {isLoading ? (
               <Skeleton className="h-40 w-full bg-gray-200 rounded-md" />
             ) : professionals && professionals?.length > 0 ? (
-              professionals.map((professional: any) => (
+              professionals?.map((professional: any) => (
                 <div key={professional._id}>
                   <div className="rounded-md flex flex-col justify-between bg-white p-4 shadow-md h-full">
                     <div className="space-y-1">
@@ -82,17 +84,9 @@ const Content: FC<IContentProps> = (props) => {
                       </h1>
                       <div className="flex gap-1 items-center">
                         <LocationIcon className="size-[14px] text-textSecondary" />
-                        {professional.cities.map(
-                          (city: string, index: number) => (
-                            <h1
-                              className="text-xs text-textSecondary"
-                              key={index}
-                            >
-                              {city}
-                              {index < professional.cities.length - 1 && ', '}
-                            </h1>
-                          )
-                        )}
+                        <h1 className="text-xs text-textSecondary">
+                          {professional.city}
+                        </h1>
                       </div>
                       <div className="pt-2">
                         <p className="text-xs text-textSecondary font-normal">
@@ -104,10 +98,11 @@ const Content: FC<IContentProps> = (props) => {
                       <div className="mt-4 h-[1px] bg-gray-200" />
                       <div className="flex justify-between items-center mt-4">
                         <Drawer
-                          cities={professional.cities}
+                          city={professional.city}
                           name={professional.name}
                           description={professional.description}
-                          imagesWorks={professional.image}
+                          imagesWorks={professional.images}
+                          imageUser={professional.imageUser}
                         />
                         <QueryDrawer
                           name={professional.name}

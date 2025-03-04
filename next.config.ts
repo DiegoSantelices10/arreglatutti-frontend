@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'thoughtful-activity-d4dac2147c.media.strapiapp.com',
+        hostname: 'res.cloudinary.com',
         port: '',
       },
     ],

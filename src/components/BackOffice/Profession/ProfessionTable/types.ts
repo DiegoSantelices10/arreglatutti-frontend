@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface IProfession {
-  _id: number;
+  _id: string;
   name: string;
 }
 
 export interface IProsessionTable {
-  data: IProfession[];
+  professions: IProfession[];
   actions?: any;
 }

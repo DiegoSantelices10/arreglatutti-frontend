@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { FC, useState } from 'react';
+import { Dispatch, FC, useState } from 'react';
 import EditIcon from '../../../../../public/images/edit-icon';
 import Modal from '@/components/custom/Modal';
 import ControllerInput from '@/components/custom/ControllerInput';
@@ -8,35 +8,55 @@ import Button from '@/components/custom/Button';
 import { FieldValues, useForm } from 'react-hook-form';
 import { editCity } from '@/services/city';
 import { toast } from '@/hooks/use-toast';
-import { useRouter } from 'next/navigation';
 
 interface IEditModal {
   city: any;
+  setRenderCities: Dispatch<React.SetStateAction<any[]>>;
 }
 
 export const EditModal: FC<IEditModal> = (props) => {
-  const { city } = props;
-
-  const router = useRouter();
+  const { city, setRenderCities } = props;
 
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const { control, reset, handleSubmit } = useForm<FieldValues>({
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const {
+    control,
+    reset,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<FieldValues>({
     defaultValues: {
       name: city?.name,
     },
   });
 
+  const buttonDisabled = !isValid || isLoading;
+
   const onSubmit = async (values: any) => {
+    setIsLoading(true);
     const { status } = await editCity(city._id, values);
-    if (status === 200) {
+    if (status !== 200) {
       toast({
-        title: 'Barrio Actualizado',
-        description: 'Barrio actualizado con exito',
+        title: 'Error',
+        description: 'Error al actualizar la profesión',
+        variant: 'error',
       });
-      reset();
-      setOpenModal(false);
-      router.push('/admin/backoffice/city');
+      setIsLoading(false);
     }
+    toast({
+      title: 'Profesión Actualizada',
+      description: 'Profesión actualizada con exito',
+    });
+
+    setRenderCities((prev) =>
+      prev.map((prof) =>
+        prof._id === city._id ? { ...prof, ...values } : prof
+      )
+    );
+    reset(values);
+    setIsLoading(false);
+    setOpenModal(false);
   };
 
   return (
@@ -51,6 +71,8 @@ export const EditModal: FC<IEditModal> = (props) => {
       }
       childrenFooter={
         <Button
+          disabled={buttonDisabled}
+          isLoading={isLoading}
           onClick={handleSubmit(onSubmit)}
           className="hover:bg-primary-hover"
         >

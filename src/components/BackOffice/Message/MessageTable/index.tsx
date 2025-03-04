@@ -13,8 +13,6 @@ interface IMessageProps {
 const MessageTable: FC<IMessageProps> = (props) => {
   const { data, ...rest } = props;
 
-  console.log('data:::', data);
-
   const [renderData, setRenderData] = useState(data);
 
   return renderData.length > 0 ? (
