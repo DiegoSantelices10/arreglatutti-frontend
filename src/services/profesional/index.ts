@@ -7,7 +7,7 @@ export interface IProfessional {
   profession: string;
   telephone: string;
   dni: string;
-  city: string[];
+  city: string;
   description: string;
   images: string[];
 }

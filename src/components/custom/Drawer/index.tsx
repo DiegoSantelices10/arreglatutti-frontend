@@ -37,14 +37,14 @@ const Drawer: FC<IDrawerProps> = (props) => {
           <FaUser />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="md:w-1/2 mx-auto border-0 border-none bg-slate-50">
+      <DrawerContent className="md:max-w-xl z-[99999] mx-auto border-0 border-none bg-slate-50 ">
         <DrawerHeader className="bg-primary p-3 flex justify-center items-center">
           <DrawerTitle className="text-white text-center text-xl font-bold">
             Perfil
           </DrawerTitle>
           <DrawerDescription></DrawerDescription>
         </DrawerHeader>
-        <div className="p-2 md:p-4 space-y-4 gap-4 h-full">
+        <div className="p-2 md:p-4 space-y-4 gap-4 h-full max-h-[70vh] overflow-y-auto">
           <div className="bg-white shadow-sm p-4 w-full rounded-lg">
             <div className="flex justify-between items-start  gap-4">
               <Avatar className="w-14 h-14" image={imageUser.url} />
