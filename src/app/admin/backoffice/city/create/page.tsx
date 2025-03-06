@@ -5,31 +5,48 @@ import ControllerInput from '@/components/custom/ControllerInput';
 import HeaderTitle from '@/components/custom/HeaderTitle';
 import { toast } from '@/hooks/use-toast';
 import { createCity } from '@/services/city';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import { redirect } from 'next/navigation';
+import React, { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
 const CreateCity = () => {
-  const { control, reset, handleSubmit } = useForm<FieldValues>({
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    control,
+    reset,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<FieldValues>({
     defaultValues: {
       name: '',
     },
   });
 
-  const router = useRouter();
+  const buttonDisabled = !isValid || isLoading;
 
   const onSubmit = async (values: any) => {
+    setIsLoading(true);
     const response = await createCity(values);
 
-    if (response.status === 201) {
-      reset();
+    if (response.status !== 201) {
       toast({
-        title: 'Barrio creado',
-        description: 'Barrio creado con exito',
+        title: 'Error',
+        description: 'Error al crear la ciudad',
+        variant: 'error',
       });
-      router.push('/admin/backoffice/city');
+      setIsLoading(false);
+      return;
     }
+
+    reset();
+    toast({
+      title: 'Ciudad creada',
+      description: 'Ciudad creada con exito',
+    });
+    redirect('/admin/backoffice/city');
+    setIsLoading(false);
   };
+
   return (
     <div className="space-y-4">
       <HeaderTitle title="Nuevo Barrio" />
@@ -50,7 +67,13 @@ const CreateCity = () => {
             />
           </div>
           <div className="flex justify-end items-end">
-            <Button onClick={handleSubmit(onSubmit)}>Agregar</Button>
+            <Button
+              disabled={buttonDisabled}
+              isLoading={isLoading}
+              onClick={handleSubmit(onSubmit)}
+            >
+              Agregar
+            </Button>
           </div>
         </div>
       </div>
