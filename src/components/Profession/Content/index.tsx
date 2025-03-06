@@ -38,7 +38,6 @@ const Content: FC<IContentProps> = (props) => {
       if (profession) {
         setProfessionSelect(profession);
         const { data } = await getProfessionals(profession);
-        console.log('data', data);
 
         setProfessionals(data);
         setIsLoading(false);

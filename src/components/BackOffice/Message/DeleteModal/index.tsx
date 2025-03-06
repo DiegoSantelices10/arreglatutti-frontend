@@ -24,24 +24,24 @@ interface IDeleteModal {
 export const DeleteModal: FC<IDeleteModal> = (props) => {
   const { id, name, trigger, setRenderData } = props;
 
-  const deleteProfesion = async (id: string) => {
-    try {
-      await deleteMessage(id);
-      toast({
-        title: 'Mensaje eliminado',
-        description: 'Mensaje eliminado con exito',
-      });
-      setRenderData((prevData: any[]) =>
-        prevData.filter((item) => item._id !== id)
-      );
-    } catch (error) {
-      console.log(error);
+  const deleteMessageProfesion = async (id: string) => {
+    const response = await deleteMessage(id);
+
+    if (response.status !== 200) {
       toast({
         variant: 'error',
         title: 'Error',
         description: 'Error al eliminar el mensaje',
       });
+      return;
     }
+
+    toast({
+      title: 'Mensaje Eliminado',
+      description: 'Mensaje eliminado con exito',
+    });
+
+    setRenderData((prev: any) => prev.filter((item: any) => item._id !== id));
   };
 
   return (
@@ -59,7 +59,7 @@ export const DeleteModal: FC<IDeleteModal> = (props) => {
         </DialogHeader>
         <DialogFooter>
           <DialogTrigger asChild>
-            <Button onClick={() => deleteProfesion(id)}>Aceptar</Button>
+            <Button onClick={() => deleteMessageProfesion(id)}>Aceptar</Button>
           </DialogTrigger>
         </DialogFooter>
       </DialogContent>

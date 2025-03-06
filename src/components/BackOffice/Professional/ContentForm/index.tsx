@@ -156,7 +156,6 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
 
   const onSubmit = async (values: any) => {
     setIsLoading(true);
-    console.log('values', values);
 
     const imageUserUpdate = values.imageUser.url.startsWith('data');
 
@@ -170,7 +169,6 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
 
       if (response.status !== 200) {
         errorToast();
-        console.log('1');
 
         setIsLoading(false);
         return;
@@ -243,10 +241,7 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
         title: 'Imagen eliminada',
         description: 'Imagen eliminada con exito',
       });
-      console.log('delete imagen cloudinary');
     } else {
-      console.log('delete imagen local');
-
       newImages = imagesForm.filter(
         (item: any) => item.fileName !== image.fileName
       );

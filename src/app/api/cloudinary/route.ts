@@ -43,7 +43,6 @@ export async function PUT(req: Request) {
 export async function DELETE(req: Request) {
   const { searchParams } = new URL(req.url);
   const public_id = searchParams.get('id');
-  console.log('public_id', public_id);
 
   if (!public_id) {
     return NextResponse.json(
