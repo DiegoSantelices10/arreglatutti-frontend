@@ -16,7 +16,7 @@ const featuresData: IFeaturesData[] = [
     icon: <DolarIcon className="size-10 text-white" />,
     title: 'Solicita tu cotización sin cargo',
     paragraph:
-      'Los profesionales evaluaran tus necesidades y te ofreceran una cotización personalizada de acuerdo a tu necesidad.',
+      'Evaluaremos tus necesidades, para ofrecerte la mejor solución a tu presupuesto.',
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const featuresData: IFeaturesData[] = [
     icon: <TimeIcon className="size-10 text-white" />,
     title: 'Respuesta inmediata',
     paragraph:
-      'Damos la mejor solución para tus consultas. Respondemos en menos de 24 hs.',
+      'Damos la mejor solución para tus consultas. Respondemos al instante.',
   },
 ];
 export default featuresData;

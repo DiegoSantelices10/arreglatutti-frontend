@@ -8,28 +8,23 @@ import { useInView } from 'react-intersection-observer';
 const testimonialData = [
   {
     id: 1,
-    name: 'Francisco Ramos',
-    designation: 'Reparación del termotanque',
-    content: 'Excelente trabajo, super profesional y atento a los detalles.',
-    image: '/images/auth-01.png',
-    star: 4,
-  },
-  {
-    id: 2,
-    name: 'Diego Figueroa',
-    designation: 'Instalación de aire acondicionado',
-    content: 'Trabajo excelente, super profesional y atento a los detalles.',
-    image: '/images/auth-02.png',
+    name: 'Roberto Gutiérrez',
+    content:
+      'Muy buen servicio, resolvió el problema con rapidez y profesionalismo.',
     star: 5,
   },
   {
-    id: 3,
-    name: 'Juan Carlos',
-    designation: 'Arreglo perdida de gas',
-    content:
-      'Vino a horario y trabajo excelente, super profesional y atento a los detalles.',
-    image: '/images/auth-03.png',
+    id: 2,
+    name: 'Marta Rodríguez',
+    content: 'Trabajo impecable, dejó todo en perfecto estado. Lo recomiendo.',
     star: 4,
+  },
+  {
+    id: 3,
+    name: 'Fernando Castillo',
+    content:
+      'Muy detallista y profesional. Cumplió con los tiempos y el resultado fue excelente.',
+    star: 5,
   },
 ];
 
