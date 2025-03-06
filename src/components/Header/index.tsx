@@ -68,7 +68,6 @@ const Header: FC = () => {
           >
             ¿Sos profesional?
           </Button>
-          {/* <Authentication isLoggedIn={isLoggedIn} /> */}
         </motion.div>
       </header>
     </>
