@@ -27,8 +27,8 @@ const Carousel: FC<ICarouselProps> = (props) => {
         {images?.map((image: any, index) => {
           return (
             <CarouselItem key={index}>
-              <Card>
-                <CardContent className=" flex justify-center items-center p-0 bg-green-200">
+              <Card className="h-full">
+                <CardContent className=" flex h-full justify-center items-center p-0">
                   <img
                     src={`${image.url}`}
                     alt={image.url}
