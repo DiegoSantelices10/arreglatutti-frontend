@@ -9,6 +9,8 @@ import { getProfessions } from '@/services/profesion';
 const Home: FC = async () => {
   const { data } = await getProfessions();
 
+  console.log('data', data);
+
   return (
     <>
       <ScrollUp />
