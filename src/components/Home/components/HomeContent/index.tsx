@@ -50,7 +50,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
             {/* Buttons group */}
             <div className="flex flex-wrap px-4 md:px-0 gap-6 justify-center items-start">
               {data &&
-                data.map((item: any) => (
+                data?.map((item: any) => (
                   <Link
                     key={item._id}
                     className="cursor-pointer"
