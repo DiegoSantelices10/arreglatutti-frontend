@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Solid from '@/components/custom/BackgroundDesign/Solid';
 import ProfessionButton from '@/components/custom/ProfessionButton';
-import Form from '@/components/custom/Form';
+// import Form from '@/components/custom/Form';
 
 interface IHomeContent {
   data: any;
@@ -22,12 +22,12 @@ const HomeContent: FC<IHomeContent> = (props) => {
     >
       <section
         id="home"
-        className="z-50 min-h-screen overflow-hidden pt-14 pb-20 md:px-10"
+        className="z-50 min-h-screen overflow-hidden pt-14 space-y-10 md:px-10"
       >
         <Solid />
 
         <div className="z-50 lg:flex lg:gap-4 lg:justify-between lg:items-center">
-          <div className="pb-6 w-full lg:w-1/2">
+          <div className="pb-6 w-full">
             {/* Title */}
             <div
               className="flex flex-col items-center fadeInUp mx-auto text-center"
@@ -43,9 +43,6 @@ const HomeContent: FC<IHomeContent> = (props) => {
                 </p>
               </div>
             </div>
-            <h1 className="text-white text-center font-semibold pb-4">
-              Selecciona el profesional que buscas
-            </h1>
 
             {/* Buttons group */}
             <div className="flex flex-wrap px-4 md:px-0 gap-6 justify-center items-start">
@@ -64,7 +61,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
 
           {/* Form */}
 
-          <div className=" w-full lg:w-1/2 mt-4 md:mt-0 md:pl-10">
+          {/* <div className=" w-full lg:w-1/2 mt-4 md:mt-0 md:pl-10">
             <div
               className="mb-12 rounded-md p-8 bg-white"
               data-wow-delay=".15s"
@@ -74,8 +71,11 @@ const HomeContent: FC<IHomeContent> = (props) => {
               </h2>
               <Form data={data} />
             </div>
-          </div>
+          </div> */}
         </div>
+        <h1 className="text-center text-white font-bold text-xl px-4">
+          Proximamente vas a poder utilizar nuestra red de profesionales.
+        </h1>
       </section>
     </motion.div>
   );

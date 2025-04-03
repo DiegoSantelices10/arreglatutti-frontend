@@ -110,6 +110,7 @@ const ProfessionalForm: FC<any> = (props) => {
               options={selectOptions}
               placeholder="Seleccione una profesión"
               control={control}
+              className="bg-white rounded-md h-10"
               name="profession"
             />
           </div>
@@ -127,6 +128,7 @@ const ProfessionalForm: FC<any> = (props) => {
               control={control}
               placeholder="Ingrese una breve descripción"
               name="message"
+              className="bg-white rounded-md"
             />
           </div>
         </div>
@@ -135,6 +137,7 @@ const ProfessionalForm: FC<any> = (props) => {
             onClick={handleSubmit(onSubmit)}
             disabled={submitIsvalid}
             isLoading={isLoading}
+            className="bg-white text-primary"
           >
             Enviar solicitud
           </Button>

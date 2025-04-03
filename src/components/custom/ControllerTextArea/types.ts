@@ -13,6 +13,7 @@ export interface ControllerTextAreaProps {
   control: Control<FieldValues>;
   placeholder?: string;
   rules?: RegisterOptions;
+  className: HTMLElement['className'];
 }
 
 export interface RenderTextAreaProps {
