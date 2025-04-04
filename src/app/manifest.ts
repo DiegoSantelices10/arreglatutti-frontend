@@ -6,20 +6,21 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: 'Aquiles soluciones',
     description: 'Pwa app for Aquiles soluciones',
     start_url: '/',
+    theme_color: '#ffffff',
+    background_color: '#ffffff',
     display: 'standalone',
-    orientation: 'portrait',
-    background_color: '#002C53',
-    theme_color: '#002C53',
     icons: [
       {
         src: '/logo-pwa-192x192.png',
         sizes: '192x192',
         type: 'image/png',
+        purpose: 'maskable',
       },
       {
         src: '/logo-pwa-512x512.png',
         sizes: '512x512',
         type: 'image/png',
+        purpose: 'maskable',
       },
     ],
   };
