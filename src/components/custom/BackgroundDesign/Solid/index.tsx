@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 const Solid: FC = () => {
   return (
     <>
-      <div className="absolute top-5 right-0 z-[-1]">
+      <div className="absolute right-0 z-[-1]">
         <svg
           width="238"
           height="531"
@@ -57,7 +57,7 @@ const Solid: FC = () => {
           </defs>
         </svg>
       </div>
-      <div className="absolute left-0 bottom-10 z-[-1]">
+      <div className="absolute left-0 bottom-0 z-[-1]">
         <svg
           width="279"
           height="106"

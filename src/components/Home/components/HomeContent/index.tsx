@@ -3,7 +3,6 @@
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Solid from '@/components/custom/BackgroundDesign/Solid';
 import ProfessionButton from '@/components/custom/ProfessionButton';
 // import Form from '@/components/custom/Form';
 
@@ -22,10 +21,8 @@ const HomeContent: FC<IHomeContent> = (props) => {
     >
       <section
         id="home"
-        className="z-50 min-h-screen overflow-hidden pt-14 space-y-10 md:px-10"
+        className="z-50 relative min-h-screen overflow-hidden pt-14 space-y-10 md:px-10"
       >
-        <Solid />
-
         <div className="z-50 lg:flex lg:gap-4 lg:justify-between lg:items-center">
           <div className="pb-6 w-full">
             {/* Title */}

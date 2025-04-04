@@ -7,7 +7,7 @@ export default async function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   // const { isLoggedIn } = await getSession();
   return (
-    <div className="min-h-screen grid content-center">
+    <div className="min-h-screen grid content-between">
       <Header />
       {children}
       <Toaster />

@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Button from '../custom/Button';
 
 const Header: FC = () => {
   const [sticky, setSticky] = useState(false);
@@ -18,12 +17,12 @@ const Header: FC = () => {
     window.addEventListener('scroll', handleStickyNavbar);
   });
 
-  const scrollToBottom = () => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth',
-    });
-  };
+  // const scrollToBottom = () => {
+  //   window.scrollTo({
+  //     top: document.body.scrollHeight,
+  //     behavior: 'smooth',
+  //   });
+  // };
 
   return (
     <>
@@ -61,13 +60,9 @@ const Header: FC = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.5 }}
         >
-          <Button
-            variant={'ghost'}
-            className="text-base p-0"
-            onClick={scrollToBottom}
-          >
+          <Link href={'/registration'} className="text-white">
             ¿Sos profesional?
-          </Button>
+          </Link>
         </motion.div>
       </header>
     </>

@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { useForm } from 'react-hook-form';
-import SectionTitle from '../custom/SectionTitle';
-import CheckIcon from '@/images/icons/check-icon';
 import Solid from '../custom/BackgroundDesign/Solid';
 import ProfessionalForm from './ProfessionalForm';
 import { useInView } from 'react-intersection-observer';
@@ -40,10 +38,7 @@ const Contact: FC<any> = (props) => {
   });
 
   return (
-    <section
-      id="contact"
-      className="relative bg-white overflow-hidden pt-16 md:pt-20 lg:pt-28 md:px-10 w-full "
-    >
+    <section id="contact" className="md:px-10 w-full ">
       <Solid />
       <motion.div
         ref={ref}
@@ -54,20 +49,17 @@ const Contact: FC<any> = (props) => {
         transition={{ duration: 1.5 }}
       >
         <div>
-          <SectionTitle
-            title="Trabaja con nosotros"
-            textClassName="md:text-[36px] text-primary lg:text-[40px]"
-            center
-          />
-          <div className="lg:flex lg:justify-between lg:items-start lg:gap-4">
+          <div className="lg:flex lg:justify-between lg:items-center lg:gap-4 space-y-8 md:space-y-0">
+            <div className="  text-white  text-center w-full  md:w-1/2">
+              <h2 className="text-white font-bold text-2xl">
+                Formulario de selección
+              </h2>
+              <h2>Envianos tus datos para ser contactado.</h2>
+            </div>
             <div
-              className="mb-12 md:rounded-lg p-8 bg-primary/95 lg:w-1/2"
+              className=" md:rounded-xl p-8 bg-white/10 lg:w-1/2"
               data-wow-delay=".15s"
             >
-              <h2 className="mb-3 text-2xl font-bold text-white text-center">
-                Profesional matriculado
-              </h2>
-
               <ProfessionalForm
                 control={control}
                 handleSubmit={handleSubmit}
@@ -75,25 +67,6 @@ const Contact: FC<any> = (props) => {
                 isValid={isValid}
                 reset={reset}
               />
-            </div>
-            <div className="hidden lg:block lg:w-1/2  text-primary space-y-8 pt-28 text-center ">
-              <h2 className="text-primary font-bold text-3xl">
-                Proceso de selección
-              </h2>
-              <div className="flex justify-center items-center gap-4 px-6">
-                <CheckIcon className="text-primary size-6" />
-                <h2>Envianos tus datos para ser contactado.</h2>
-              </div>
-              <div className="flex justify-center items-center gap-4 px-6">
-                <CheckIcon className="text-primary size-6" />
-                <h2>Sera respondida en el menor tiempo posible.</h2>
-              </div>
-              <div className="flex justify-center items-center gap-4 px-6">
-                <CheckIcon className="text-primary size-6" />
-                <h2>
-                  Si sos profesional matriculado, podras ingresar a nuestra red.
-                </h2>
-              </div>
             </div>
           </div>
         </div>
