@@ -1,4 +1,3 @@
-import Footer from '@/components/Footer';
 import Header from '@/components/Profession/Header';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -10,7 +9,6 @@ export default function Layout({
       <Header />
       {children}
       <Toaster />
-      <Footer />
     </div>
   );
 }
