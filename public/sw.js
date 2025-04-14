@@ -18,5 +18,5 @@ self.addEventListener('push', function (event) {
 self.addEventListener('notificationclick', function (event) {
   console.log('Notification click received.');
   event.notification.close();
-  event.waitUntil(self.clients.openWindow('http://192.168.0.91:3000'));
+  event.waitUntil(self.clients.openWindow('http://192.168.0.91:3000/'));
 });
