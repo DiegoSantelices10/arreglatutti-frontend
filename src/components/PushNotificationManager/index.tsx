@@ -100,42 +100,44 @@ function PushNotificationManager() {
 }
 
 function InstallPrompt() {
-  const [isIOS, setIsIOS] = useState(false);
-  const [isStandalone, setIsStandalone] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstall, setShowInstall] = useState(false);
 
   useEffect(() => {
-    setIsIOS(
-      /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream
-    );
+    const handleBeforeInstallPrompt = (e: any) => {
+      e.preventDefault(); // Previene que el navegador lo muestre automáticamente
+      setDeferredPrompt(e); // Guardamos el evento para usarlo luego
+      setShowInstall(true); // Mostramos el botón de instalar
+    };
 
-    setIsStandalone(window.matchMedia('(display-mode: standalone)').matches);
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener(
+        'beforeinstallprompt',
+        handleBeforeInstallPrompt
+      );
+    };
   }, []);
 
-  if (isStandalone) {
-    return null; // Don't show install button if already installed
-  }
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt(); // Mostramos el prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log('User choice:', outcome);
+      setDeferredPrompt(null);
+      setShowInstall(false);
+    }
+  };
 
-  return (
+  return showInstall ? (
     <div>
-      <h3>Install App</h3>
-      <button>Add to Home Screen</button>
-      {isIOS && (
-        <p>
-          To install this app on your iOS device, tap the share button
-          <span role="img" aria-label="share icon">
-            {' '}
-            ⎋{' '}
-          </span>
-          and then Add to Home Screen
-          <span role="img" aria-label="plus icon">
-            {' '}
-            ➕{' '}
-          </span>
-          .
-        </p>
-      )}
+      <h3>Instalar App</h3>
+      <button onClick={handleInstallClick}>
+        Agregar a la pantalla de inicio
+      </button>
     </div>
-  );
+  ) : null;
 }
 
 export default function HomeNotification() {
