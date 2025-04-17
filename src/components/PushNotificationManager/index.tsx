@@ -9,7 +9,6 @@ const InstallPrompt = () => {
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: any) => {
-      e.preventDefault(); // Previene que el navegador lo muestre automáticamente
       setDeferredPrompt(e); // Guardamos el evento para usarlo luego
       setShowInstall(true); // Mostramos el botón de instalar
     };
@@ -35,7 +34,7 @@ const InstallPrompt = () => {
   };
 
   return showInstall ? (
-    <div className="absolute top-4 right-2">
+    <div className="z-[99999]">
       <div className="flex gap-1">
         <h3>Descarga nuestra app!</h3>
         <Button onClick={handleInstallClick}>Instalar</Button>
