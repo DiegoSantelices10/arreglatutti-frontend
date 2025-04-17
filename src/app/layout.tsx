@@ -20,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="aquiles" content="Aquiles" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={cn('bg-primary', inter.className)}>
         {children}
