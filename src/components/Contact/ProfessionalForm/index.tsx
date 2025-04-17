@@ -65,10 +65,10 @@ const ProfessionalForm: FC<any> = (props) => {
     <form>
       <div className="-mx-4 flex flex-wrap">
         <div className="w-full px-2 md:px-4 md:w-1/2">
-          <div className="mb-8">
+          <div className="mb-6">
             <label
               htmlFor="name"
-              className="mb-1 block text-xs font-medium text-primary"
+              className="mb-1 block text-xs font-medium text-white"
             >
               Nombre
             </label>
@@ -81,10 +81,10 @@ const ProfessionalForm: FC<any> = (props) => {
           </div>
         </div>
         <div className="w-full px-2 md:px-4 md:w-1/2">
-          <div className="mb-8">
+          <div className="mb-6">
             <label
               htmlFor="telephone"
-              className="mb-1 block text-xs font-medium text-primary"
+              className="mb-1 block text-xs font-medium text-white"
             >
               Telefono
             </label>
@@ -98,10 +98,10 @@ const ProfessionalForm: FC<any> = (props) => {
           </div>
         </div>
         <div className="w-full px-2 md:px-4 md:w-full">
-          <div className="mb-8">
+          <div className="mb-6">
             <label
               htmlFor="profession"
-              className="mb-1 block text-xs font-medium text-primary"
+              className="mb-1 block text-xs font-medium text-white"
             >
               Profesión
             </label>
@@ -116,10 +116,10 @@ const ProfessionalForm: FC<any> = (props) => {
           </div>
         </div>
         <div className="w-full px-2 md:px-4">
-          <div className="mb-8">
+          <div className="mb-6">
             <label
               htmlFor="message"
-              className="mb-1 block text-xs font-medium text-primary"
+              className="mb-1 block text-xs font-medium text-white"
             >
               Descripción de trabajos realizados
             </label>
@@ -137,7 +137,7 @@ const ProfessionalForm: FC<any> = (props) => {
             onClick={handleSubmit(onSubmit)}
             disabled={submitIsvalid}
             isLoading={isLoading}
-            className="bg-white text-primary"
+            className="bg-white text-primary hover:text-white"
           >
             Enviar solicitud
           </Button>

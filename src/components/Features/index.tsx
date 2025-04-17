@@ -19,7 +19,7 @@ const Features = () => {
 
   return (
     <>
-      <section id="features" className="md:pb-0 pb-10 md:pt-12">
+      <section id="features" className="grid md:content-center min-h-screen">
         <Solid />
         <motion.div
           ref={ref}

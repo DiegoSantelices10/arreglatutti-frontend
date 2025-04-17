@@ -18,6 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="aquiles" content="Aquiles" />
+      </head>
       <body className={cn('bg-primary', inter.className)}>
         {children}
         <ScrollToTop />
