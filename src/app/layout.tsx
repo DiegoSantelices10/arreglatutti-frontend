@@ -19,8 +19,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="aquiles" content="Aquiles" />
+        <meta name="Aquiles" content="Aquiles soluciones" />
+        <meta name="apple-mobile-web-app-title" content="Aquiles" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
       </head>
       <body className={cn('bg-primary', inter.className)}>
         {children}
