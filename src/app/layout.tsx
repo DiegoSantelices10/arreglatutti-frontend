@@ -29,6 +29,8 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
+
+        <title>Aquiles Soluciones</title>
       </head>
       <body className={cn('bg-primary', inter.className)}>
         {children}
