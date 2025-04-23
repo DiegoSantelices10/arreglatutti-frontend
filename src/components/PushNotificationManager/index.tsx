@@ -42,9 +42,9 @@ const InstallPrompt = () => {
   const toastInstallApp = () => {
     if (showInstall) {
       toast({
-        title: '¡Descarga nuestra app!',
-        description: 'Para disfrutar de una mejor experiencia.',
-        duration: 5000,
+        title: 'Descarga nuestra app',
+        description: 'Para acceso rápido y fácil a nuestros servicios.',
+        duration: 500000,
         variant: 'default',
         className: 'bg-neutral-800 text-white whitespace-nowrap',
         action: (

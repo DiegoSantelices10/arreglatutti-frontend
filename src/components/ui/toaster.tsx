@@ -32,18 +32,20 @@ export function Toaster() {
               ? 'text-white'
               : 'text-primary';
         return (
-          <Toast key={id} className="z-30" {...props}>
+          <Toast key={id} className="w-full" {...props}>
             <div className="w-full">
               {title && (
                 <ToastTitle className={cn(iconColor)}>{title}</ToastTitle>
               )}
               {description && (
-                <ToastDescription className={cn('text-xs', iconColor)}>
+                <ToastDescription
+                  className={cn('text-xs text-wrap', iconColor)}
+                >
                   {description}
                 </ToastDescription>
               )}
             </div>
-            {action && <div className="flex justify-end  w-full">{action}</div>}
+            {action}
             <ToastClose />
           </Toast>
         );
