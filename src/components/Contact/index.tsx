@@ -49,15 +49,15 @@ const Contact: FC<any> = (props) => {
         transition={{ duration: 1.5 }}
       >
         <div>
-          <div className="lg:flex lg:justify-between lg:items-center lg:gap-4 space-y-8 md:space-y-0">
-            <div className="  text-white  text-center w-full  md:w-1/2">
+          <div className="lg:flex lg:justify-between lg:items-center lg:gap-4 space-y-4 lg:space-y-0">
+            <div className=" text-white  text-center lg:text-left w-full  lg:w-1/2">
               <h2 className="text-white font-bold text-2xl">
                 Formulario de selección
               </h2>
               <h2>Envianos tus datos para ser contactado.</h2>
             </div>
             <div
-              className=" md:rounded-xl p-8 bg-white/10 lg:w-1/2"
+              className=" md:rounded-xl p-8 lg:bg-white/10 lg:w-1/2"
               data-wow-delay=".15s"
             >
               <ProfessionalForm

@@ -113,7 +113,7 @@ const Content: FC<IContentProps> = (props) => {
                 </div>
               ))
             ) : (
-              <p className="text-center text-textSecondary">
+              <p className="text-center col-span-2 text-textSecondary">
                 Sin resultados para mostrar
               </p>
             )}

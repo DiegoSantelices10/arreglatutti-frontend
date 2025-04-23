@@ -6,7 +6,7 @@ const Registration: FC = async () => {
   const { data } = await getProfessions();
 
   return (
-    <div className="min-h-screen grid content-between pt-28 ">
+    <div className="min-h-screen grid content-between pt-28">
       <Contact professions={data} />
     </div>
   );
