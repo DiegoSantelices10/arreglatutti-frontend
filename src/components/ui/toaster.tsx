@@ -10,8 +10,6 @@ import {
   ToastViewport,
 } from '@/components/ui/toast';
 
-import SuccessIcon from '@/images/icons/success-icon';
-import ErrorIcon from '@/images/icons/error-icon';
 import { cn } from '@/utils';
 
 export function Toaster() {
@@ -27,16 +25,15 @@ export function Toaster() {
         variant,
         ...props
       }) {
-        const Icon = variant === 'error' ? ErrorIcon : SuccessIcon;
-        const iconColor = variant === 'error' ? 'text-red-500' : 'text-primary';
+        const iconColor =
+          variant === 'error'
+            ? 'text-red-500'
+            : variant === 'default'
+              ? 'text-white'
+              : 'text-primary';
         return (
-          <Toast
-            key={id}
-            className="z-30 md:min-w-96 mx-auto grid grid-cols-12"
-            {...props}
-          >
-            <Icon className={`w-5 h-5 col-span-1 ${iconColor}`} />
-            <div className="grid gap-1 col-span-11">
+          <Toast key={id} className="z-30" {...props}>
+            <div className="w-full">
               {title && (
                 <ToastTitle className={cn(iconColor)}>{title}</ToastTitle>
               )}
@@ -46,7 +43,7 @@ export function Toaster() {
                 </ToastDescription>
               )}
             </div>
-            {action}
+            {action && <div className="flex justify-end  w-full">{action}</div>}
             <ToastClose />
           </Toast>
         );

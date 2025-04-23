@@ -2,7 +2,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Button from '../custom/Button';
-import DownloadIcon from '../../../public/images/download-icon';
+import { toast } from '@/hooks/use-toast';
 
 const InstallPrompt = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
@@ -25,6 +25,10 @@ const InstallPrompt = () => {
     };
   }, []);
 
+  useEffect(() => {
+    toastInstallApp(); // Llama a la función para mostrar el toast
+  }, [showInstall]);
+
   const handleInstallClick = async () => {
     if (deferredPrompt) {
       deferredPrompt.prompt(); // Mostramos el prompt
@@ -35,27 +39,30 @@ const InstallPrompt = () => {
     }
   };
 
-  return showInstall ? (
-    <div className="z-[99999] block">
-      <div className="py-4 md:px-16 px-2">
-        <div className="border p-2 flex flex-wrap justify-between items-center w-auto rounded-md border-white/50">
-          <div className="bg-white/30 px-4 py-2 rounded">
-            <h3 className="text-white text-sm">Descarga nuestra app!</h3>
-          </div>
-          <div className="flex gap-2 cursor-pointer items-center bg-white/30 px-4 py-0  rounded justify-center">
-            <DownloadIcon className="text-white" width={22} height={22} />
+  const toastInstallApp = () => {
+    if (showInstall) {
+      toast({
+        title: '¡Descarga nuestra app!',
+        description: 'Para disfrutar de una mejor experiencia.',
+        duration: 5000,
+        variant: 'default',
+        className: 'bg-neutral-800 text-white whitespace-nowrap',
+        action: (
+          <div>
             <Button
-              className="px-0 h-9"
-              onClick={handleInstallClick}
+              className="bg-neutral-700"
               variant={'ghost'}
+              onClick={handleInstallClick}
             >
-              <h1 className="text-sm">Iniciar Instalación</h1>
+              <h1 className="text-sm">Instalar</h1>
             </Button>
           </div>
-        </div>
-      </div>
-    </div>
-  ) : null;
+        ),
+      });
+    }
+  };
+
+  return null;
 };
 
 export default InstallPrompt;

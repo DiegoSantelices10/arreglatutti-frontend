@@ -7,7 +7,8 @@ import ScrollToTop from '@/components/custom/ScrollToTop';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Aquiles Soluciones',
+  title:
+    'Aquiles Soluciones | Brindamos servicios de profesionales matriculados.',
   description: 'Los mejores profesionales en un solo lugar.',
 };
 
