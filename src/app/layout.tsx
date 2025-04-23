@@ -1,20 +1,9 @@
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../app/globals.css';
 import { cn } from '@/utils';
 import ScrollToTop from '@/components/custom/ScrollToTop';
 
 const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title:
-    'Aquiles Soluciones | Brindamos servicios de profesionales matriculados.',
-  description: 'Los mejores profesionales en un solo lugar.',
-  applicationName: 'Aquiles Soluciones |',
-  openGraph: {
-    images: '/logo-pwa-192x192.png',
-  },
-};
 
 export default function RootLayout({
   children,
@@ -24,13 +13,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="Aquiles" content="Aquiles soluciones" />
-        <meta name="apple-mobile-web-app-title" content="Aquiles" />
+        <meta
+          name="title"
+          content="Aquiles soluciones | Brindamos servicios de profesionales matriculados."
+        />
+        <meta
+          name="description"
+          content="Desde Gasistas, Plomeros, Electricistas, Instaladores de aire acondicionado y mucho mas. Aquiles Soluciones"
+          key="description"
+        />
         <meta name="mobile-web-app-capable" content="yes" />
 
-        <link rel="apple-touch-icon" href="/apple-icon.png" />
-
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.ico" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
 
