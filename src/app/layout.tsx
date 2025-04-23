@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import '../app/globals.css';
 import { cn } from '@/utils';
 import ScrollToTop from '@/components/custom/ScrollToTop';
+import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+      <Head>
         <meta
           name="title"
           content="Aquiles soluciones | Brindamos servicios de profesionales matriculados."
@@ -31,7 +32,7 @@ export default function RootLayout({
         <title>
           Aquiles Soluciones | Brindamos servicios de profesionales matriculados
         </title>
-      </head>
+      </Head>
       <body className={cn('bg-primary', inter.className)}>
         {children}
         <ScrollToTop />
