@@ -44,7 +44,7 @@ const InstallPrompt = () => {
       toast({
         title: 'Descarga nuestra app',
         description: 'Para acceso fácil a nuestros servicios.',
-        duration: 500000,
+        duration: 5000,
         variant: 'default',
         className: 'bg-neutral-800 text-white whitespace-nowrap',
         action: (
