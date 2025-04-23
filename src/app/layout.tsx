@@ -24,11 +24,13 @@ export default function RootLayout({
         />
         <meta name="mobile-web-app-capable" content="yes" />
 
-        <link rel="icon" href="/favicon.ico" sizes="96x96" />
+        <link rel="icon" href="/favicon.ico" sizes="192x192" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
 
-        <title>Aquiles Soluciones</title>
+        <title>
+          Aquiles Soluciones | Brindamos servicios de profesionales matriculados
+        </title>
       </head>
       <body className={cn('bg-primary', inter.className)}>
         {children}
