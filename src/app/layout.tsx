@@ -22,7 +22,7 @@ export default function RootLayout({
       <head>
         <meta name="Aquiles" content="Aquiles soluciones" />
         <meta name="apple-mobile-web-app-title" content="Aquiles" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
 
         <link rel="apple-touch-icon" href="/apple-icon.png" />
 

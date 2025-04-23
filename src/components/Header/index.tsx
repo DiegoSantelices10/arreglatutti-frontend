@@ -32,38 +32,33 @@ const Header: FC = () => {
           '!fixed !z-[9990] !bg-primary !bg-opacity-70 shadow-sticky backdrop-blur-sm !transition dark:!bg-primary dark:!bg-opacity-20'
         }`}
       >
-        <motion.div
-          className="w-full z-50"
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.5 }}
-        >
-          <div>
-            <div className="relative flex items-center justify-between">
-              <div>
-                <Link href="/" className={`header-logo block w-full py-2 `}>
-                  <Image
-                    src="/images/logo-aquiles.png"
-                    alt="logo"
-                    layout="intrinsic"
-                    width={140}
-                    height={140}
-                  />
-                </Link>
+        <div className="flex justify-between items-center w-full">
+          <motion.div
+            className="w-full z-50"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5 }}
+          >
+            <div>
+              <div className="relative flex items-center justify-between">
+                <div>
+                  <Link href="/" className={`header-logo block w-full py-2 `}>
+                    <Image
+                      src="/images/logo-aquiles.png"
+                      alt="logo"
+                      layout="intrinsic"
+                      width={140}
+                      height={140}
+                    />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
-        <motion.div
-          className="w-full z-50 flex justify-end items-center"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.5 }}
-        >
-          <Link href={'/registration'} className="text-white">
+          </motion.div>
+          <Link href={'/registration'} className="text-white text-nowrap">
             ¿Sos profesional?
           </Link>
-        </motion.div>
+        </div>
       </header>
     </>
   );
