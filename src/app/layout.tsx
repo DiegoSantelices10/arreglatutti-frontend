@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title:
     'Aquiles Soluciones | Brindamos servicios de profesionales matriculados.',
   description: 'Los mejores profesionales en un solo lugar.',
+  applicationName: 'Aquiles Soluciones |',
+  icons: {
+    icon: '/logo-pwa-192x192.png',
+  },
 };
 
 export default function RootLayout({
