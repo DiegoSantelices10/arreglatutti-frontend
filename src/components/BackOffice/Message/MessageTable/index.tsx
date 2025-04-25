@@ -49,9 +49,9 @@ const MessageTable: FC<IMessageProps> = (props) => {
     </Table>
   ) : (
     <div className="flex justify-center items-center pt-6">
-      <h1 className="text-lg font-semibold text-textSecondary">
+      <p className="text-lg font-semibold text-textSecondary">
         No hay mensajes
-      </h1>
+      </p>
     </div>
   );
 };

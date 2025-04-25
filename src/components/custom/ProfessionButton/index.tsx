@@ -31,9 +31,9 @@ const ProfessionButton: FC<IProfessionButtonProps> = (props) => {
       <div className="bg-white rounded-md p-3">
         <IconComponent className="text-blue-950" />
       </div>
-      <h1 className="uppercase tracking-wide font-semibold text-xs text-white text-center">
+      <h3 className="uppercase tracking-wide font-semibold text-xs text-white text-center">
         {title}
-      </h1>
+      </h3>
     </div>
   );
 };

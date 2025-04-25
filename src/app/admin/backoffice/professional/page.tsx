@@ -90,9 +90,9 @@ const Professional = () => {
               <Skeleton className="h-8 w-full rounded-md" />
             </div>
           ) : professionals.length === 0 ? (
-            <h1 className="text-center text-gray-500">
+            <p className="text-center text-gray-500">
               No se encontraron profesionales
-            </h1>
+            </p>
           ) : (
             <ProfessionalTable
               professionals={professionals}

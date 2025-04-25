@@ -6,7 +6,7 @@ const HeaderTitle: FC<HeaderTitleProps> = (props) => {
 
   return (
     <div className="w-full space-y-2">
-      <h1 className="text-3xl font-bold text-primary">{title}</h1>
+      <h2 className="text-3xl font-bold text-primary">{title}</h2>
       <div className="h-0.5 w-full bg-primary/20" />
     </div>
   );

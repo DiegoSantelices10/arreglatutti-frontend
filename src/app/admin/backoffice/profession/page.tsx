@@ -43,9 +43,9 @@ const Profession = () => {
               <Skeleton className="h-8 w-full rounded-md" />
             </div>
           ) : professions.length === 0 ? (
-            <h1 className="text-center text-gray-500">
+            <p className="text-center text-gray-500">
               No se encontraron profesionales
-            </h1>
+            </p>
           ) : (
             <ProfessionTable professions={professions} />
           )}

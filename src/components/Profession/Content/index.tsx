@@ -65,9 +65,9 @@ const Content: FC<IContentProps> = (props) => {
         />
         <div className="space-y-6">
           <div className="w-full">
-            <h1 className="text-lg text-primary font-bold">
+            <h2 className="text-lg text-primary font-bold">
               {titleProfessionalEnum[professionText]}
-            </h1>
+            </h2>
             <div className="h-[1px] w-full bg-gray-300" />
           </div>
           <div className="w-full grid md:grid-cols-2 gap-6">
@@ -78,14 +78,14 @@ const Content: FC<IContentProps> = (props) => {
                 <div key={professional._id}>
                   <div className="rounded-md flex flex-col justify-between bg-white p-4 shadow-md h-full">
                     <div className="space-y-1">
-                      <h1 className="text-primary font-semibold">
+                      <h2 className="text-primary font-semibold">
                         {professional.name}
-                      </h1>
+                      </h2>
                       <div className="flex gap-1 items-center">
                         <LocationIcon className="size-[14px] text-textSecondary" />
-                        <h1 className="text-xs text-textSecondary">
+                        <h2 className="text-xs text-textSecondary">
                           {professional.city}
-                        </h1>
+                        </h2>
                       </div>
                       <div className="pt-2">
                         <p className="text-xs text-textSecondary font-normal">

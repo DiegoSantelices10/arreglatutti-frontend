@@ -11,9 +11,9 @@ const Message: FC = async () => {
     return (
       <div className="space-y-4">
         <HeaderTitle title="Bandeja de entrada" />
-        <h1 className="text-3xl font-bold text-primary">
+        <p className="text-3xl font-bold text-primary">
           No hay mensajes disponibles
-        </h1>
+        </p>
       </div>
     );
 

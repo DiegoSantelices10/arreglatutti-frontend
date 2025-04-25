@@ -70,9 +70,9 @@ const HomeContent: FC<IHomeContent> = (props) => {
             </div>
           </div> */}
         </div>
-        <h1 className="text-center text-white font-bold text-xl px-4">
+        <p className="text-center text-white font-bold text-xl px-4">
           Proximamente vas a poder utilizar nuestra red de profesionales.
-        </h1>
+        </p>
       </section>
     </motion.div>
   );
