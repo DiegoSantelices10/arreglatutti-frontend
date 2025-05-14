@@ -9,6 +9,7 @@ import axios from 'axios';
 import { createMessage } from '@/services/professionalApplication';
 import Button from '@/components/custom/Button';
 import ControllerCheckbox from '@/components/custom/ControllerCheckbox';
+import Link from 'next/link';
 
 const ProfessionalForm: FC<any> = (props) => {
   const { control, handleSubmit, reset, isValid, professions } = props;
@@ -137,10 +138,22 @@ const ProfessionalForm: FC<any> = (props) => {
           <ControllerCheckbox
             name="acceptTerms"
             control={control}
-            label="Acepto los términos y condiciones"
+            label={
+              <div>
+                Acepto los{' '}
+                <span className="font-semibold hover:underline">
+                  <Link
+                    href="/termsAndConditions"
+                    className="text-white hover:text-secondary"
+                  >
+                    Terminos y condiciones
+                  </Link>
+                </span>
+              </div>
+            }
           />
         </div>
-        <div className="w-full px-4 flex justify-end">
+        <div className="w-full px-4 flex justify-end pt-4">
           <Button
             onClick={handleSubmit(onSubmit)}
             disabled={submitIsvalid}
