@@ -144,7 +144,7 @@ const ProfessionalForm: FC<any> = (props) => {
                 <span className="font-semibold hover:underline">
                   <Link
                     href="/termsAndConditions"
-                    className="text-white hover:text-secondary"
+                    className="text-white hover:text-blue-600"
                   >
                     Terminos y condiciones
                   </Link>
