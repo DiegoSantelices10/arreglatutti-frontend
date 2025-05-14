@@ -33,6 +33,7 @@ const Contact: FC<any> = (props) => {
       telephone: '',
       message: '',
       profession: '',
+      acceptTerms: false,
     },
     mode: 'onSubmit',
   });

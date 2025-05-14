@@ -54,7 +54,7 @@ const InstallPrompt = () => {
               variant={'ghost'}
               onClick={handleInstallClick}
             >
-              <h1 className="text-sm">Instalar</h1>
+              <p className="text-sm">Instalar</p>
             </Button>
           </div>
         ),

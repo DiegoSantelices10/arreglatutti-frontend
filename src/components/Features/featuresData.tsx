@@ -14,7 +14,7 @@ const featuresData: IFeaturesData[] = [
   {
     id: 1,
     icon: <DolarIcon className="size-10 text-white" />,
-    title: 'Solicita tu cotización sin cargo',
+    title: 'Solicita tu cotización',
     paragraph:
       'Evaluaremos tus necesidades, para ofrecerte la mejor solución a tu presupuesto.',
   },

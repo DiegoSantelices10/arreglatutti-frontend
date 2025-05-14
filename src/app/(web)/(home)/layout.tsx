@@ -1,3 +1,4 @@
+import CookiesForm from '@/components/CookiesForm';
 import Header from '@/components/Header';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -9,6 +10,7 @@ export default async function Layout({
     <div className="min-h-screen grid content-between">
       <Header />
       {children}
+      <CookiesForm />
       <Toaster />
     </div>
   );

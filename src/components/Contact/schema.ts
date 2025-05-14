@@ -10,6 +10,9 @@ const ContactFormSchema = z.object({
   profession: z
     .string()
     .min(2, 'La profesión debe tener al menos 2 caracteres'),
+  acceptTerms: z.literal(true).refine((val) => val === true, {
+    message: 'Debes aceptar los términos y condiciones',
+  }),
 });
 
 type ContactSchemaType = z.infer<typeof ContactFormSchema> | FieldValues;

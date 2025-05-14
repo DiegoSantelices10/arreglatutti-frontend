@@ -8,6 +8,7 @@ import ControllerTextArea from '@/components/custom/ControllerTextArea';
 import axios from 'axios';
 import { createMessage } from '@/services/professionalApplication';
 import Button from '@/components/custom/Button';
+import ControllerCheckbox from '@/components/custom/ControllerCheckbox';
 
 const ProfessionalForm: FC<any> = (props) => {
   const { control, handleSubmit, reset, isValid, professions } = props;
@@ -131,6 +132,13 @@ const ProfessionalForm: FC<any> = (props) => {
               className="bg-white rounded-md"
             />
           </div>
+        </div>
+        <div className="w-full px-2 md:px-4">
+          <ControllerCheckbox
+            name="acceptTerms"
+            control={control}
+            label="Acepto los términos y condiciones"
+          />
         </div>
         <div className="w-full px-4 flex justify-end">
           <Button
