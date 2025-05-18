@@ -32,6 +32,25 @@ const ProfessionalFormSchema = z.object({
       })
     )
     .optional(),
+  acceptTerms: z.literal(true).refine((val) => val === true, {
+    message: 'Debes aceptar los términos y condiciones',
+  }),
+  acceptPrivacyPolicy: z.literal(true).refine((val) => val === true, {
+    message: 'Debes aceptar la política de privacidad',
+  }),
+  registrationNumber: z
+    .string()
+    .min(2, 'El numero de matricula debe tener al menos 2 caracteres'),
+  reasonSocial: z.string().optional(),
+  // monotributo: z
+  //   .object({
+  //     fileName: z.string(),
+  //     file: z.any(), // el archivo como tal (Blob/File), validación ligera
+  //     type: z.string().regex(/^application\/pdf$/, 'Debe ser un archivo PDF'),
+  //   })
+  //   .refine((data) => data.file instanceof File, {
+  //     message: 'Debe adjuntar un archivo PDF válido',
+  //   }),
 });
 
 type ProfessionalSchemaType =

@@ -32,6 +32,9 @@ const ProfessionalFormSchema = z.object({
       })
     )
     .optional(),
+  registrationNumber: z
+    .string()
+    .min(2, 'El número de matricula debe tener al menos 2 caracteres'),
 });
 
 type ProfessionalSchemaType =

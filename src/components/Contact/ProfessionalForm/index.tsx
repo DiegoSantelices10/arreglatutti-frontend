@@ -16,10 +16,16 @@ const ProfessionalForm: FC<any> = (props) => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const selectOptions = professions?.map((item: any) => ({
-    label: item.name,
-    value: item.name,
-  }));
+  const selectOptions = [
+    ...(professions?.map((item: any) => ({
+      label: item.name,
+      value: item.name,
+    })) || []),
+    {
+      label: 'Otra profesión',
+      value: 'otra',
+    },
+  ];
 
   const submitIsvalid = !isValid || isLoading;
 

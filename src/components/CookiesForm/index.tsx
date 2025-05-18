@@ -40,9 +40,9 @@ const CookiesForm: FC = () => {
             Al hacer clic en “Aceptar cookies”, usted acepta que las cookies se
             guarden en su dispositivo para mejorar la navegación del sitio,
             analizar el uso del mismo.{' '}
-            <span className="font-semibold hover:underline">
+            <span className="font-semibold underline">
               <Link href="/cookies" className="text-white">
-                Más información
+                Politica de cookies
               </Link>
             </span>
           </p>

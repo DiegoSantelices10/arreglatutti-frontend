@@ -7,6 +7,8 @@ export interface IProfessional {
   profession: string;
   telephone: string;
   dni: string;
+  reasonSocial?: string;
+  registrationNumber: string;
   city: string;
   description: string;
   images: string[];
@@ -52,6 +54,8 @@ export const getProfessionalById = async (id: string) => {
 };
 
 export const createProfessional = async (data: IProfessional) => {
+  console.log('data', data);
+
   try {
     const response = await getApi({
       path: SERVICES.PROFESSIONALS.CREATE,

@@ -49,6 +49,8 @@ const CreateForm: FC<ICreateForm> = (props) => {
       telephone: '',
       dni: '',
       description: '',
+      registrationNumber: '',
+      reasonSocial: '',
       imageUser: '',
       images: [],
     },
@@ -204,6 +206,32 @@ const CreateForm: FC<ICreateForm> = (props) => {
             Dni
           </label>
           <ControllerInput id="dni" control={control} name="dni" />
+        </div>
+        <div className="col-span-6 md:col-span-3">
+          <label
+            htmlFor="registrationNumber"
+            className="mb-1 block text-xs font-medium text-primary"
+          >
+            Numero de matricula
+          </label>
+          <ControllerInput
+            id="registrationNumber"
+            control={control}
+            name="registrationNumber"
+          />
+        </div>
+        <div className="col-span-6 md:col-span-3">
+          <label
+            htmlFor="reasonSocial"
+            className="mb-1 block text-xs font-medium text-primary"
+          >
+            Razon social
+          </label>
+          <ControllerInput
+            id="reasonSocial"
+            control={control}
+            name="reasonSocial"
+          />
         </div>
 
         <div className="col-span-6">

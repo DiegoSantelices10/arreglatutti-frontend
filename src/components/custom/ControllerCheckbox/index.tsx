@@ -15,7 +15,7 @@ const ControllerCheckbox: FC<IControllerCheckbox> = (props) => {
   } = props;
 
   const renderCheckbox = ({ field }: FieldValues) => (
-    <div className="items-top flex space-x-2">
+    <div className="items-center flex space-x-2">
       <Checkbox
         id="terms1"
         className="bg-white rounded"
@@ -24,7 +24,7 @@ const ControllerCheckbox: FC<IControllerCheckbox> = (props) => {
         {...field}
         {...rest}
       />
-      <div className="grid gap-1.5 leading-none">
+      <div className="grid leading-none">
         <label
           htmlFor="terms1"
           className="text-sm text-white font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

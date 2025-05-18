@@ -13,16 +13,20 @@ import {
 import { toast } from '@/hooks/use-toast';
 import Button from '@/components/custom/Button';
 import { deleteProfessional } from '@/services/profesional';
+import { deleteImage } from '@/services/cloudinary';
 
 interface IDeleteModal {
   id: string;
   name: string;
   trigger: ReactNode;
+  professional: any;
   onSuccess: () => Promise<void>;
 }
 
 const DeleteModal: FC<IDeleteModal> = (props) => {
-  const { id, name, trigger, onSuccess } = props;
+  const { id, name, trigger, professional, onSuccess } = props;
+
+  console.log('professional', professional);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,6 +41,34 @@ const DeleteModal: FC<IDeleteModal> = (props) => {
         description: 'Error al eliminar el profesional',
       });
       return;
+    }
+
+    if (professional?.imageUser) {
+      const res = await deleteImage(professional?.imageUser?.public_id);
+
+      if (res.status !== 200) {
+        toast({
+          title: 'Error al eliminar imagen',
+          description: 'Error al eliminar imagen',
+          variant: 'error',
+        });
+        return;
+      }
+    }
+
+    if (professional?.images) {
+      professional?.images?.forEach(async (image: any) => {
+        const res = await deleteImage(image?.public_id);
+
+        if (res.status !== 200) {
+          toast({
+            title: 'Error al eliminar imagen',
+            description: 'Error al eliminar imagen',
+            variant: 'error',
+          });
+          return;
+        }
+      });
     }
 
     toast({

@@ -34,6 +34,7 @@ const ProfessionalTable: FC<IProfessionalTableProps> = (props) => {
             <DeleteModal
               id={professional._id.toString()}
               name={professional.name}
+              professional={professional}
               onSuccess={onSuccess}
               trigger={
                 <div className="rounded-full cursor-pointer bg-red-600 h-8 w-8 flex justify-center items-center">

@@ -45,6 +45,8 @@ export interface IProfessional {
   dni: string;
   city: string;
   description: string;
+  registrationNumber: string;
+  reasonSocial?: string;
   imageUser: image;
   images: image[];
   createdAt: string;
@@ -70,6 +72,8 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
     city: '',
     description: '',
     imageUser: { url: '', fileName: '', public_id: '' },
+    registrationNumber: '',
+    reasonSocial: '',
     images: [],
     createdAt: '',
     updatedAt: '',
@@ -94,6 +98,8 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
       city: '',
       email: '',
       telephone: '',
+      registrationNumber: '',
+      reasonSocial: '',
       dni: '',
       description: '',
       imageUser: '',
@@ -114,6 +120,7 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
 
   const getProfessional = async () => {
     const response = await getProfessionalById(id!);
+    console.log('response', response);
 
     setProfessional({ ...response.data });
     reset(response.data);
@@ -317,6 +324,32 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
           Dni
         </label>
         <ControllerInput id="dni" control={control} name="dni" />
+      </div>
+      <div className="col-span-6 md:col-span-3">
+        <label
+          htmlFor="registrationNumber"
+          className="mb-1 block text-xs font-medium text-primary"
+        >
+          Numero de matricula
+        </label>
+        <ControllerInput
+          id="registrationNumber"
+          control={control}
+          name="registrationNumber"
+        />
+      </div>
+      <div className="col-span-6 md:col-span-3">
+        <label
+          htmlFor="reasonSocial"
+          className="mb-1 block text-xs font-medium text-primary"
+        >
+          Razon social
+        </label>
+        <ControllerInput
+          id="reasonSocial"
+          control={control}
+          name="reasonSocial"
+        />
       </div>
 
       <div className="col-span-6">

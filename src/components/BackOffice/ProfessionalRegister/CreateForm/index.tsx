@@ -16,6 +16,10 @@ import CloudUploadIcon from '@/images/icons/cloud-upload-icon';
 import Image from 'next/image';
 import Avatar from '@/components/custom/Avatar';
 import DeleteIcon from '../../../../../public/images/delete-icon';
+import ControllerCheckbox from '@/components/custom/ControllerCheckbox';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+// import ControllerInputFilePDF from '@/components/custom/ControllerFileInputPDF';
 
 interface ISelectOptions {
   _id: string;
@@ -30,6 +34,8 @@ const CreateForm: FC<ICreateForm> = (props) => {
   const { professionList, cityList } = props;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const {
     control,
@@ -48,9 +54,14 @@ const CreateForm: FC<ICreateForm> = (props) => {
       email: '',
       telephone: '',
       dni: '',
+      registrationNumber: '',
+      reasonSocial: '',
       description: '',
       imageUser: '',
       images: [],
+      monotributo: '',
+      acceptTerms: false,
+      acceptPrivacyPolicy: false,
     },
     mode: 'onChange',
   });
@@ -60,12 +71,16 @@ const CreateForm: FC<ICreateForm> = (props) => {
 
   const buttonDisabled = !isValid || isLoading;
 
-  const profession = professionList?.map((item) => {
-    return {
+  const profession = [
+    ...(professionList?.map((item) => ({
       label: item.name,
       value: item.name,
-    };
-  });
+    })) || []),
+    {
+      label: 'Otra profesión',
+      value: 'otra',
+    },
+  ];
 
   const cities = cityList?.map((item) => {
     return {
@@ -82,6 +97,8 @@ const CreateForm: FC<ICreateForm> = (props) => {
     });
 
   const onSubmit = async (values: any) => {
+    console.log('values', values);
+
     setIsLoading(true);
 
     const response = await uploadImages(values.images);
@@ -118,12 +135,10 @@ const CreateForm: FC<ICreateForm> = (props) => {
       return;
     }
 
-    toast({
-      title: 'Profesional creado',
-      description: 'Profesional creado con exito',
-    });
     reset();
     setIsLoading(false);
+
+    router.push('/sendSuccess');
   };
 
   const removeImage = (image: string) => {
@@ -137,22 +152,16 @@ const CreateForm: FC<ICreateForm> = (props) => {
   };
 
   return (
-    <div className="pt-8">
-      <div className="grid grid-cols-6 gap-4">
-        <div className="col-span-6">
-          <ControllerInputFile
-            id="imageUser"
-            htmlForLabel="imageUser"
-            control={control}
-            name="imageUser"
-          >
-            <div className="w-full cursor-pointer p-4 border rounded-lg border-gray-200 flex justify-center items-center gap-2">
-              <h3 className="text-sm text-textSecondary">
-                Subir imagen de perfil
-              </h3>
-              <CloudUploadIcon className="size-6 text-textSecondary" />
-            </div>
-          </ControllerInputFile>
+    <div className="py-6">
+      <h1 className="text-2xl font-bold text-primary">
+        Formulario de registro
+      </h1>
+      <p className="text-sm text-textSecondary">
+        Completa el formulario para registrarte como profesional en la
+        plataforma.
+      </p>
+      <div className="pt-8 flex flex-col  md:flex-row w-full justify-between gap-4">
+        <div className="space-y-4 md:w-1/4 w-full">
           {imageUser && imageUser.url && (
             <div className="flex justify-center items-center">
               <div className="relative inline-block">
@@ -166,139 +175,240 @@ const CreateForm: FC<ICreateForm> = (props) => {
               </div>
             </div>
           )}
-        </div>
-        <div className="col-span-6 md:col-span-2">
-          <label
-            htmlFor="name"
-            className="mb-1 block text-xs font-medium text-primary"
-          >
-            Nombre
-          </label>
-          <ControllerInput id="name" control={control} name="name" />
-        </div>
-        <div className="col-span-6 md:col-span-2">
-          <label
-            htmlFor="profession"
-            className="mb-1 block text-xs font-medium text-primary"
-          >
-            Profesión
-          </label>
-          <ControllerSelect
-            id="profession"
-            placeholder="Selecciona una profesión"
-            options={profession}
-            control={control}
-            name="profession"
-          />
-        </div>
-        <div className="col-span-6 md:col-span-2">
-          <label
-            htmlFor="city"
-            className="mb-1 block text-xs font-medium text-primary"
-          >
-            Barrio
-          </label>
-          <ControllerSelect
-            id="city"
-            name="city"
-            placeholder="selecciona un barrio"
-            options={cities}
-            control={control}
-          />
-        </div>
-        <div className="col-span-6 md:col-span-2">
-          <label
-            htmlFor="email"
-            className="mb-1 block text-xs font-medium text-primary"
-          >
-            Email
-          </label>
-          <ControllerInput id="email" control={control} name="email" />
-        </div>
-        <div className="col-span-6 md:col-span-2">
-          <label
-            htmlFor="telephone"
-            className="mb-1 block text-xs font-medium text-primary"
-          >
-            Telefono
-          </label>
-          <ControllerInput id="telephone" control={control} name="telephone" />
-        </div>
-        <div className="col-span-6 md:col-span-2">
-          <label
-            htmlFor="dni"
-            className="mb-1 block text-xs font-medium text-primary"
-          >
-            Dni
-          </label>
-          <ControllerInput id="dni" control={control} name="dni" />
-        </div>
-
-        <div className="col-span-6">
-          <label
-            htmlFor="description"
-            className="mb-1 block text-xs font-medium text-primary"
-          >
-            Descripción
-          </label>
-          <ControllerTextArea
-            id="description"
-            control={control}
-            name="description"
-          />
-        </div>
-
-        <div className="col-span-6 md:col-span-3 space-y-4">
           <ControllerInputFile
-            id="images"
-            htmlForLabel="images"
-            multiple
+            id="imageUser"
+            htmlForLabel="imageUser"
             control={control}
-            name="images"
+            name="imageUser"
           >
-            <div className="w-full cursor-pointer p-4 border rounded-lg border-gray-200 flex justify-center items-center gap-2">
-              <h3 className="text-sm text-textSecondary">
-                Subir imagenes de trabajos
-              </h3>
+            <div className="cursor-pointer p-2 mt-5 flex flex-col justify-center items-center w-full border rounded-md border-gray-200  gap-2">
               <CloudUploadIcon className="size-6 text-textSecondary" />
             </div>
+            <h3 className="text-xs text-center text-textSecondary py-2">
+              Subir imagen de perfil
+            </h3>
           </ControllerInputFile>
-          <div className="grid grid-cols-2 content-center  gap-2">
-            {imagesList?.length > 0 &&
-              imagesList.map((item: any, index: number) => (
-                <div
-                  key={index}
-                  className="flex mx-auto  gap-2 col-span-2 lg:col-span-1  rounded-xl"
-                >
-                  <div className="inline-block relative">
-                    <div
-                      onClick={() => removeImage(item.fileName)}
-                      className="absolute cursor-pointer rounded-full p-1 bg-white/60 top-2 right-2"
-                    >
-                      <DeleteIcon className="text-white size-6 transition-all duration-150 hover:text-red-400" />
-                    </div>
-                    <Image
-                      src={item.url}
-                      alt={item.fileName}
-                      className="rounded-xl"
-                      layout="intrinsic"
-                      width={500} // Se ajustará automáticamente manteniendo la proporción
-                      height={500}
-                    />
-                  </div>
-                </div>
-              ))}
-          </div>
         </div>
+        <div className="grid grid-cols-6 gap-4 w-full">
+          <div className="col-span-6 md:col-span-3">
+            <label
+              htmlFor="name"
+              className="mb-1 block text-xs font-medium text-primary"
+            >
+              Nombre y apellido
+            </label>
+            <ControllerInput id="name" control={control} name="name" />
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <label
+              htmlFor="profession"
+              className="mb-1 block text-xs font-medium text-primary"
+            >
+              Profesión
+            </label>
+            <ControllerSelect
+              id="profession"
+              placeholder="Selecciona una profesión"
+              options={profession}
+              control={control}
+              name="profession"
+            />
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <label
+              htmlFor="city"
+              className="mb-1 block text-xs font-medium text-primary"
+            >
+              Barrio
+            </label>
+            <ControllerSelect
+              id="city"
+              name="city"
+              placeholder="selecciona un barrio"
+              options={cities}
+              control={control}
+            />
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <label
+              htmlFor="email"
+              className="mb-1 block text-xs font-medium text-primary"
+            >
+              Correo electrónico
+            </label>
+            <ControllerInput id="email" control={control} name="email" />
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <label
+              htmlFor="telephone"
+              className="mb-1 block text-xs font-medium text-primary"
+            >
+              Telefono
+            </label>
+            <ControllerInput
+              id="telephone"
+              control={control}
+              name="telephone"
+            />
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <label
+              htmlFor="dni"
+              className="mb-1 block text-xs font-medium text-primary"
+            >
+              Dni
+            </label>
+            <ControllerInput id="dni" control={control} name="dni" />
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <label
+              htmlFor="registrationNumber"
+              className="mb-1 block text-xs font-medium text-primary"
+            >
+              Numero de matricula
+            </label>
+            <ControllerInput
+              id="registrationNumber"
+              control={control}
+              name="registrationNumber"
+            />
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <label
+              htmlFor="reasonSocial"
+              className="mb-1 block text-xs font-medium text-primary"
+            >
+              Razon social
+            </label>
+            <ControllerInput
+              id="reasonSocial"
+              control={control}
+              name="reasonSocial"
+            />
+          </div>
+          <div className="col-span-6 ">
+            <label
+              htmlFor="description"
+              className="mb-1 block text-xs font-medium text-primary"
+            >
+              Descripción
+            </label>
+            <ControllerTextArea
+              id="description"
+              control={control}
+              name="description"
+            />
+          </div>
 
-        <div className="flex justify-end col-span-6">
-          <Button
-            isLoading={isLoading}
-            disabled={buttonDisabled}
-            onClick={handleSubmit(onSubmit)}
-          >
-            Nuevo profesional
-          </Button>
+          <div className="col-span-6">
+            <ControllerInputFile
+              id="images"
+              htmlForLabel="images"
+              multiple
+              control={control}
+              name="images"
+            >
+              <div className="w-full cursor-pointer p-4 border rounded-lg border-gray-200 flex justify-center items-center gap-2">
+                <h3 className="text-sm text-textSecondary">
+                  Subir imagenes de trabajos
+                </h3>
+                <CloudUploadIcon className="size-6 text-textSecondary" />
+              </div>
+            </ControllerInputFile>
+            <div className="grid grid-cols-2 content-center  gap-2">
+              {imagesList?.length > 0 &&
+                imagesList.map((item: any, index: number) => (
+                  <div
+                    key={index}
+                    className="flex mx-auto  gap-2 col-span-2 lg:col-span-1  rounded-xl"
+                  >
+                    <div className="inline-block relative">
+                      <div
+                        onClick={() => removeImage(item.fileName)}
+                        className="absolute cursor-pointer rounded-full p-1 bg-white/60 top-2 right-2"
+                      >
+                        <DeleteIcon className="text-white size-6 transition-all duration-150 hover:text-red-400" />
+                      </div>
+                      <Image
+                        src={item.url}
+                        alt={item.fileName}
+                        className="rounded-xl"
+                        layout="intrinsic"
+                        width={500} // Se ajustará automáticamente manteniendo la proporción
+                        height={500}
+                      />
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+          {/* <div className="col-span-6 space-y-4">
+            <ControllerInputFilePDF
+              id="monotributo"
+              htmlForLabel="monotributo"
+              control={control}
+              name="monotributo"
+            >
+              <div className="w-full cursor-pointer p-4 border rounded-lg border-gray-200 flex justify-center items-center gap-2">
+                <h3 className="text-sm text-textSecondary">
+                  Subir comprobante de monotributo
+                </h3>
+                <CloudUploadIcon className="size-6 text-textSecondary" />
+              </div>
+            </ControllerInputFilePDF>
+          </div> */}
+
+          <div className="w-full col-span-6 space-y-4">
+            <div className="w-full">
+              <ControllerCheckbox
+                name="acceptTerms"
+                control={control}
+                label={
+                  <div className="text-primary">
+                    Acepto los{' '}
+                    <span className="font-semibold underline">
+                      <Link
+                        href="/termsAndConditions"
+                        target="_blank"
+                        className="text-primary hover:text-blue-600"
+                      >
+                        Terminos y condiciones
+                      </Link>
+                    </span>
+                  </div>
+                }
+              />
+            </div>
+            <div className="w-full">
+              <ControllerCheckbox
+                name="acceptPrivacyPolicy"
+                control={control}
+                label={
+                  <div className="text-primary">
+                    Acepto las{' '}
+                    <span className="font-semibold underline">
+                      <Link
+                        href="/privacyPolicy"
+                        target="_blank"
+                        className="text-primary hover:text-blue-600"
+                      >
+                        Politicas de privacidad
+                      </Link>
+                    </span>
+                  </div>
+                }
+              />
+            </div>
+          </div>
+          <div className="flex justify-start col-span-6 mt-4">
+            <Button
+              isLoading={isLoading}
+              disabled={buttonDisabled}
+              onClick={handleSubmit(onSubmit)}
+            >
+              Enviar formulario
+            </Button>
+          </div>
         </div>
       </div>
     </div>
