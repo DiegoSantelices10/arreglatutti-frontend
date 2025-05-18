@@ -120,7 +120,6 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
 
   const getProfessional = async () => {
     const response = await getProfessionalById(id!);
-    console.log('response', response);
 
     setProfessional({ ...response.data });
     reset(response.data);

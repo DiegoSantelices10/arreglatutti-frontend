@@ -26,8 +26,6 @@ interface IDeleteModal {
 const DeleteModal: FC<IDeleteModal> = (props) => {
   const { id, name, trigger, professional, onSuccess } = props;
 
-  console.log('professional', professional);
-
   const [isLoading, setIsLoading] = useState(false);
 
   const deleteProfesional = async (id: string) => {

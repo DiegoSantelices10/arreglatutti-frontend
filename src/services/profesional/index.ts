@@ -54,8 +54,6 @@ export const getProfessionalById = async (id: string) => {
 };
 
 export const createProfessional = async (data: IProfessional) => {
-  console.log('data', data);
-
   try {
     const response = await getApi({
       path: SERVICES.PROFESSIONALS.CREATE,

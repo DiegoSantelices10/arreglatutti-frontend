@@ -97,8 +97,6 @@ const CreateForm: FC<ICreateForm> = (props) => {
     });
 
   const onSubmit = async (values: any) => {
-    console.log('values', values);
-
     setIsLoading(true);
 
     const response = await uploadImages(values.images);
