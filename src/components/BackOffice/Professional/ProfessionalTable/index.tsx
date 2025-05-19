@@ -6,6 +6,7 @@ import Table from '@/components/custom/Table';
 import { TableCell, TableHead, TableRow } from '@/components/ui/table';
 import Link from 'next/link';
 import EditIcon from '../../../../../public/images/edit-icon';
+// import { Switch } from '@/components/ui/switch';
 
 const ProfessionalTable: FC<IProfessionalTableProps> = (props) => {
   const { professionals, onSuccess } = props;
@@ -23,6 +24,11 @@ const ProfessionalTable: FC<IProfessionalTableProps> = (props) => {
         <TableRow key={professional._id}>
           <TableCell className="font-medium">{professional.name}</TableCell>
           <TableCell>{professional.profession}</TableCell>
+          {/* <TableCell>
+            <div className="flex items-center space-x-2">
+              <Switch id="airplane-mode" />
+            </div>
+          </TableCell> */}
           <TableCell className="text-right w-14">
             <Link href={`/admin/backoffice/professional/${professional._id}`}>
               <div className="cursor-pointer bg-secondary flex justify-center items-center rounded-full h-8 w-8">

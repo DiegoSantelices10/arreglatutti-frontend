@@ -41,15 +41,7 @@ const ProfessionalFormSchema = z.object({
     .string()
     .min(2, 'El numero de matricula debe tener al menos 2 caracteres'),
   reasonSocial: z.string().optional(),
-  // monotributo: z
-  //   .object({
-  //     fileName: z.string(),
-  //     file: z.any(), // el archivo como tal (Blob/File), validación ligera
-  //     type: z.string().regex(/^application\/pdf$/, 'Debe ser un archivo PDF'),
-  //   })
-  //   .refine((data) => data.file instanceof File, {
-  //     message: 'Debe adjuntar un archivo PDF válido',
-  //   }),
+  available: z.boolean().optional(),
 });
 
 type ProfessionalSchemaType =

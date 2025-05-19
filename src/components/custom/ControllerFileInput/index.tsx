@@ -20,28 +20,37 @@ const ControllerInputFile: FC<ControllerInputFileProps> = ({
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files.length > 0) {
-        const file = e.target.files[0];
-        const fileName = file.name;
+        const selectedFiles = Array.from(e.target.files);
 
-        if (
-          multiple &&
-          value.some((file: { fileName: string }) => file.fileName === fileName)
-        ) {
-          console.warn(`El archivo "${fileName}" ya está en la lista.`);
-          return;
-        }
+        const processedImages = await Promise.all(
+          selectedFiles.map(async (file) => {
+            const fileName = file.name;
 
-        const resizedImage = await resizeImage(file, 800, 800, 0.7);
+            // Evitar archivos duplicados
+            if (
+              multiple &&
+              value?.some?.(
+                (img: { fileName: string }) => img.fileName === fileName
+              )
+            ) {
+              return null;
+            }
 
-        const image = {
-          fileName,
-          url: resizedImage,
-        };
+            const resizedImage = await resizeImage(file, 800, 800, 0.7);
+
+            return {
+              fileName,
+              url: resizedImage,
+            };
+          })
+        );
+
+        const validImages = processedImages.filter(Boolean); // Quita los null
 
         if (multiple) {
-          onChange([...value, image]);
+          onChange([...(value || []), ...validImages]);
         } else {
-          onChange(image);
+          onChange(validImages[0] || null);
         }
       } else {
         console.warn('No se ha seleccionado ningún archivo.');

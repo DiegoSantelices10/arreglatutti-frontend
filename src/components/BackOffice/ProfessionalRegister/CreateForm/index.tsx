@@ -58,6 +58,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
       imageUser: '',
       images: [],
       monotributo: '',
+      available: false,
       acceptTerms: false,
       acceptPrivacyPolicy: false,
     },
