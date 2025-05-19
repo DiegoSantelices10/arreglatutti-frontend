@@ -2,12 +2,9 @@
 'use client';
 import Drawer from '@/components/custom/Drawer';
 import React, { FC, useEffect, useState } from 'react';
-import LocationIcon from '../../../../public/images/location-icon';
 import { Skeleton } from '@/components/ui/skeleton';
 import { titleProfessionalEnum } from '../utils';
-import CitiesSelect from '../CitiesSelect';
 import { getProfessionals } from '@/services/profesional';
-import { FieldValues, useForm } from 'react-hook-form';
 import QueryDrawer from '../QueryDrawer';
 
 interface IContentProps {
@@ -21,19 +18,7 @@ const Content: FC<IContentProps> = (props) => {
   const [professionSelect, setProfessionSelect] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const { control, watch } = useForm<FieldValues>({
-    defaultValues: {
-      city: '',
-    },
-  });
-
-  const citySelected = watch('city');
-
   useEffect(() => {
-    if (citySelected) {
-      getProfessionalsByCity(citySelected);
-      return;
-    }
     (async () => {
       if (profession) {
         setProfessionSelect(profession);
@@ -43,26 +28,13 @@ const Content: FC<IContentProps> = (props) => {
         setIsLoading(false);
       }
     })();
-  }, [citySelected]);
-
-  const getProfessionalsByCity = async (city: string) => {
-    setIsLoading(true);
-    const { data } = await getProfessionals(professionSelect, city);
-    setProfessionals(data);
-    setIsLoading(false);
-  };
+  }, []);
 
   const professionText = decodeURIComponent(professionSelect);
 
   return (
     <div className="relative z-20 min-h-screen overflow-hidden pt-[80px] bg-[#FAFAFB] pb-10">
-      <div className="absolute w-full h-24 rounded-b-3xl bg-primary -z-10" />
-      <div className="px-4 md:px-14 space-y-6">
-        <CitiesSelect
-          control={control}
-          name="city"
-          placeholder="Selecciona un barrio"
-        />
+      <div className="p-4 md:px-14 space-y-6">
         <div className="space-y-6">
           <div className="w-full">
             <h2 className="text-lg text-primary font-bold">
@@ -76,18 +48,13 @@ const Content: FC<IContentProps> = (props) => {
             ) : professionals && professionals?.length > 0 ? (
               professionals?.map((professional: any) => (
                 <div key={professional._id}>
-                  <div className="rounded-md flex flex-col justify-between bg-white p-4 shadow-md h-full">
+                  <div className="rounded-md flex flex-col justify-between bg-white p-4 shadow-sm h-full">
                     <div className="space-y-1">
                       <h2 className="text-primary font-semibold">
                         {professional.name}
                       </h2>
-                      <div className="flex gap-1 items-center">
-                        <LocationIcon className="size-[14px] text-textSecondary" />
-                        <h2 className="text-xs text-textSecondary">
-                          {professional.city}
-                        </h2>
-                      </div>
-                      <div className="pt-2">
+
+                      <div>
                         <p className="text-xs text-textSecondary font-normal">
                           {professional.description}
                         </p>
@@ -97,7 +64,6 @@ const Content: FC<IContentProps> = (props) => {
                       <div className="mt-4 h-[1px] bg-gray-200" />
                       <div className="flex justify-between items-center mt-4">
                         <Drawer
-                          city={professional.city}
                           name={professional.name}
                           description={professional.description}
                           imagesWorks={professional.images}

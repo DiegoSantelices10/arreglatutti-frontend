@@ -1,9 +1,9 @@
 'use client';
-import CreateForm from '@/components/BackOffice/ProfessionalRegister/CreateForm';
+import CreateForm from '@/components/BackOffice/ClientRegister/CreateForm';
 import { getProfessions } from '@/services/profesion';
 import React, { FC, useEffect, useState } from 'react';
 
-const ProfessionalRegister: FC = () => {
+const ClientRegister: FC = () => {
   const [professions, setProfessions] = useState([]);
 
   useEffect(() => {
@@ -27,4 +27,4 @@ const ProfessionalRegister: FC = () => {
   );
 };
 
-export default ProfessionalRegister;
+export default ClientRegister;

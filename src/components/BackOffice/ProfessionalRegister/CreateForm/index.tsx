@@ -27,11 +27,10 @@ interface ISelectOptions {
 }
 interface ICreateForm {
   professionList: ISelectOptions[];
-  cityList: ISelectOptions[];
 }
 
 const CreateForm: FC<ICreateForm> = (props) => {
-  const { professionList, cityList } = props;
+  const { professionList } = props;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -50,7 +49,6 @@ const CreateForm: FC<ICreateForm> = (props) => {
     defaultValues: {
       name: '',
       profession: '',
-      city: '',
       email: '',
       telephone: '',
       dni: '',
@@ -81,13 +79,6 @@ const CreateForm: FC<ICreateForm> = (props) => {
       value: 'otra',
     },
   ];
-
-  const cities = cityList?.map((item) => {
-    return {
-      label: item.name,
-      value: item.name,
-    };
-  });
 
   const toastError = () =>
     toast({
@@ -150,7 +141,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
   };
 
   return (
-    <div className="py-6">
+    <div className="py-8 mt-20">
       <h1 className="text-2xl font-bold text-primary">
         Formulario de registro
       </h1>
@@ -206,27 +197,14 @@ const CreateForm: FC<ICreateForm> = (props) => {
             </label>
             <ControllerSelect
               id="profession"
+              triggerClassName="shadow-none"
               placeholder="Selecciona una profesión"
               options={profession}
               control={control}
               name="profession"
             />
           </div>
-          <div className="col-span-6 md:col-span-3">
-            <label
-              htmlFor="city"
-              className="mb-1 block text-xs font-medium text-primary"
-            >
-              Barrio
-            </label>
-            <ControllerSelect
-              id="city"
-              name="city"
-              placeholder="selecciona un barrio"
-              options={cities}
-              control={control}
-            />
-          </div>
+
           <div className="col-span-6 md:col-span-3">
             <label
               htmlFor="email"
@@ -271,7 +249,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
               name="registrationNumber"
             />
           </div>
-          <div className="col-span-6 md:col-span-3">
+          <div className="col-span-6 ">
             <label
               htmlFor="reasonSocial"
               className="mb-1 block text-xs font-medium text-primary"
@@ -294,6 +272,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
             <ControllerTextArea
               id="description"
               control={control}
+              placeholder="Escribe una breve descripción sobre tu trabajo."
               name="description"
             />
           </div>
@@ -313,7 +292,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
                 <CloudUploadIcon className="size-6 text-textSecondary" />
               </div>
             </ControllerInputFile>
-            <div className="grid grid-cols-2 content-center  gap-2">
+            <div className="grid grid-cols-2 content-center  gap-2 mt-2">
               {imagesList?.length > 0 &&
                 imagesList.map((item: any, index: number) => (
                   <div
@@ -356,19 +335,32 @@ const CreateForm: FC<ICreateForm> = (props) => {
             </ControllerInputFilePDF>
           </div> */}
 
+          <p className="col-span-6 text-sm text-textSecondary">
+            Enviar{' '}
+            <span className="font-semibold ">Seguro contra terceros</span> y{' '}
+            <span className="font-semibold ">Alta de monotributo</span> al
+            siguiente correo:{' '}
+            <a
+              href="mailto:asuarez@aquilessoluciones.com.ar"
+              className=" text-primary hover:text-blue-600"
+            >
+              asuarez@aquilessoluciones.com.ar
+            </a>
+          </p>
+
           <div className="w-full col-span-6 space-y-4">
             <div className="w-full">
               <ControllerCheckbox
                 name="acceptTerms"
                 control={control}
                 label={
-                  <div className="text-primary">
+                  <div className="text-primary text-xs">
                     Acepto los{' '}
                     <span className="font-semibold underline">
                       <Link
                         href="/termsAndConditions"
                         target="_blank"
-                        className="text-primary hover:text-blue-600"
+                        className="text-primary text-xs hover:text-blue-600"
                       >
                         Terminos y condiciones
                       </Link>
@@ -382,7 +374,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
                 name="acceptPrivacyPolicy"
                 control={control}
                 label={
-                  <div className="text-primary">
+                  <div className="text-primary text-xs">
                     Acepto las{' '}
                     <span className="font-semibold underline">
                       <Link
@@ -398,6 +390,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
               />
             </div>
           </div>
+
           <div className="flex justify-start col-span-6 mt-4">
             <Button
               isLoading={isLoading}

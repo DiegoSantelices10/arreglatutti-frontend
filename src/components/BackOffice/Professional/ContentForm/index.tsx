@@ -27,7 +27,6 @@ import CloudUploadIcon from '@/images/icons/cloud-upload-icon';
 import Avatar from '@/components/custom/Avatar';
 import DeleteIcon from '../../../../../public/images/delete-icon';
 import Image from 'next/image';
-import { getCities } from '@/services/city';
 import { getProfessions } from '@/services/profesion';
 import { redirect } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
@@ -43,7 +42,6 @@ export interface IProfessional {
   email: string;
   telephone: string;
   dni: string;
-  city: string;
   description: string;
   registrationNumber: string;
   reasonSocial?: string;
@@ -69,7 +67,6 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
     email: '',
     telephone: '',
     dni: '',
-    city: '',
     description: '',
     imageUser: { url: '', fileName: '', public_id: '' },
     registrationNumber: '',
@@ -79,7 +76,6 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
     updatedAt: '',
     __v: 0,
   });
-  const [cities, setCities] = useState([]);
   const [professions, setProfessions] = useState([]);
 
   const {
@@ -95,7 +91,6 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
     defaultValues: {
       name: '',
       profession: '',
-      city: '',
       email: '',
       telephone: '',
       registrationNumber: '',
@@ -125,29 +120,15 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
     reset(response.data);
   };
 
-  const getCitiesData = async () => {
-    const { data, status } = await getCities();
-    if (status !== 200) {
-      return;
-    }
-    setCities(data);
-  };
-
   const getProfessionsAndCitiesData = async () => {
     const { data, status } = await getProfessions();
     if (status !== 200) {
       return;
     }
     setProfessions(data);
-    getCitiesData();
   };
 
   const professionsOptions = professions?.map((item: any) => ({
-    label: item.name,
-    value: item.name,
-  }));
-
-  const citiesOptions = cities?.map((item: any) => ({
     label: item.name,
     value: item.name,
   }));
@@ -282,21 +263,7 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
           name="profession"
         />
       </div>
-      <div className="col-span-6 md:col-span-2">
-        <label
-          htmlFor="city"
-          className="mb-1 block text-xs font-medium text-primary"
-        >
-          Barrio
-        </label>
-        <ControllerSelect
-          id="city"
-          name="city"
-          placeholder="selecciona un barrio"
-          options={citiesOptions}
-          control={control}
-        />
-      </div>
+
       <div className="col-span-6 md:col-span-2">
         <label
           htmlFor="email"
@@ -324,7 +291,7 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
         </label>
         <ControllerInput id="dni" control={control} name="dni" />
       </div>
-      <div className="col-span-6 md:col-span-3">
+      <div className="col-span-6 md:col-span-2">
         <label
           htmlFor="registrationNumber"
           className="mb-1 block text-xs font-medium text-primary"
@@ -337,7 +304,7 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
           name="registrationNumber"
         />
       </div>
-      <div className="col-span-6 md:col-span-3">
+      <div className="col-span-6">
         <label
           htmlFor="reasonSocial"
           className="mb-1 block text-xs font-medium text-primary"

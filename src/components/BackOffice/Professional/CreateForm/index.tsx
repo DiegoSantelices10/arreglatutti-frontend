@@ -23,11 +23,10 @@ interface ISelectOptions {
 }
 interface ICreateForm {
   professionList: ISelectOptions[];
-  cityList: ISelectOptions[];
 }
 
 const CreateForm: FC<ICreateForm> = (props) => {
-  const { professionList, cityList } = props;
+  const { professionList } = props;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -44,7 +43,6 @@ const CreateForm: FC<ICreateForm> = (props) => {
     defaultValues: {
       name: '',
       profession: '',
-      city: '',
       email: '',
       telephone: '',
       dni: '',
@@ -63,13 +61,6 @@ const CreateForm: FC<ICreateForm> = (props) => {
   const buttonDisabled = !isValid || isLoading;
 
   const profession = professionList?.map((item) => {
-    return {
-      label: item.name,
-      value: item.name,
-    };
-  });
-
-  const cities = cityList?.map((item) => {
     return {
       label: item.name,
       value: item.name,
@@ -165,21 +156,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
             name="profession"
           />
         </div>
-        <div className="col-span-6 md:col-span-2">
-          <label
-            htmlFor="city"
-            className="mb-1 block text-xs font-medium text-primary"
-          >
-            Barrio
-          </label>
-          <ControllerSelect
-            id="city"
-            name="city"
-            placeholder="selecciona un barrio"
-            options={cities}
-            control={control}
-          />
-        </div>
+
         <div className="col-span-6 md:col-span-2">
           <label
             htmlFor="email"
@@ -207,7 +184,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
           </label>
           <ControllerInput id="dni" control={control} name="dni" />
         </div>
-        <div className="col-span-6 md:col-span-3">
+        <div className="col-span-6 md:col-span-2">
           <label
             htmlFor="registrationNumber"
             className="mb-1 block text-xs font-medium text-primary"
@@ -220,7 +197,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
             name="registrationNumber"
           />
         </div>
-        <div className="col-span-6 md:col-span-3">
+        <div className="col-span-6">
           <label
             htmlFor="reasonSocial"
             className="mb-1 block text-xs font-medium text-primary"

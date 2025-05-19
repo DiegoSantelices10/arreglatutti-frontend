@@ -6,7 +6,6 @@ const ProfessionalFormSchema = z.object({
   profession: z
     .string()
     .min(2, 'La profesión debe tener al menos 2 caracteres'),
-  city: z.string().min(2, 'La ciudad debe tener al menos 2 caracteres'),
   email: z.string().email({ message: 'Correo electrónico inválido' }),
   telephone: z
     .string()

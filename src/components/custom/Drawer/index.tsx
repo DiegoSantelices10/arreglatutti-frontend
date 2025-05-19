@@ -13,13 +13,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { FaUser } from 'react-icons/fa';
 import Carousel from '../Carousel';
-import LocationIcon from '../../../../public/images/location-icon';
 import Avatar from '../Avatar';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 
 interface IDrawerProps {
   name: string;
-  city: string;
   description: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   imagesWorks: any;
@@ -27,7 +25,7 @@ interface IDrawerProps {
 }
 
 const Drawer: FC<IDrawerProps> = (props) => {
-  const { imagesWorks, name, city, description, imageUser } = props;
+  const { imagesWorks, name, description, imageUser } = props;
 
   return (
     <DrawerUI>
@@ -46,19 +44,9 @@ const Drawer: FC<IDrawerProps> = (props) => {
         </DrawerHeader>
         <div className="p-2 md:p-4 space-y-4 gap-4 h-full max-h-[70vh] overflow-y-auto">
           <div className="bg-white shadow-sm p-4 w-full rounded-lg">
-            <div className="flex justify-between items-start  gap-4">
-              <Avatar className="w-14 h-14" image={imageUser.url} />
-              <div className="w-full">
-                <div className="flex gap-2 items-center">
-                  <h2 className="text-primary font-semibold text-lg">{name}</h2>
-                </div>
-                <div className="flex gap-1 items-center">
-                  <LocationIcon className="size-4 text-textSecondary" />
-                  <h2 className="text-textSecondary font-normal text-sm">
-                    {city}
-                  </h2>
-                </div>
-              </div>
+            <div className="flex flex-col justify-center items-center gap-4">
+              <Avatar className="w-24 h-24" image={imageUser.url} />
+              <h2 className="text-primary font-semibold text-lg">{name}</h2>
             </div>
             {description && (
               <div className="mt-4">
