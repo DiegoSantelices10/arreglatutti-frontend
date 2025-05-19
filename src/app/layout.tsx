@@ -59,7 +59,6 @@ export default function RootLayout({
   );
 }
 export const metadata: Metadata = {
-  title: 'Aquiles',
-  description:
-    'Brindamos servicios de profesionales matriculados en la provincia de Mendoza, Argentina.',
+  title: 'Aquiles Soluciones',
+  description: 'Brindamos servicios de profesionales matriculados.',
 };
