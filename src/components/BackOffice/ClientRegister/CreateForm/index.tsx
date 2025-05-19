@@ -4,15 +4,14 @@ import Button from '@/components/custom/Button';
 import ControllerInput from '@/components/custom/ControllerInput';
 import ControllerSelect from '@/components/custom/ControllerSelect';
 import { toast } from '@/hooks/use-toast';
-import { createProfessional } from '@/services/profesional';
 import React, { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { uploadImages, uploadImageUser } from '@/services/cloudinary';
 import ControllerCheckbox from '@/components/custom/ControllerCheckbox';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ClientFormSchema, ClientSchemaType } from './schema';
+import axios from 'axios';
 
 interface ISelectOptions {
   _id: string;
@@ -20,6 +19,14 @@ interface ISelectOptions {
 }
 interface ICreateForm {
   professionList: ISelectOptions[];
+}
+
+interface IMessageClient {
+  name: string;
+  telephone: string;
+  profession: string;
+  address: string;
+  email: string;
 }
 
 const CreateForm: FC<ICreateForm> = (props) => {
@@ -61,46 +68,30 @@ const CreateForm: FC<ICreateForm> = (props) => {
     },
   ];
 
-  const toastError = () =>
-    toast({
-      title: 'Error',
-      description: 'Error al crear profesional',
-      variant: 'error',
-    });
+  const sendEmail = async (value: IMessageClient) => {
+    return await axios.post('/api/clientEmail', value);
+  };
 
   const onSubmit = async (values: any) => {
     setIsLoading(true);
 
-    const response = await uploadImages(values.images);
-
-    if (response.status !== 200) {
-      toastError();
-      setIsLoading(false);
-      return;
-    }
-
-    const imageUser = await uploadImageUser(values.imageUser);
-
-    if (imageUser.status !== 200) {
-      toastError();
-      setIsLoading(false);
-      return;
-    }
-
-    const newValues = {
-      ...values,
-      images: response.data,
-      imageUser: {
-        fileName: values.imageUser.fileName,
-        public_id: imageUser.public_id,
-        url: imageUser.url,
-      },
+    const messageCliente: IMessageClient = {
+      name: values.name,
+      telephone: values.telephone,
+      profession: values.profession,
+      address: values.address,
+      email: values.email,
     };
 
-    const { status } = await createProfessional(newValues);
+    const response = await sendEmail(messageCliente);
 
-    if (status !== 201) {
-      toastError();
+    if (response.status !== 200) {
+      toast({
+        title: 'Error',
+        description:
+          'Ocurrio un error al enviar la solicitud, intente nuevamente más tarde.',
+        variant: 'error',
+      });
       setIsLoading(false);
       return;
     }
