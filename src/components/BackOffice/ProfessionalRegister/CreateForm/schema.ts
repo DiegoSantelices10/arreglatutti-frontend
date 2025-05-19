@@ -10,7 +10,7 @@ const ProfessionalFormSchema = z.object({
   telephone: z
     .string()
     .regex(/^\d{7,15}$/, 'El teléfono debe tener entre 7 y 15 dígitos'),
-  dni: z.string().min(2, 'El DNI debe tener al menos 2 caracteres'),
+  cuit: z.string().min(2, 'El CUIT debe tener al menos 8 caracteres'),
   description: z
     .string()
     .min(10, 'La descripcion debe tener al menos 10 caracteres')

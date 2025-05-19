@@ -6,7 +6,7 @@ export interface IProfessional {
   name: string;
   profession: string;
   telephone: string;
-  dni: string;
+  cuit: string;
   reasonSocial?: string;
   registrationNumber: string;
   city: string;

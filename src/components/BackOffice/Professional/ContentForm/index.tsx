@@ -41,7 +41,7 @@ export interface IProfessional {
   profession: string;
   email: string;
   telephone: string;
-  dni: string;
+  cuit: string;
   description: string;
   registrationNumber: string;
   reasonSocial?: string;
@@ -66,7 +66,7 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
     profession: '',
     email: '',
     telephone: '',
-    dni: '',
+    cuit: '',
     description: '',
     imageUser: { url: '', fileName: '', public_id: '' },
     registrationNumber: '',
@@ -95,7 +95,7 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
       telephone: '',
       registrationNumber: '',
       reasonSocial: '',
-      dni: '',
+      cuit: '',
       description: '',
       imageUser: '',
       images: [],
@@ -284,12 +284,12 @@ const ContentForm: FC<IContentFormProps> = ({ id }) => {
       </div>
       <div className="col-span-6 md:col-span-2">
         <label
-          htmlFor="dni"
+          htmlFor="cuit"
           className="mb-1 block text-xs font-medium text-primary"
         >
-          Dni
+          CUIT
         </label>
-        <ControllerInput id="dni" control={control} name="dni" />
+        <ControllerInput id="cuit" control={control} name="cuit" />
       </div>
       <div className="col-span-6 md:col-span-2">
         <label
