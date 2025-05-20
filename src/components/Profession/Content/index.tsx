@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import Drawer from '@/components/custom/Drawer';
 import React, { FC, useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { titleProfessionalEnum } from '../utils';
 import { getProfessionals } from '@/services/profesional';
 import QueryDrawer from '../QueryDrawer';
+import Modal from '@/components/custom/Modal';
+import Button from '@/components/custom/Button';
+import Carousel from '@/components/custom/Carousel';
+import { FaRegImage } from 'react-icons/fa6';
 
 interface IContentProps {
   profession: string;
@@ -33,8 +36,8 @@ const Content: FC<IContentProps> = (props) => {
   const professionText = decodeURIComponent(professionSelect);
 
   return (
-    <div className="relative z-20 min-h-screen overflow-hidden pt-[80px] bg-[#FAFAFB] pb-10">
-      <div className="p-4 md:px-14 space-y-6">
+    <div className="relative z-20 min-h-screen overflow-hidden pt-[40px] bg-[#FAFAFB] pb-10">
+      <div className="p-4 md:px-14 space-y-6 max-w-[80vw] mx-auto">
         <div className="space-y-6">
           <div className="w-full">
             <h2 className="text-lg text-primary font-bold">
@@ -42,7 +45,7 @@ const Content: FC<IContentProps> = (props) => {
             </h2>
             <div className="h-[1px] w-full bg-gray-300" />
           </div>
-          <div className="w-full grid md:grid-cols-2 gap-6">
+          <div className="w-full grid grid-cols-1 gap-6">
             {isLoading ? (
               <Skeleton className="h-40 w-full bg-gray-200 rounded-md" />
             ) : professionals && professionals?.length > 0 ? (
@@ -63,16 +66,22 @@ const Content: FC<IContentProps> = (props) => {
                     <div>
                       <div className="mt-4 h-[1px] bg-gray-200" />
                       <div className="flex justify-between items-center mt-4">
-                        <Drawer
-                          name={professional.name}
-                          description={professional.description}
-                          imagesWorks={professional.images}
-                          imageUser={professional.imageUser}
-                        />
                         <QueryDrawer
                           name={professional.name}
                           profession={professional.profession}
                         />
+
+                        <Modal
+                          title="Imagenes de trabajos"
+                          triggerButton={
+                            <Button className="flex text-secondary hover:text-white hover:bg-secondary bg-gray-100 border-secondary font-semibold justify-center items-center gap-2 px-4 text-[14px]">
+                              Ver trabajos
+                              <FaRegImage size={20} />
+                            </Button>
+                          }
+                        >
+                          <Carousel images={professional.images} />
+                        </Modal>
                       </div>
                     </div>
                   </div>

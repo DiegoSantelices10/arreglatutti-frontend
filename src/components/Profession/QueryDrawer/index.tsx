@@ -101,7 +101,7 @@ const QueryDrawer: FC<IQueryDrawerProps> = (props) => {
     <DrawerUI open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>
         <Button className="flex font-semibold justify-center items-center gap-2 px-4 text-[14px]">
-          Dejame tu consulta
+          Enviar consulta
           <FaEnvelope />
         </Button>
       </DrawerTrigger>

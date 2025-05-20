@@ -27,12 +27,12 @@ const Carousel: FC<ICarouselProps> = (props) => {
         {images?.map((image: any, index) => {
           return (
             <CarouselItem key={index}>
-              <Card className="h-full">
-                <CardContent className=" flex h-full justify-center items-center p-0">
+              <Card className="h-full flex justify-center items-center">
+                <CardContent className="p-0">
                   <img
                     src={`${image.url}`}
                     alt={image.url}
-                    className="object-contain rounded-md"
+                    className="object-contain rounded max-w-full max-h-[60vh]"
                   />
                 </CardContent>
               </Card>
@@ -40,9 +40,9 @@ const Carousel: FC<ICarouselProps> = (props) => {
           );
         })}
       </CarouselContent>
-      <CarouselPrevious className="ml-14 " />
+      <CarouselPrevious className="ml-14 bg-slate-500 " />
 
-      <CarouselNext className="mr-14" />
+      <CarouselNext className="mr-14 bg-slate-500" />
     </CarouselUI>
   );
 };
