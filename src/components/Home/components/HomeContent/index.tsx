@@ -21,7 +21,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
     >
       <section
         id="home"
-        className="z-50 relative min-h-screen overflow-hidden pt-14 space-y-10 md:px-10"
+        className="z-50 relative min-h-screen overflow-hidden pt-20 space-y-10 md:px-10"
       >
         <div className="z-50 lg:flex lg:gap-4 lg:justify-between lg:items-center">
           <div className="pb-6 w-full">
@@ -70,9 +70,9 @@ const HomeContent: FC<IHomeContent> = (props) => {
             </div>
           </div> */}
         </div>
-        <p className="text-center text-white font-bold text-xl px-4">
+        {/* <p className="text-center text-white font-bold text-xl px-4">
           Proximamente vas a poder utilizar nuestra red de profesionales.
-        </p>
+        </p> */}
       </section>
     </motion.div>
   );

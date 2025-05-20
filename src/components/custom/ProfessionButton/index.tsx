@@ -10,6 +10,7 @@ import ThermometerColdIcon from '@/images/icons/thermometer-cold-stroke-rounded'
 import Mining02Icon from '@/images/icons/mining-02-stroke-rounded';
 import Configuration01Icon from '@/images/icons/configuration-01-stroke-rounded';
 import TruckIcon from '../../../../public/images/truck-icon';
+import KeyIcon from '@/images/icons/key-icon';
 const ProfessionButton: FC<IProfessionButtonProps> = (props) => {
   const { title } = props;
 
@@ -22,6 +23,7 @@ const ProfessionButton: FC<IProfessionButtonProps> = (props) => {
     Plomero: RainDoubleDropIcon,
     Mecanico: Configuration01Icon,
     Fletes: TruckIcon,
+    Cerrajeria: KeyIcon,
   };
 
   const IconComponent = typeProfession[title] || ThermometerColdIcon;
