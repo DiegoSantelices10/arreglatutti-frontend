@@ -125,10 +125,9 @@ const CreateForm: FC<ICreateForm> = (props) => {
       return;
     }
 
+    router.push('/sendSuccess');
     reset();
     setIsLoading(false);
-
-    router.push('/sendSuccess');
   };
 
   const removeImage = (image: string) => {
@@ -293,6 +292,9 @@ const CreateForm: FC<ICreateForm> = (props) => {
                 <CloudUploadIcon className="size-6 text-textSecondary" />
               </div>
             </ControllerInputFile>
+            <p className="text-xs text-textSecondary text-center">
+              Para subir varias fotos seleccionar de una a la vez
+            </p>
             <div className="grid grid-cols-2 content-center  gap-2 mt-2">
               {imagesList?.length > 0 &&
                 imagesList.map((item: any, index: number) => (
