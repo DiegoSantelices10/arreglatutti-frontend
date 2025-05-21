@@ -37,7 +37,7 @@ const Content: FC<IContentProps> = (props) => {
 
   return (
     <div className="relative z-20 min-h-screen overflow-hidden pt-[40px] bg-[#FAFAFB] pb-10">
-      <div className="p-4 md:px-14 space-y-6 max-w-[80vw] mx-auto">
+      <div className="p-4 md:px-14 space-y-6 w-full md:max-w-[80vw] mx-auto">
         <div className="space-y-6">
           <div className="w-full">
             <h2 className="text-lg text-primary font-bold">
