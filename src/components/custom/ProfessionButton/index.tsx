@@ -11,6 +11,7 @@ import Mining02Icon from '@/images/icons/mining-02-stroke-rounded';
 import Configuration01Icon from '@/images/icons/configuration-01-stroke-rounded';
 import TruckIcon from '../../../../public/images/truck-icon';
 import KeyIcon from '@/images/icons/key-icon';
+import BugIcon from '@/images/icons/bug-icon';
 const ProfessionButton: FC<IProfessionButtonProps> = (props) => {
   const { title } = props;
 
@@ -24,6 +25,7 @@ const ProfessionButton: FC<IProfessionButtonProps> = (props) => {
     Mecanico: Configuration01Icon,
     Fletes: TruckIcon,
     Cerrajeria: KeyIcon,
+    Fumigacion: BugIcon,
   };
 
   const IconComponent = typeProfession[title] || ThermometerColdIcon;
