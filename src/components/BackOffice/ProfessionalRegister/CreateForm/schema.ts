@@ -37,9 +37,7 @@ const ProfessionalFormSchema = z.object({
   acceptPrivacyPolicy: z.literal(true).refine((val) => val === true, {
     message: 'Debes aceptar la política de privacidad',
   }),
-  registrationNumber: z
-    .string()
-    .min(2, 'El numero de matricula debe tener al menos 2 caracteres'),
+  registrationNumber: z.string().optional(),
   reasonSocial: z.string().optional(),
   available: z.boolean().optional(),
 });

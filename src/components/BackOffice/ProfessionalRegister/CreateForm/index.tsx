@@ -149,6 +149,10 @@ const CreateForm: FC<ICreateForm> = (props) => {
         Completa el formulario para registrarte como profesional en la
         plataforma.
       </p>
+      <p className="text-xs text-textSecondary mt-4">
+        Campos obligatorios{' '}
+        <span className="text-red-500 font-semibold">*</span>
+      </p>
       <div className="pt-8 flex flex-col  md:flex-row w-full justify-between gap-4">
         <div className="space-y-4 md:w-1/4 w-full">
           {imageUser && imageUser.url && (
@@ -174,7 +178,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
               <CloudUploadIcon className="size-6 text-textSecondary" />
             </div>
             <h3 className="text-xs text-center text-textSecondary py-2">
-              Subir imagen de perfil
+              Subir imagen de perfil*
             </h3>
           </ControllerInputFile>
         </div>
@@ -184,7 +188,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
               htmlFor="name"
               className="mb-1 block text-xs font-medium text-primary"
             >
-              Nombre y apellido
+              Nombre y apellido*
             </label>
             <ControllerInput id="name" control={control} name="name" />
           </div>
@@ -193,7 +197,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
               htmlFor="profession"
               className="mb-1 block text-xs font-medium text-primary"
             >
-              Profesión
+              Profesión*
             </label>
             <ControllerSelect
               id="profession"
@@ -210,7 +214,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
               htmlFor="email"
               className="mb-1 block text-xs font-medium text-primary"
             >
-              Correo electrónico
+              Correo electrónico*
             </label>
             <ControllerInput id="email" control={control} name="email" />
           </div>
@@ -219,7 +223,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
               htmlFor="telephone"
               className="mb-1 block text-xs font-medium text-primary"
             >
-              Telefono
+              Telefono*
             </label>
             <ControllerInput
               id="telephone"
@@ -232,7 +236,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
               htmlFor="cuit"
               className="mb-1 block text-xs font-medium text-primary"
             >
-              CUIT
+              CUIT*
             </label>
             <ControllerInput id="cuit" control={control} name="cuit" />
           </div>
@@ -267,7 +271,7 @@ const CreateForm: FC<ICreateForm> = (props) => {
               htmlFor="description"
               className="mb-1 block text-xs font-medium text-primary"
             >
-              Descripción
+              Descripción*
             </label>
             <ControllerTextArea
               id="description"
