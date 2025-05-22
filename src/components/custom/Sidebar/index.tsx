@@ -56,10 +56,16 @@ const Sidebar = () => {
     },
 
     {
-      title: 'Mensajes',
+      title: 'Consultas profesionales',
       url: '/admin/backoffice/message',
       icon: <EmailIcon className="text-white" />,
     },
+    {
+      title: 'Consultas clientes',
+      url: '/admin/backoffice/consultation',
+      icon: <EmailIcon className="text-white" />,
+    },
+
     {
       title: 'Solicitudes',
       url: '/admin/backoffice/messageClient',

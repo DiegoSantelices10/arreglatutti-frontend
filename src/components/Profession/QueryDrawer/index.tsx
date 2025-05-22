@@ -19,7 +19,6 @@ import ControllerInput from '@/components/custom/ControllerInput';
 import Button from '@/components/custom/Button';
 
 import { toast } from '@/hooks/use-toast';
-import axios from 'axios';
 import {
   createConsultation,
   IMessage,
@@ -57,10 +56,6 @@ const QueryDrawer: FC<IQueryDrawerProps> = (props) => {
 
   const buttonIsDisabled = !isValid || isLoading;
 
-  const sendEmail = async (value: IMessage) => {
-    return await axios.post('/api/consultationEmail', value);
-  };
-
   const onSubmit = async (value: FormSchemaType) => {
     setIsLoading(true);
     const { status }: IResponse = await createConsultation(value as IMessage);
@@ -76,18 +71,6 @@ const QueryDrawer: FC<IQueryDrawerProps> = (props) => {
       return;
     }
 
-    const response = await sendEmail(value as IMessage);
-
-    if (response.status !== 200) {
-      toast({
-        title: 'Error',
-        description:
-          'Ocurrio un error al enviar la solicitud, intente nuevamente más tarde.',
-        variant: 'error',
-      });
-      setIsLoading(false);
-      return;
-    }
     setIsOpen(false);
     toast({
       title: 'Enviado',

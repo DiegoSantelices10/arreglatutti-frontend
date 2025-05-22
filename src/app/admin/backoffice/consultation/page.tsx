@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { DeleteModal } from '@/components/BackOffice/MessageClient/DeleteModal';
 import HeaderTitle from '@/components/custom/HeaderTitle';
-import { getMessages } from '@/services/messageClient';
 import React, { FC, useEffect, useState } from 'react';
 import DeleteIcon from '../../../../../public/images/delete-icon';
+import { getConsultations } from '@/services/consultation';
+import { DeleteModal } from '@/components/BackOffice/Consultation/DeleteModal';
 
-const MessageClient: FC = () => {
+const Consultation: FC = () => {
   const [renderData, setRenderData] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const MessageClient: FC = () => {
   }, []);
 
   const getMessagesData = async () => {
-    const { status, data } = await getMessages();
+    const { status, data } = await getConsultations();
     if (status !== 200) {
       return;
     }
@@ -23,7 +23,7 @@ const MessageClient: FC = () => {
 
   return (
     <div className="space-y-4">
-      <HeaderTitle title="Solicitudes de clientes" />
+      <HeaderTitle title="Consultas de clientes" />
       <div className="space-y-4">
         {renderData.length > 0 ? (
           renderData?.map((item: any) => (
@@ -40,17 +40,21 @@ const MessageClient: FC = () => {
                   <p className="text-textSecondary text-xs">Tipo de servicio</p>
                   <span className="font-medium">{item.profession}</span>
                 </div>
+                {item.professionalName && (
+                  <div className="text-sm font-semibold text-primary">
+                    <p className="text-textSecondary text-xs">
+                      Profesional asignado
+                    </p>
+                    <span className="font-medium">{item.professionalName}</span>
+                  </div>
+                )}
                 <div className="text-sm font-semibold text-primary">
                   <p className="text-textSecondary text-xs">Telefono</p>
                   <span className="font-medium">{item.telephone}</span>
                 </div>
                 <div className="text-sm font-semibold text-primary">
-                  <p className="text-textSecondary text-xs">Correo</p>
-                  <span className="font-medium">{item.email}</span>
-                </div>
-                <div className="text-sm font-semibold text-primary">
-                  <p className="text-textSecondary text-xs">Dirección</p>
-                  <span className="font-medium">{item.address}</span>
+                  <p className="text-textSecondary text-xs">Mensaje</p>
+                  <span className="font-medium">{item.message}</span>
                 </div>
               </div>
               <div>
@@ -79,4 +83,4 @@ const MessageClient: FC = () => {
   );
 };
 
-export default MessageClient;
+export default Consultation;
