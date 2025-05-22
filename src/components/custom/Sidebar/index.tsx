@@ -13,7 +13,6 @@ import {
 import Image from 'next/image';
 import HomeIcon from '../../../../public/images/home-icon';
 import ProfessionIcon from '../../../../public/images/profession-icon';
-import LocationIcon from '../../../../public/images/location-icon';
 import UserProfessionalIcon from '../../../../public/images/user-professional-icon';
 import EmailIcon from '../../../../public/images/email-icon';
 import LogoutIcon from '../../../../public/images/logout-icon';
