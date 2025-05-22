@@ -29,10 +29,10 @@ const SERVICES = {
     CREATE_MESSAGE: 'professionalApplication',
     DELETE_MESSAGE: 'professionalApplication',
   },
-  CONSULTATIONS: {
-    GET_MESSAGES: 'consultation',
-    CREATE: 'consultation',
-    DELETE_MESSAGE: 'consultation',
+  MESSAGE_CLIENT: {
+    GET_MESSAGES: 'messageClient',
+    CREATE: 'messageClient',
+    DELETE_MESSAGE: 'messageClient',
   },
   MESSAGE_CLIENT: {
     GET_MESSAGES: 'messageClient',
