@@ -34,10 +34,10 @@ const SERVICES = {
     CREATE: 'messageClient',
     DELETE_MESSAGE: 'messageClient',
   },
-  MESSAGE_CLIENT: {
-    GET_MESSAGES: 'messageClient',
-    CREATE: 'messageClient',
-    DELETE_MESSAGE: 'messageClient',
+  CONSULTATIONS: {
+    GET_MESSAGES: 'consultation',
+    CREATE: 'consultation',
+    DELETE_MESSAGE: 'consultation',
   },
   AUTHENTICATION: {
     LOGIN: 'auth/login',
