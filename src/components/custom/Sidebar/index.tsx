@@ -55,14 +55,15 @@ const Sidebar = () => {
       url: '/admin/backoffice/profession',
       icon: <ProfessionIcon className="text-white " />,
     },
-    {
-      title: 'Barrios',
-      url: '/admin/backoffice/city',
-      icon: <LocationIcon className="text-white" />,
-    },
+
     {
       title: 'Mensajes',
       url: '/admin/backoffice/message',
+      icon: <EmailIcon className="text-white" />,
+    },
+    {
+      title: 'Solicitudes',
+      url: '/admin/backoffice/messageClient',
       icon: <EmailIcon className="text-white" />,
     },
   ];

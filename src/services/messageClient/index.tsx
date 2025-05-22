@@ -6,8 +6,8 @@ export interface IMessage {
   name: string;
   telephone: string;
   profession: string;
-  message: string;
-  professionalName?: string;
+  email: string;
+  address: string;
 }
 
 export interface IResponse {
@@ -15,10 +15,10 @@ export interface IResponse {
   data: any;
 }
 
-export const getConsultations = async () => {
+export const getMessages = async () => {
   try {
     const response = await getApi({
-      path: `${SERVICES.CONSULTATIONS.GET_MESSAGES}`,
+      path: `${SERVICES.MESSAGE_CLIENT.GET_MESSAGES}`,
       method: 'GET',
     });
     return response;
@@ -30,12 +30,10 @@ export const getConsultations = async () => {
   }
 };
 
-export const createConsultation = async (
-  data: IMessage
-): Promise<IResponse> => {
+export const createMessage = async (data: IMessage): Promise<IResponse> => {
   try {
     const response: any = await getApi({
-      path: SERVICES.CONSULTATIONS.CREATE,
+      path: SERVICES.MESSAGE_CLIENT.CREATE,
       method: 'POST',
       data,
     });
@@ -51,7 +49,7 @@ export const createConsultation = async (
 export const deleteMessage = async (id: string) => {
   try {
     const response = await getApi({
-      path: `${SERVICES.CONSULTATIONS.DELETE_MESSAGE}/${id}`,
+      path: `${SERVICES.MESSAGE_CLIENT.DELETE_MESSAGE}/${id}`,
       method: 'DELETE',
     });
     return response;

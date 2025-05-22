@@ -1,6 +1,6 @@
 // const API_VERSION = 'api/v1';
-// const API_URL_BASE = `http://localhost:4000/`;
-const API_URL_BASE = `https://api.aquilessoluciones.com.ar/`;
+const API_URL_BASE = `http://localhost:4000/`;
+// const API_URL_BASE = `https://api.aquilessoluciones.com.ar/`;
 
 const SERVICES = {
   PROFESSIONS: {
@@ -29,10 +29,10 @@ const SERVICES = {
     CREATE_MESSAGE: 'professionalApplication',
     DELETE_MESSAGE: 'professionalApplication',
   },
-  CONSULTATIONS: {
-    GET_MESSAGES: 'consultation',
-    CREATE: 'consultation',
-    DELETE_MESSAGE: 'consultation',
+  MESSAGE_CLIENT: {
+    GET_MESSAGES: 'messageClient',
+    CREATE: 'messageClient',
+    DELETE_MESSAGE: 'messageClient',
   },
   AUTHENTICATION: {
     LOGIN: 'auth/login',
