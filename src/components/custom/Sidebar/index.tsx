@@ -13,7 +13,6 @@ import {
 import Image from 'next/image';
 import HomeIcon from '../../../../public/images/home-icon';
 import ProfessionIcon from '../../../../public/images/profession-icon';
-import LocationIcon from '../../../../public/images/location-icon';
 import UserProfessionalIcon from '../../../../public/images/user-professional-icon';
 import EmailIcon from '../../../../public/images/email-icon';
 import LogoutIcon from '../../../../public/images/logout-icon';
@@ -55,14 +54,15 @@ const Sidebar = () => {
       url: '/admin/backoffice/profession',
       icon: <ProfessionIcon className="text-white " />,
     },
-    {
-      title: 'Barrios',
-      url: '/admin/backoffice/city',
-      icon: <LocationIcon className="text-white" />,
-    },
+
     {
       title: 'Mensajes',
       url: '/admin/backoffice/message',
+      icon: <EmailIcon className="text-white" />,
+    },
+    {
+      title: 'Solicitudes',
+      url: '/admin/backoffice/messageClient',
       icon: <EmailIcon className="text-white" />,
     },
   ];

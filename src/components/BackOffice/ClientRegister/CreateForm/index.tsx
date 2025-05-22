@@ -11,7 +11,7 @@ import ControllerCheckbox from '@/components/custom/ControllerCheckbox';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ClientFormSchema, ClientSchemaType } from './schema';
-import axios from 'axios';
+import { createMessage } from '@/services/messageClient';
 
 interface ISelectOptions {
   _id: string;
@@ -27,6 +27,8 @@ interface IMessageClient {
   profession: string;
   address: string;
   email: string;
+  acceptTerms: boolean;
+  acceptPrivacyPolicy: boolean;
 }
 
 const CreateForm: FC<ICreateForm> = (props) => {
@@ -38,7 +40,6 @@ const CreateForm: FC<ICreateForm> = (props) => {
 
   const {
     control,
-    reset,
     handleSubmit,
     formState: { isValid },
   } = useForm<ClientSchemaType>({
@@ -68,24 +69,16 @@ const CreateForm: FC<ICreateForm> = (props) => {
     },
   ];
 
-  const sendEmail = async (value: IMessageClient) => {
-    return await axios.post('/api/clientEmail', value);
-  };
-
   const onSubmit = async (values: any) => {
     setIsLoading(true);
 
     const messageCliente: IMessageClient = {
-      name: values.name,
-      telephone: values.telephone,
-      profession: values.profession,
-      address: values.address,
-      email: values.email,
+      ...values,
     };
 
-    const response = await sendEmail(messageCliente);
+    const { status } = await createMessage(messageCliente);
 
-    if (response.status !== 200) {
+    if (status !== 201) {
       toast({
         title: 'Error',
         description:
@@ -95,9 +88,6 @@ const CreateForm: FC<ICreateForm> = (props) => {
       setIsLoading(false);
       return;
     }
-
-    reset();
-    setIsLoading(false);
 
     router.push('/sendSuccess');
   };

@@ -34,6 +34,11 @@ const SERVICES = {
     CREATE: 'consultation',
     DELETE_MESSAGE: 'consultation',
   },
+  MESSAGE_CLIENT: {
+    GET_MESSAGES: 'messageClient',
+    CREATE: 'messageClient',
+    DELETE_MESSAGE: 'messageClient',
+  },
   AUTHENTICATION: {
     LOGIN: 'auth/login',
     REGISTER: 'auth/register',
