@@ -14,7 +14,6 @@ import {
   IMessage,
   IResponse,
 } from '@/services/consultation';
-import axios from 'axios';
 
 interface IForm {
   data: any;
@@ -44,16 +43,13 @@ const Form: FC<IForm> = (props) => {
     mode: 'onTouched',
   });
 
-  const selectOptions = data?.map((item: any) => ({
-    label: item.name,
-    value: item.name,
-  }));
+  const selectOptions =
+    data?.map((item: any) => ({
+      label: item.name,
+      value: item.name,
+    })) || [];
 
   const buttonDisabled = !isValid || isLoading;
-
-  const sendEmail = async (value: IMessage) => {
-    return await axios.post('/api/consultationEmail', value);
-  };
 
   const onSubmit = async (value: FormSchemaType) => {
     setIsLoading(true);
@@ -69,19 +65,6 @@ const Form: FC<IForm> = (props) => {
     const { status }: IResponse = await createConsultation(messageCliente);
 
     if (status !== 201) {
-      toast({
-        title: 'Error',
-        description:
-          'Ocurrio un error al enviar la solicitud, intente nuevamente más tarde.',
-        variant: 'error',
-      });
-      setIsLoading(false);
-      return;
-    }
-
-    const response = await sendEmail(messageCliente);
-
-    if (response.status !== 200) {
       toast({
         title: 'Error',
         description:

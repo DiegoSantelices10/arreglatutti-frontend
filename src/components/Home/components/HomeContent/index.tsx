@@ -2,8 +2,8 @@
 'use client';
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import ProfessionButton from '@/components/custom/ProfessionButton';
+import Form from '@/components/custom/Form';
 // import Form from '@/components/custom/Form';
 
 interface IHomeContent {
@@ -24,7 +24,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
         className="z-50 relative min-h-screen overflow-hidden pt-20 space-y-10 md:px-10"
       >
         <div className="z-50 lg:flex lg:gap-4 lg:justify-between lg:items-center">
-          <div className="pb-6 w-full">
+          <div className="pb-6 w-full lg:w-1/2">
             {/* Title */}
             <div
               className="flex flex-col items-center fadeInUp mx-auto text-center"
@@ -45,20 +45,16 @@ const HomeContent: FC<IHomeContent> = (props) => {
             <div className="flex flex-wrap px-4 md:px-0 gap-6 justify-center items-start">
               {data &&
                 data?.map((item: any) => (
-                  <Link
-                    key={item._id}
-                    className="cursor-pointer"
-                    href={`/profession/${item.name}`}
-                  >
+                  <div key={item._id}>
                     <ProfessionButton title={item.name} />
-                  </Link>
+                  </div>
                 ))}
             </div>
           </div>
 
           {/* Form */}
 
-          {/* <div className=" w-full lg:w-1/2 mt-4 md:mt-0 md:pl-10">
+          <div className=" w-full lg:w-1/2 mt-4 md:mt-0 md:pl-10">
             <div
               className="mb-12 rounded-md p-8 bg-white"
               data-wow-delay=".15s"
@@ -68,7 +64,7 @@ const HomeContent: FC<IHomeContent> = (props) => {
               </h2>
               <Form data={data} />
             </div>
-          </div> */}
+          </div>
         </div>
         {/* <p className="text-center text-white font-bold text-xl px-4">
           Proximamente vas a poder utilizar nuestra red de profesionales.
